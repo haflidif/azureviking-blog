@@ -6,7 +6,13 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "prepare": "lefthook install",
+    "check": "svelte-check --tsconfig ./tsconfig.json",
+    "lint": "eslint . --ext .js,.ts,.astro,.svelte",
+    "lint:fix": "eslint . --ext .js,.ts,.astro,.svelte --fix",
+    "format": "prettier --write \"**/*.{js,ts,astro,svelte,json,css,md}\"",
+    "format:check": "prettier --check \"**/*.{js,ts,astro,svelte,json,css,md}\""
   },
   "dependencies": {
     "@astrojs/svelte": "^7.2.4",
@@ -15,5 +21,21 @@
     "svelte": "^5.46.0",
     "tailwindcss": "^4.1.18",
     "typescript": "^5.9.3"
+  },
+  "devDependencies": {
+    "@evilmartians/lefthook": "^2.0.12",
+    "@typescript-eslint/eslint-plugin": "^8.50.0",
+    "@typescript-eslint/parser": "^8.50.0",
+    "eslint": "^9.39.2",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-astro": "^1.5.0",
+    "eslint-plugin-svelte": "^3.13.1",
+    "eslint-plugin-unused-imports": "^4.3.0",
+    "prettier": "^3.7.4",
+    "prettier-plugin-astro": "^0.14.1",
+    "prettier-plugin-svelte": "^3.4.1",
+    "svelte-check": "^4.3.4",
+    "svelte-eslint-parser": "^1.4.1",
+    "typescript-eslint": "^8.50.0"
   }
 }

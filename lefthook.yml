@@ -1,0 +1,20 @@
+pre-commit:
+  parallel: true
+  commands:
+    lint:
+      glob: '*.{js,ts,astro,svelte}'
+      run: npx eslint {staged_files} --fix
+      stage_fixed: true
+
+    format:
+      glob: '*.{js,ts,astro,svelte,json,css,md}'
+      run: npx prettier --write {staged_files}
+      stage_fixed: true
+
+pre-push:
+  commands:
+    type-check:
+      run: npm run check
+
+    lint-all:
+      run: npm run lint
