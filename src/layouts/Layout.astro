@@ -1,6 +1,8 @@
 ---
 import '@/styles/global.css';
 import { SITE } from '@/config';
+import Header from '@/lib/components/Header.astro';
+import Footer from '@/lib/components/Footer.astro';
 
 interface Props {
   title?: string;
@@ -22,7 +24,11 @@ const pageDescription = description || SITE.desc;
     <meta name="description" content={pageDescription} />
     <base href={SITE.base} />
   </head>
-  <body>
-    <slot />
+  <body class="max-w-5xl mx-auto">
+    <Header />
+    <main>
+      <slot />
+    </main>
+    <Footer />
   </body>
 </html>

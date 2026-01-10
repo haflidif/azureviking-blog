@@ -17,7 +17,7 @@ const { Content } = await post.render();
 
 <Layout title={post.data.title} description={post.data.description}>
   <div class="bg-background text-foreground min-h-screen p-8">
-    <article class="max-w-3xl mx-auto">
+    <article>
       <header class="mb-8">
         <a href="/posts" class="text-primary hover:underline mb-4 inline-block">← Back to posts</a>
         <h1 class="text-4xl font-bold mb-4">{post.data.title}</h1>

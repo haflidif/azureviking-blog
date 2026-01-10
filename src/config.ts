@@ -1,6 +1,6 @@
 export const SITE = {
   author: 'Alexey Poimtsev',
-  title: 'Spaceship',
+  title: '🚀 Spaceship',
   desc: 'An amazing Astro theme',
   lang: 'en',
 

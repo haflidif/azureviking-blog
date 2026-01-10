@@ -1,0 +1,24 @@
+---
+import { SITE } from '@/config';
+---
+
+<header class="my-1 items-center justify-between flex flex-row py-3">
+  <ul class="gap-3">
+    <li>
+      <a href="/">
+        <h1 class="text-xl uppercase">
+          {SITE.title}
+        </h1>
+      </a>
+    </li>
+  </ul>
+
+  <ul class="flex flex-row gap-3">
+    <li>
+      <a href="/posts">Blog</a>
+    </li>
+    <li>
+      <a href="/about">About</a>
+    </li>
+  </ul>
+</header>
