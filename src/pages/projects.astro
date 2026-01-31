@@ -3,11 +3,16 @@ import Layout from '@/layouts/Layout.astro';
 import { getCollection } from 'astro:content';
 import Breadcrumbs from '@/components/Breadcrumbs.svelte';
 import { SITE } from '@/config';
+import { getBreadcrumbSchema } from '@/lib/schemas';
+
+const schema = getBreadcrumbSchema([
+  { name: 'Projects', url: new URL('/projects', Astro.site).toString() },
+]);
 
 const projects = (await getCollection('projects')).sort((a, b) => a.data.order - b.data.order);
 ---
 
-<Layout title="Projects">
+<Layout title="Projects" schema={schema}>
   <Breadcrumbs items={[{ name: 'Projects', href: '/projects' }]} />
 
   <div class="mb-12 sm:mb-16 lg:mb-24">
@@ -25,7 +30,7 @@ const projects = (await getCollection('projects')).sort((a, b) => a.data.order -
     {
       projects.map((project) => {
         const isExternal = project.data.directLink;
-        const projectUrl = isExternal ? project.data.link : `/projects/${project.slug}`;
+        const projectUrl = isExternal ? project.data.link : `/projects/${project.id}`;
         const target = isExternal ? '_blank' : '_self';
 
         return (
@@ -78,6 +83,11 @@ const projects = (await getCollection('projects')).sort((a, b) => a.data.order -
                 href={projectUrl}
                 target={target}
                 rel={isExternal ? 'noopener noreferrer' : undefined}
+                aria-label={
+                  isExternal
+                    ? `Visit ${project.data.title} project website`
+                    : `View details for project ${project.data.title}`
+                }
                 class="inline-flex items-center gap-2 text-sm font-medium text-foreground hover:text-primary transition-colors no-underline"
               >
                 {isExternal ? 'Visit Site' : 'View Details'}

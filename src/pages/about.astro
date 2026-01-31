@@ -3,6 +3,11 @@ import Layout from '@/layouts/Layout.astro';
 import { SITE } from '@/config';
 import Breadcrumbs from '@/components/Breadcrumbs.svelte';
 import { render, getEntry } from 'astro:content';
+import { getBreadcrumbSchema } from '@/lib/schemas';
+
+const schema = getBreadcrumbSchema([
+  { name: 'About', url: new URL('/about', Astro.site).toString() },
+]);
 import { Image } from 'astro:assets';
 import profilePhoto from '@/assets/profile_photo.png';
 
@@ -33,7 +38,7 @@ const aboutTitle =
   aboutPost?.data.title || `I'm ${SITE.author}, a software designer and entrepreneur.`;
 ---
 
-<Layout title={`About | ${SITE.author}`}>
+<Layout title={`About | ${SITE.author}`} schema={schema}>
   <Breadcrumbs items={[{ name: 'About', href: '/about' }]} />
 
   <div class="flex flex-col lg:flex-row gap-8 lg:gap-10">

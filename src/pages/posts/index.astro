@@ -5,6 +5,11 @@ import PostCard from '@/components/PostCard.svelte';
 import Breadcrumbs from '@/components/Breadcrumbs.svelte';
 import { getReadTime } from '@/lib/utils/readTime';
 import { SITE } from '@/config';
+import { getBreadcrumbSchema } from '@/lib/schemas';
+
+const schema = getBreadcrumbSchema([
+  { name: 'Blog', url: new URL('/posts', Astro.site).toString() },
+]);
 
 const posts = (await getCollection('posts')).sort(
   (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
@@ -40,7 +45,7 @@ const sortedTags = Object.entries(tagCounts)
   .slice(0, 20); // Top 20 tags
 ---
 
-<Layout title="Blog">
+<Layout title="Blog" schema={schema}>
   <Breadcrumbs items={[{ name: 'Blog', href: '/posts' }]} />
 
   <div class="mb-10 sm:mb-12">
