@@ -7,7 +7,6 @@ import SearchModal from '@/components/SearchModal.svelte';
 import { ClientRouter } from 'astro:transitions';
 import JsonLd from '@/components/JsonLd.astro';
 import { getWebSiteSchema, getOrganizationSchema, getPersonSchema } from '@/lib/schemas';
-import LoadingIndicator from 'astro-loading-indicator/component';
 
 // Preload fonts to break critical request chains
 import outfitFont400 from '@fontsource/outfit/files/outfit-latin-400-normal.woff2?url';
@@ -114,7 +113,6 @@ const gaScript = `
     <JsonLd schema={finalSchema} />
 
     <ClientRouter />
-    <LoadingIndicator color="hsl(var(--primary))" height="3px" threshold={300} />
     <base href={SITE.base} />
   </head>
   <body class="bg-background text-foreground min-h-screen">
