@@ -45,8 +45,8 @@ const gridPosts = remainingPosts.map((post) => ({
 
 <Layout title="Welcome">
   <!-- 1. Hero: Featured Carousel + Bio Card -->
-  <section class="mb-16 lg:mb-20">
-    <div class="grid grid-cols-1 lg:grid-cols-[1fr_340px] gap-6 lg:gap-8">
+  <section class="mb-10 lg:mb-14">
+    <div class="grid grid-cols-1 lg:grid-cols-[1fr_300px] gap-5 lg:gap-6">
       <!-- Bio Card (mobile: first, desktop: second via order) -->
       <div class="order-1 lg:order-2">
         <BioCard />
@@ -67,10 +67,10 @@ const gridPosts = remainingPosts.map((post) => ({
     </div>
   </section>
 
-  <div class="flex flex-col gap-16 lg:gap-20">
+  <div class="flex flex-col gap-10 lg:gap-14">
     <!-- 2. All Posts Grid -->
     <section>
-      <div class="flex items-baseline justify-between mb-8 sm:mb-10">
+      <div class="flex items-baseline justify-between mb-6 sm:mb-8">
         <h2 class="text-xs font-bold uppercase tracking-[0.2em] text-muted-foreground">
           Latest Posts
         </h2>
@@ -88,7 +88,7 @@ const gridPosts = remainingPosts.map((post) => ({
     {
       SITE.homeProjects.enabled && projects.length > 0 && (
         <section>
-          <div class="flex items-baseline justify-between mb-8 sm:mb-12">
+          <div class="flex items-baseline justify-between mb-6 sm:mb-8">
             <h2 class="text-xs font-bold uppercase tracking-[0.2em] text-muted-foreground">
               Projects
             </h2>
@@ -216,7 +216,7 @@ const gridPosts = remainingPosts.map((post) => ({
 
     <!-- 5. Talks / Appearances -->
     <section>
-      <div class="flex items-baseline justify-between mb-8 sm:mb-12">
+      <div class="flex items-baseline justify-between mb-6 sm:mb-8">
         <h2 class="text-xs font-bold uppercase tracking-[0.2em] text-muted-foreground">
           Talks & Appearances
         </h2>

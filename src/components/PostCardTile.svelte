@@ -81,13 +81,13 @@
   </div>
 
   <!-- Content -->
-  <div class="p-4 sm:p-5 flex flex-col gap-3">
+  <div class="p-3 sm:p-4 flex flex-col gap-2">
     <!-- Tags -->
-    <div class="flex flex-wrap gap-1.5">
+    <div class="flex flex-wrap gap-1">
       {#each post.data.tags.slice(0, 3) as tag (tag)}
         {@const colors = getTagColor(tag)}
         <span
-          class="inline-flex items-center px-2 py-0.5 rounded-md text-[11px] font-bold uppercase tracking-wide border {colors.bg} {colors.text} {colors.border}"
+          class="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-bold uppercase tracking-wide border {colors.bg} {colors.text} {colors.border}"
         >
           {tag}
         </span>
@@ -96,13 +96,13 @@
 
     <!-- Title -->
     <h3
-      class="text-base sm:text-lg font-black leading-tight text-foreground group-hover:text-primary transition-colors line-clamp-2"
+      class="text-sm sm:text-base font-black leading-tight text-foreground group-hover:text-primary transition-colors line-clamp-2"
     >
       {post.data.title}
     </h3>
 
     <!-- Description -->
-    <p class="text-sm text-muted-foreground leading-relaxed line-clamp-2">
+    <p class="text-xs text-muted-foreground leading-relaxed line-clamp-2">
       {post.data.description}
     </p>
 
