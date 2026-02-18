@@ -1,0 +1,82 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { getPublishedPosts, getPostSlug } from '@/lib/utils/posts';
+import { basePath } from '@/lib/utils/basePath';
+import { formatDate } from '@/lib/utils/date';
+import { getReadTime } from '@/lib/utils/readTime';
+
+interface Props {
+  currentPost: CollectionEntry<'posts'>;
+  count?: number;
+}
+
+const { currentPost, count = 3 } = Astro.props;
+const currentSlug = getPostSlug(currentPost);
+const currentTags = currentPost.data.tags || [];
+
+const allPosts = await getPublishedPosts();
+
+// Score posts by number of shared tags, exclude current post
+const scored = allPosts
+  .filter((p) => getPostSlug(p) !== currentSlug)
+  .map((p) => {
+    const shared = (p.data.tags || []).filter((t: string) => currentTags.includes(t)).length;
+    return { post: p, score: shared };
+  })
+  .filter((s) => s.score > 0)
+  .sort((a, b) => b.score - a.score || b.post.data.pubDate.getTime() - a.post.data.pubDate.getTime())
+  .slice(0, count);
+
+// If not enough tag matches, fill with recent posts
+const relatedSlugs = new Set(scored.map((s) => getPostSlug(s.post)));
+if (scored.length < count) {
+  const remaining = allPosts
+    .filter((p) => getPostSlug(p) !== currentSlug && !relatedSlugs.has(getPostSlug(p)))
+    .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime())
+    .slice(0, count - scored.length);
+  for (const p of remaining) {
+    scored.push({ post: p, score: 0 });
+  }
+}
+
+const relatedPosts = scored.map((s) => s.post);
+---
+
+{relatedPosts.length > 0 && (
+  <section class="mt-16 mb-8 border-t border-border pt-12">
+    <h2 class="text-xl font-black tracking-tight mb-8 text-foreground">You might also like</h2>
+    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {relatedPosts.map((post) => {
+        const slug = getPostSlug(post);
+        const readTime = getReadTime(post.body || '');
+        return (
+          <a
+            href={basePath(`/posts/${slug}`)}
+            class="group block p-5 rounded-xl border border-border hover:border-primary/30 bg-background hover:bg-accent/50 transition-all duration-300 no-underline"
+          >
+            <div class="flex flex-col gap-3">
+              <time
+                datetime={post.data.pubDate.toISOString()}
+                class="text-[11px] font-bold uppercase tracking-widest text-muted-foreground"
+              >
+                {formatDate(post.data.pubDate)}
+              </time>
+              <h3 class="text-sm font-bold leading-snug text-foreground group-hover:text-primary transition-colors line-clamp-2">
+                {post.data.title}
+              </h3>
+              <p class="text-xs text-muted-foreground leading-relaxed line-clamp-2">
+                {post.data.description}
+              </p>
+              <div class="flex flex-wrap gap-2 text-[10px] font-bold uppercase tracking-widest text-muted-foreground/70">
+                <span>{readTime}</span>
+                {post.data.tags?.slice(0, 2).map((tag: string) => (
+                  <span>#{tag}</span>
+                ))}
+              </div>
+            </div>
+          </a>
+        );
+      })}
+    </div>
+  </section>
+)}

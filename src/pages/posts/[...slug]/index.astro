@@ -12,6 +12,8 @@ import SeriesNavigation from '@/components/SeriesNavigation.astro';
 import LanguageSelector from '@/components/LanguageSelector.svelte';
 import CTABlock from '@/components/CTABlock.astro';
 import Comments from '@/components/Comments.svelte';
+import ReadingProgress from '@/components/ReadingProgress.svelte';
+import RelatedPosts from '@/components/RelatedPosts.astro';
 import { getBlogPostingSchema, getBreadcrumbSchema } from '@/lib/schemas';
 
 export async function getStaticPaths() {
@@ -53,6 +55,8 @@ const schemas = [
   ogImage={`/og/${effectiveSlug}.png`}
   schema={schemas}
 >
+  <ReadingProgress client:load />
+
   <Breadcrumbs
     items={[
       { name: 'Blog', href: basePath('/posts') },
@@ -138,6 +142,8 @@ const schemas = [
       <SocialShare client:load title={post.data.title} urlPath={Astro.url.pathname} />
 
       {post.data.showComments !== false && <Comments client:load />}
+
+      <RelatedPosts currentPost={post} />
     </div>
 
     <!-- Sidebar (TOC) -->
