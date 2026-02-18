@@ -18,7 +18,7 @@ The opportunity came through the **Microsoft Security User Group**, which was ho
 
 When I was asked if I would like to present at the inaugural event, a mix of excitement and terror washed over me. This was a chance to share my knowledge with the community, to give back, and to connect with like-minded professionals. How could I say no?
 
-![Microsoft Security User Group kick-off event](/images/posts/first-time-public-speaking/event-kickoff.jpg)
+![Microsoft Security User Group kick-off event](/azureviking-blog/images/posts/first-time-public-speaking/event-kickoff.jpg)
 
 ## Securing Your Identity and Conditional Access
 
@@ -44,7 +44,7 @@ And then it happened — I started speaking. And you know what? **The moment I s
 
 The demos worked (thank goodness!), the slides flowed well, and before I knew it, I was in the zone. The passion I have for the topic shone through, and I could feel the audience connecting with the material.
 
-![Presenting on stage about Conditional Access](/images/posts/first-time-public-speaking/presenting.jpg)
+![Presenting on stage about Conditional Access](/azureviking-blog/images/posts/first-time-public-speaking/presenting.jpg)
 
 ## Audience Engagement
 
@@ -58,7 +58,7 @@ My first public speaking experience has ignited a passion I did not know I had. 
 
 I am now looking forward to more speaking opportunities. Whether it is at user groups, meetups, or conferences, I want to continue sharing my knowledge and experiences with the community.
 
-![Group photo after the event](/images/posts/first-time-public-speaking/group-photo.jpg)
+![Group photo after the event](/azureviking-blog/images/posts/first-time-public-speaking/group-photo.jpg)
 
 To anyone who is on the fence about public speaking — **just do it**. Yes, it is scary. Yes, you will be nervous. But the moment you start speaking about something you are passionate about, the nerves will fade, and you will find an experience that is incredibly fulfilling.
 

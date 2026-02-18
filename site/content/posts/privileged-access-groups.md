@@ -39,11 +39,11 @@ First, we need to create a security group that is enabled for role assignment. T
 8. Set **Membership type** to **Assigned**
 9. Click **Create**
 
-![Creating a new security group with role assignment](/images/posts/privileged-access-groups/image.png)
+![Creating a new security group with role assignment](/azureviking-blog/images/posts/privileged-access-groups/image.png)
 
 > **Important:** The "Azure AD roles can be assigned to the group" setting can only be set during group creation and cannot be changed afterward. Make sure to enable this when creating the group.
 
-![Group creation confirmation](/images/posts/privileged-access-groups/image-1.png)
+![Group creation confirmation](/azureviking-blog/images/posts/privileged-access-groups/image-1.png)
 
 ### Step 2: Enable PIM for the Group
 
@@ -55,11 +55,11 @@ Now we need to enable Privileged Identity Management for the newly created group
 4. Find and select the group you just created ("PAG-KeyVault-Admins")
 5. Click **Manage**
 
-![Discovering the group in PIM](/images/posts/privileged-access-groups/image-2.png)
+![Discovering the group in PIM](/azureviking-blog/images/posts/privileged-access-groups/image-2.png)
 
 The group should now appear in the PIM Groups list, and you can manage its membership and ownership assignments through PIM.
 
-![Group enabled in PIM](/images/posts/privileged-access-groups/image-3.png)
+![Group enabled in PIM](/azureviking-blog/images/posts/privileged-access-groups/image-3.png)
 
 ### Step 3: Assign Owner Role to the Group
 
@@ -73,9 +73,9 @@ Assign an owner to the group who will be responsible for managing the group and 
 6. Choose the assignment type (**Active** for permanent ownership, **Eligible** for just-in-time ownership)
 7. Click **Assign**
 
-![Adding an owner assignment](/images/posts/privileged-access-groups/image-4.png)
+![Adding an owner assignment](/azureviking-blog/images/posts/privileged-access-groups/image-4.png)
 
-![Selecting the owner](/images/posts/privileged-access-groups/image-5.png)
+![Selecting the owner](/azureviking-blog/images/posts/privileged-access-groups/image-5.png)
 
 ### Step 4: Assign Key Vault Administrator Role to the Group
 
@@ -90,9 +90,9 @@ Now assign the Azure role (Key Vault Administrator) to the group. This is the ro
 7. Select **Group** and find "PAG-KeyVault-Admins"
 8. Click **Review + assign**
 
-![Assigning Key Vault Administrator role to the group](/images/posts/privileged-access-groups/image-6.png)
+![Assigning Key Vault Administrator role to the group](/azureviking-blog/images/posts/privileged-access-groups/image-6.png)
 
-![Selecting the group for role assignment](/images/posts/privileged-access-groups/image-7.png)
+![Selecting the group for role assignment](/azureviking-blog/images/posts/privileged-access-groups/image-7.png)
 
 ### Step 5: Create Eligible Assignments for Group Members
 
@@ -107,11 +107,11 @@ Now we set up eligible membership assignments so that users can activate their g
 7. Configure the duration (e.g., 1 year)
 8. Click **Assign**
 
-![Adding eligible member assignments](/images/posts/privileged-access-groups/image-8.png)
+![Adding eligible member assignments](/azureviking-blog/images/posts/privileged-access-groups/image-8.png)
 
-![Selecting eligible members](/images/posts/privileged-access-groups/image-9.png)
+![Selecting eligible members](/azureviking-blog/images/posts/privileged-access-groups/image-9.png)
 
-![Configuring eligible assignment settings](/images/posts/privileged-access-groups/image-10.png)
+![Configuring eligible assignment settings](/azureviking-blog/images/posts/privileged-access-groups/image-10.png)
 
 ### Step 6: Configure PIM Settings (Optional but Recommended)
 
@@ -127,9 +127,9 @@ You can customize the PIM settings for the group to require approval, MFA, justi
    - **Require approval to activate** — Require an approver to approve the activation
 5. Click **Update**
 
-![PIM settings configuration](/images/posts/privileged-access-groups/image-11.png)
+![PIM settings configuration](/azureviking-blog/images/posts/privileged-access-groups/image-11.png)
 
-![PIM approval settings](/images/posts/privileged-access-groups/image-12.png)
+![PIM approval settings](/azureviking-blog/images/posts/privileged-access-groups/image-12.png)
 
 ## Testing the Setup
 
@@ -142,14 +142,14 @@ Now let's test the setup by having a user activate their eligible group membersh
 3. Under **Groups**, you should see the eligible assignment
 4. Click **Activate**
 
-![User view of eligible group assignment](/images/posts/privileged-access-groups/image-13.png)
+![User view of eligible group assignment](/azureviking-blog/images/posts/privileged-access-groups/image-13.png)
 
 5. Provide a **justification** for the activation
 6. Set the **duration** (within the configured maximum)
 7. Complete **MFA** if required
 8. Click **Activate**
 
-![Activation dialog with justification](/images/posts/privileged-access-groups/image-14.png)
+![Activation dialog with justification](/azureviking-blog/images/posts/privileged-access-groups/image-14.png)
 
 ### Verifying Access
 
@@ -159,9 +159,9 @@ After activation, verify that the user has the expected permissions:
 2. Try to access secrets, keys, or certificates
 3. The user should now have Key Vault Administrator permissions
 
-![Activation successful](/images/posts/privileged-access-groups/image-15.png)
+![Activation successful](/azureviking-blog/images/posts/privileged-access-groups/image-15.png)
 
-![Verifying Key Vault access](/images/posts/privileged-access-groups/image-16.png)
+![Verifying Key Vault access](/azureviking-blog/images/posts/privileged-access-groups/image-16.png)
 
 ### Checking the Audit Log
 
@@ -171,9 +171,9 @@ All PIM activations are logged and can be reviewed:
 2. Click **Audit** to see the activation history
 3. You can see who activated, when, the justification provided, and the duration
 
-![PIM audit log](/images/posts/privileged-access-groups/image-17.png)
+![PIM audit log](/azureviking-blog/images/posts/privileged-access-groups/image-17.png)
 
-![Audit log details](/images/posts/privileged-access-groups/image-18.png)
+![Audit log details](/azureviking-blog/images/posts/privileged-access-groups/image-18.png)
 
 ## Benefits of Privileged Access Groups
 

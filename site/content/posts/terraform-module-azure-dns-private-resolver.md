@@ -16,7 +16,7 @@ In this post, I will cover what Azure DNS Private Resolver is, why it matters, a
 
 Azure DNS Private Resolver is a **PaaS (Platform as a Service)** offering that provides DNS resolution within your Azure virtual network. It acts as a DNS proxy that can forward DNS queries between on-premises networks and Azure, as well as between different Azure virtual networks.
 
-![Azure DNS Private Resolver architecture](/images/posts/terraform-module-azure-dns-private-resolver/dns-resolver-architecture.jpg)
+![Azure DNS Private Resolver architecture](/azureviking-blog/images/posts/terraform-module-azure-dns-private-resolver/dns-resolver-architecture.jpg)
 
 Before this service, organizations typically had to deploy and manage **virtual machines running DNS server software** (such as Windows DNS Server or BIND) to provide DNS forwarding and conditional forwarding capabilities in Azure. This approach had several drawbacks that the DNS Private Resolver addresses.
 
@@ -91,7 +91,7 @@ module "dns_private_resolver" {
 }
 ```
 
-![Terraform module deployment diagram](/images/posts/terraform-module-azure-dns-private-resolver/terraform-module-diagram.jpg)
+![Terraform module deployment diagram](/azureviking-blog/images/posts/terraform-module-azure-dns-private-resolver/terraform-module-diagram.jpg)
 
 ## Links
 

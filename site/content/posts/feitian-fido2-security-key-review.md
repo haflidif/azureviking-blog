@@ -16,7 +16,7 @@ My journey with the Feitian ePass K40 started when I was exploring options for F
 
 After researching various options, the Feitian ePass K40 caught my attention. Feitian is a member of the **Microsoft Intelligent Security Association (MISA)** and their keys are listed as compatible with Azure AD (now Entra ID) FIDO2 passwordless authentication. This gave me confidence that the key would work well in the Microsoft ecosystem.
 
-![Feitian ePass K40 security key](/images/posts/feitian-fido2-security-key-review/k40-key.jpg)
+![Feitian ePass K40 security key](/azureviking-blog/images/posts/feitian-fido2-security-key-review/k40-key.jpg)
 
 ## What is FIDO2?
 
@@ -53,7 +53,7 @@ Feitian provides their own management tool called **SK Manager** for configuring
 5. Set your desired PIN (must be at least 4 characters, recommended 6+)
 6. Confirm the PIN
 
-![Setting up PIN via SK Manager](/images/posts/feitian-fido2-security-key-review/sk-manager-pin.jpg)
+![Setting up PIN via SK Manager](/azureviking-blog/images/posts/feitian-fido2-security-key-review/sk-manager-pin.jpg)
 
 ### Using Windows Settings
 
@@ -65,7 +65,7 @@ You can also set up the PIN directly through Windows:
 4. Click **Set PIN** or **Change PIN**
 5. Enter your desired PIN and confirm
 
-![Setting up PIN via Windows Settings](/images/posts/feitian-fido2-security-key-review/windows-pin-setup.jpg)
+![Setting up PIN via Windows Settings](/azureviking-blog/images/posts/feitian-fido2-security-key-review/windows-pin-setup.jpg)
 
 ### Using Chrome Browser
 
@@ -77,7 +77,7 @@ Chrome also provides a way to manage your security key:
 4. Touch the key when prompted
 5. Enter and confirm your PIN
 
-![Setting up PIN via Chrome](/images/posts/feitian-fido2-security-key-review/chrome-pin-setup.jpg)
+![Setting up PIN via Chrome](/azureviking-blog/images/posts/feitian-fido2-security-key-review/chrome-pin-setup.jpg)
 
 ## Adding the Key to Azure AD / Entra ID as MFA
 
