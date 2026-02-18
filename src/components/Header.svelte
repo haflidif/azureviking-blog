@@ -23,7 +23,7 @@
       href={SITE.base || '/'}
       class="flex items-center gap-2.5 text-xl sm:text-2xl font-black tracking-normal text-foreground transition-all no-underline hover:text-primary whitespace-nowrap"
     >
-      <img src={logoImage.src} alt="AzureViking Logo" class="w-7 h-7 sm:w-8 sm:h-8" />
+      <img src={logoImage.src} alt="AzureViking Logo" class="w-9 h-9 sm:w-10 sm:h-10" />
       <span>{SITE.title}</span>
     </a>
     <div class="flex items-center gap-2 lg:hidden">

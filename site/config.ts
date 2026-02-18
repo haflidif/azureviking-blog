@@ -60,7 +60,7 @@ export const SITE: SiteConfig = {
   website: 'https://haflidif.github.io',
   social: {
     github: 'https://github.com/haflidif',
-    linkedin: 'https://www.linkedin.com/in/yourprofile',
+    linkedin: 'https://www.linkedin.com/in/haflidif',
   },
   googleAnalyticsId: '',
   homeHeroDescription:

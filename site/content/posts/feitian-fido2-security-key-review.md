@@ -102,8 +102,6 @@ Before you begin, ensure that:
    - Select **Security key** from the dropdown
    - Choose **USB device**
 
-![Adding security key in My Security Info](/images/posts/feitian-fido2-security-key-review/add-security-key.jpg)
-
 3. **Insert and activate the key**
    - Insert the Feitian ePass K40 into your USB-C port
    - When prompted by the browser, touch the security key
@@ -113,8 +111,6 @@ Before you begin, ensure that:
    - The browser will ask you to touch the security key again to create the FIDO2 credential
    - Touch the key and wait for confirmation
 
-![Touching the security key to register](/images/posts/feitian-fido2-security-key-review/touch-key-register.jpg)
-
 5. **Name your security key**
    - Give your security key a recognizable name (e.g., "Feitian K40 - Primary")
    - Click **Done**
@@ -122,8 +118,6 @@ Before you begin, ensure that:
 6. **Verify the registration**
    - You should now see the security key listed in your security info
    - Test it by signing out and signing back in using the **Sign in with a security key** option
-
-![Security key registered successfully](/images/posts/feitian-fido2-security-key-review/key-registered.jpg)
 
 ### Using NFC for Mobile Authentication
 
@@ -135,8 +129,6 @@ The K40 also supports NFC, which means you can use it with your smartphone:
 4. Hold the K40 against the NFC reader on your phone
 5. Enter your PIN when prompted
 6. Touch or hold the key again to confirm
-
-![Using K40 via NFC on mobile](/images/posts/feitian-fido2-security-key-review/nfc-mobile.jpg)
 
 ## Overall Impressions
 

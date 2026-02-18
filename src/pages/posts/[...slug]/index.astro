@@ -15,6 +15,7 @@ import Comments from '@/components/Comments.svelte';
 import ReadingProgress from '@/components/ReadingProgress.svelte';
 import RelatedPosts from '@/components/RelatedPosts.astro';
 import { getBlogPostingSchema, getBreadcrumbSchema } from '@/lib/schemas';
+import { getReadTime } from '@/lib/utils/readTime';
 
 export async function getStaticPaths() {
   const posts = await getPublishedPosts();
@@ -30,6 +31,13 @@ const post = Astro.props as Props;
 const { Content, headings } = await render(post);
 
 const effectiveSlug = getPostSlug(post);
+const readTime = getReadTime(post.body || '');
+
+// Get sorted posts for prev/next navigation
+const allPosts = (await getPublishedPosts()).sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
+const currentIndex = allPosts.findIndex((p) => getPostSlug(p) === effectiveSlug);
+const prevPost = currentIndex < allPosts.length - 1 ? allPosts[currentIndex + 1] : null;
+const nextPost = currentIndex > 0 ? allPosts[currentIndex - 1] : null;
 
 const schemas = [
   getBlogPostingSchema({
@@ -75,6 +83,13 @@ const schemas = [
             <time datetime={post.data.pubDate.toISOString()}>
               {formatDate(post.data.pubDate)}
             </time>
+            <span class="hidden sm:inline text-border">•</span>
+            <div class="flex items-center gap-1.5">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              {readTime}
+            </div>
             {
               post.data.draft && (
                 <>
@@ -103,7 +118,7 @@ const schemas = [
                   <span class="hidden sm:inline text-border">•</span>
                   <div class="flex flex-wrap gap-2 text-xs uppercase font-bold tracking-widest text-muted-foreground/80">
                     {post.data.tags.map((tag: string) => (
-                      <span class="opacity-80">#{tag}</span>
+                      <a href={basePath(`/posts/tag/${tag}`)} class="opacity-80 hover:text-primary hover:opacity-100 transition-colors no-underline">#{tag}</a>
                     ))}
                   </div>
                 </>
@@ -142,6 +157,30 @@ const schemas = [
       <SocialShare client:load title={post.data.title} urlPath={Astro.url.pathname} />
 
       {post.data.showComments !== false && <Comments client:load />}
+
+      {/* Previous / Next post navigation */}
+      {(prevPost || nextPost) && (
+        <nav class="mt-12 mb-8 border-t border-border pt-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
+          {prevPost ? (
+            <a
+              href={basePath(`/posts/${getPostSlug(prevPost)}`)}
+              class="group flex flex-col gap-1 p-4 rounded-lg border border-border hover:border-primary/30 hover:bg-accent/50 transition-all no-underline"
+            >
+              <span class="text-[10px] font-bold uppercase tracking-widest text-muted-foreground">← Previous</span>
+              <span class="text-sm font-bold text-foreground group-hover:text-primary transition-colors line-clamp-1">{prevPost.data.title}</span>
+            </a>
+          ) : <div />}
+          {nextPost ? (
+            <a
+              href={basePath(`/posts/${getPostSlug(nextPost)}`)}
+              class="group flex flex-col gap-1 p-4 rounded-lg border border-border hover:border-primary/30 hover:bg-accent/50 transition-all no-underline text-right"
+            >
+              <span class="text-[10px] font-bold uppercase tracking-widest text-muted-foreground">Next →</span>
+              <span class="text-sm font-bold text-foreground group-hover:text-primary transition-colors line-clamp-1">{nextPost.data.title}</span>
+            </a>
+          ) : <div />}
+        </nav>
+      )}
 
       <RelatedPosts currentPost={post} />
     </div>

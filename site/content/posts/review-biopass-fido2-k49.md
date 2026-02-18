@@ -68,5 +68,3 @@ The BioPass FIDO2 K-49 is a solid biometric security key that delivers on its pr
 However, the lack of NFC support is a notable omission, especially for users who rely on mobile authentication. The higher price point also means it is not the most budget-friendly option.
 
 Overall, if you are looking for a biometric FIDO2 key with USB-C connectivity and are willing to trade NFC support for fingerprint authentication, the K-49 is an excellent choice. For those who need NFC, I would recommend looking at the K-40 or other alternatives that offer both biometric and NFC capabilities.
-
-![BioPass FIDO2 K-49 closeup](/images/posts/review-biopass-fido2-k49/k49-closeup.jpg)
