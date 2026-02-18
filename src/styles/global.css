@@ -35,8 +35,8 @@
   --color-popover: #ffffff;
   --color-popover-foreground: #09090b;
 
-  --color-primary: #18181b;
-  --color-primary-foreground: #fafafa;
+  --color-primary: #f43676;
+  --color-primary-foreground: #ffffff;
 
   --color-secondary: #f4f4f5;
   --color-secondary-foreground: #18181b;
@@ -67,25 +67,25 @@
 
 @layer base {
   .dark {
-    --color-background: #212737;
-    --color-foreground: #eaedf3;
-    --color-card: #303446; /* Catppuccin Frappe Base */
-    --color-card-foreground: #eaedf3;
-    --color-popover: #303446;
-    --color-popover-foreground: #eaedf3;
-    --color-primary: #f2d5cf; /* Lighter accent for Catppuccin harmony */
-    --color-primary-foreground: #303446;
-    --color-secondary: #292c3c; /* Mantle */
-    --color-secondary-foreground: #eaedf3;
-    --color-muted: #303446;
-    --color-muted-foreground: #d1d5dc;
-    --color-accent: #292c3c;
-    --color-accent-foreground: #eaedf3;
+    --color-background: #111827;
+    --color-foreground: #f3f4f6;
+    --color-card: #1f2937;
+    --color-card-foreground: #f3f4f6;
+    --color-popover: #1f2937;
+    --color-popover-foreground: #f3f4f6;
+    --color-primary: #f43676;
+    --color-primary-foreground: #ffffff;
+    --color-secondary: #1f2937;
+    --color-secondary-foreground: #f3f4f6;
+    --color-muted: #1f2937;
+    --color-muted-foreground: #d1d5db;
+    --color-accent: #1f2937;
+    --color-accent-foreground: #f3f4f6;
     --color-destructive: #ef4444;
     --color-destructive-foreground: #fafafa;
-    --color-border: #494d64; /* Surface 1 */
-    --color-input: #494d64;
-    --color-ring: #f2d5cf;
+    --color-border: #374151;
+    --color-input: #374151;
+    --color-ring: #f43676;
   }
 
   /* Fluid Typography & Scaling */

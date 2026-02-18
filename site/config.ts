@@ -51,38 +51,34 @@ export interface SiteConfig {
 }
 
 export const SITE: SiteConfig = {
-  author: 'Astronaut',
-  desc: 'Developer and designer building premium web experiences.',
-  title: 'Spaceship',
+  author: 'Haflidi Fridthjofsson',
+  desc: 'Senior Cloud Solution Architect at Microsoft. Former Microsoft MVP in Azure & Security. Sharing insights on Cloud Security, Infrastructure as Code, and Azure.',
+  title: 'AzureViking',
   ogImage: 'og.png',
   lang: 'en-US',
-  base: '/',
-  website: 'https://spaceship-one.vercel.app',
+  base: '/azureviking-blog',
+  website: 'https://haflidif.github.io',
   social: {
-    x: 'https://x.com/astronaut',
-    github: 'https://github.com/astronaut',
-    telegram: 'https://t.me/astronaut',
-    facebook: 'https://facebook.com/astronaut',
+    github: 'https://github.com/haflidif',
+    linkedin: 'https://www.linkedin.com/in/yourprofile',
   },
-  googleAnalyticsId: '', // Example: 'G-XXXXXXXXXX'
+  googleAnalyticsId: '',
   homeHeroDescription:
-    'Building premium web experiences with Astro, Svelte, and Tailwind. Focused on performance, aesthetics, and clean code. I am currently working on open-source tools and sharing my journey through writing.',
-  blogDescription: 'A collection of thoughts, tutorials, and general web discovery.',
-  projectsDescription: 'Things I’ve built that I’m proud of. Many of them are open-source.',
+    'Senior Cloud Solution Architect at Microsoft. Former Microsoft MVP in Azure & Security. Sharing insights on Cloud Security, Infrastructure as Code, and Azure.',
+  blogDescription:
+    'Technical insights on Cloud Security, Azure, Infrastructure as Code, and identity.',
+  projectsDescription: 'Open-source projects and Terraform modules I have built.',
 
-  // Homepage post counts
   featuredPostsCount: 3,
-  latestPostsCount: 3,
+  latestPostsCount: 6,
 
-  // Homepage projects
   homeProjects: {
-    enabled: true,
+    enabled: false,
     count: 4,
   },
 
-  // CTA (Call-to-Action) block for blog posts
   cta: {
-    enabled: true,
+    enabled: false,
     filePath: 'site/cta.md',
   },
 
@@ -91,19 +87,17 @@ export const SITE: SiteConfig = {
     filePath: 'site/hero.md',
   },
 
-  // Giscus comments configuration
-  // Get your configuration from https://giscus.app
   comments: {
-    enabled: false, // Set to true after filling in the IDs below
-    repo: 'alec-c4/spaceship', // Your GitHub repository
-    repoId: '', // Get from https://giscus.app - enter repo above and copy the value
-    category: 'General', // GitHub Discussions category name
-    categoryId: '', // Get from https://giscus.app - select category and copy the value
+    enabled: false,
+    repo: 'haflidif/azureviking-blog',
+    repoId: '',
+    category: 'General',
+    categoryId: '',
     mapping: 'pathname',
     reactionsEnabled: true,
     emitMetadata: false,
     inputPosition: 'bottom',
-    theme: 'preferred_color_scheme', // Automatically matches your site theme
+    theme: 'preferred_color_scheme',
     lang: 'en',
   },
 };

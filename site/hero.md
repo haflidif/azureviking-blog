@@ -1,6 +1,5 @@
-# I'm {author}, developer and designer.
+# Hi, I'm {author} — the AzureViking.
 
-Building premium web experiences with Astro, Svelte, and Tailwind.
-Focused on performance, aesthetics, and clean code.
+Senior Cloud Solution Architect at Microsoft. Former Microsoft MVP in Azure & Security.
 
-I am currently working on open-source tools and sharing my journey through writing.
+Sharing technical insights on Cloud Security, Infrastructure as Code, Azure, and identity — with a passion for community and open source.
