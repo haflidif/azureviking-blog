@@ -16,6 +16,7 @@ const posts = defineCollection({
     featured: z.boolean().optional(),
     draft: z.boolean().default(false),
     ogImage: z.string().optional(),
+    coverImage: z.string().optional(),
     canonicalURL: z.string().url().optional(),
     showCTA: z.boolean().default(true),
     showComments: z.boolean().default(true),

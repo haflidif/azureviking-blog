@@ -4,6 +4,7 @@ description: 'The BioPass FIDO2 K-49 USB-C Biometric Security Key offers enhance
 pubDate: 2024-11-15
 tags: [security, fido2, review, passwordless]
 featured: true
+coverImage: '/images/posts/review-biopass-fido2-k49/k49-unboxed.jpg'
 ---
 
 ## Disclaimer

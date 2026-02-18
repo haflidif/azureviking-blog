@@ -4,6 +4,7 @@ description: 'Learn how to create and manage Privileged Access Groups in Entra I
 pubDate: 2022-10-15
 tags: [security, entra-id, pim, identity]
 featured: false
+coverImage: '/images/posts/privileged-access-groups/image.png'
 ---
 
 ## TL;DR

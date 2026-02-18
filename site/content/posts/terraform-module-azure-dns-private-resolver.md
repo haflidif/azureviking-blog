@@ -4,6 +4,7 @@ description: 'Azure DNS Private Resolver simplifies DNS Proxy services in Azure,
 pubDate: 2022-12-20
 tags: [terraform, azure, dns, infrastructure-as-code]
 featured: false
+coverImage: '/images/posts/terraform-module-azure-dns-private-resolver/dns-resolver-architecture.jpg'
 ---
 
 ## Introduction

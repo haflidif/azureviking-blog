@@ -4,6 +4,7 @@ description: 'Microsoft is enforcing number matching in Authenticator to prevent
 pubDate: 2023-05-08
 tags: [security, microsoft, mfa, entra-id]
 featured: false
+coverImage: '/images/posts/advanced-security-features-microsoft-authenticator/number-matching.jpg'
 ---
 
 ## Introduction

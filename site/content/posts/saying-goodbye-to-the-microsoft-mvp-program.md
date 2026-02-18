@@ -4,6 +4,7 @@ description: 'Reflecting on my journey as a Microsoft MVP and my new role at Mic
 pubDate: 2024-11-22
 tags: [microsoft, mvp, career, community]
 featured: true
+coverImage: '/images/posts/saying-goodbye-to-the-microsoft-mvp-program/mvp-award.jpg'
 ---
 
 It's been an incredible journey, and today I want to share some exciting news along with a heartfelt farewell to the Microsoft MVP Program.

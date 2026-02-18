@@ -4,6 +4,7 @@ description: "Sharing my thrilling experience presenting at the Microsoft Securi
 pubDate: 2022-05-20
 tags: [community, speaking, career, microsoft-security-user-group]
 featured: false
+coverImage: '/images/posts/first-time-public-speaking/presenting.jpg'
 ---
 
 ## The Build-Up
