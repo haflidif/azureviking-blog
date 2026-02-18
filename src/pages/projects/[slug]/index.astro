@@ -4,6 +4,7 @@ import { render, getCollection, type CollectionEntry } from 'astro:content';
 import Breadcrumbs from '@/components/Breadcrumbs.svelte';
 import SocialShare from '@/components/SocialShare.svelte';
 import { getBreadcrumbSchema } from '@/lib/schemas';
+import { basePath } from '@/lib/utils/basePath';
 
 export async function getStaticPaths() {
   const projects = await getCollection('projects');
@@ -30,7 +31,7 @@ const schema = getBreadcrumbSchema([
 <Layout title={project.data.title} description={project.data.description} schema={schema}>
   <Breadcrumbs
     items={[
-      { name: 'Projects', href: '/projects' },
+      { name: 'Projects', href: basePath('/projects') },
       { name: project.data.title, href: '#' },
     ]}
   />

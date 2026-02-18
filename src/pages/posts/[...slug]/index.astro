@@ -4,6 +4,7 @@ import { render, type CollectionEntry } from 'astro:content';
 import { formatDate } from '@/lib/utils/date';
 import TableOfContents from '@/components/TableOfContents.svelte';
 import { getPublishedPosts, getPostSlug } from '@/lib/utils/posts';
+import { basePath } from '@/lib/utils/basePath';
 
 import Breadcrumbs from '@/components/Breadcrumbs.svelte';
 import SocialShare from '@/components/SocialShare.svelte';
@@ -54,7 +55,7 @@ const schemas = [
 >
   <Breadcrumbs
     items={[
-      { name: 'Blog', href: '/posts' },
+      { name: 'Blog', href: basePath('/posts') },
       { name: post.data.title, href: '#' },
     ]}
   />

@@ -3,6 +3,7 @@ import Layout from '@/layouts/Layout.astro';
 import { getCollection } from 'astro:content';
 import { formatDate } from '@/lib/utils/date';
 import Breadcrumbs from '@/components/Breadcrumbs.svelte';
+import { basePath } from '@/lib/utils/basePath';
 
 import { getLangFlag } from '@/lib/utils/lang';
 
@@ -22,7 +23,7 @@ const sortedYears = Object.keys(appearancesByYear).sort((a, b) => Number(b) - Nu
 ---
 
 <Layout title="Appearances & Publications">
-  <Breadcrumbs items={[{ name: 'Appearances', href: '/appearances' }]} />
+  <Breadcrumbs items={[{ name: 'Appearances', href: basePath('/appearances') }]} />
 
   <div class="mb-12 sm:mb-16 lg:mb-24">
     <h1

@@ -1,5 +1,6 @@
 <script lang="ts">
   import { getLangFlag } from '@/lib/utils/lang';
+  import { SITE } from '@/config';
 
   export let translations: Record<string, string>;
 </script>
@@ -12,7 +13,7 @@
   </span>
   {#each Object.entries(translations) as [lang, slug] (lang)}
     <a
-      href={`/posts/${slug}`}
+      href={`${SITE.base}/posts/${slug}`}
       class="inline-flex items-center gap-1.5 px-2 py-1 round text-xs font-bold uppercase tracking-wide bg-background text-foreground hover:text-primary border border-border transition-colors no-underline"
     >
       <span class="text-sm leading-none">{getLangFlag(lang)}</span>

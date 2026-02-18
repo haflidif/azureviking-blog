@@ -5,6 +5,7 @@ import PostCard from '@/components/PostCard.svelte';
 import { getReadTime } from '@/lib/utils/readTime';
 import { getPublishedPosts, getPostSlug } from '@/lib/utils/posts';
 import { SITE } from '@/config';
+import { basePath } from '@/lib/utils/basePath';
 import { Image } from 'astro:assets';
 import profilePhoto from '@/site-assets/profile_photo.png';
 import { getLangFlag } from '@/lib/utils/lang';
@@ -86,7 +87,7 @@ const appearances = (await getCollection('appearances'))
             </h2>
             <div class="h-px flex-1 mx-4 sm:mx-8 bg-border opacity-70" />
             <a
-              href="/posts"
+              href={basePath('/posts')}
               class="px-2 py-0.5 rounded-md text-xs font-bold uppercase tracking-widest hover:bg-accent hover:text-primary transition-all no-underline"
             >
               See all posts
@@ -109,7 +110,7 @@ const appearances = (await getCollection('appearances'))
         </h2>
         <div class="h-px flex-1 mx-4 sm:mx-8 bg-border opacity-70"></div>
         <a
-          href="/posts"
+          href={basePath('/posts')}
           class="px-2 py-0.5 rounded-md text-xs font-bold uppercase tracking-widest hover:bg-accent hover:text-primary transition-all no-underline"
           >Writing Archive</a
         >
@@ -133,7 +134,7 @@ const appearances = (await getCollection('appearances'))
             </h2>
             <div class="h-px flex-1 mx-4 sm:mx-8 bg-border opacity-70" />
             <a
-              href="/projects"
+              href={basePath('/projects')}
               aria-label="View all projects"
               class="px-2 py-0.5 rounded-md text-xs font-bold uppercase tracking-widest hover:bg-accent hover:text-primary transition-all no-underline"
             >
@@ -143,7 +144,7 @@ const appearances = (await getCollection('appearances'))
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 lg:gap-6">
             {projects.map((project) => {
               const isExternal = project.data.directLink;
-              const projectUrl = isExternal ? project.data.link : `/projects/${project.id}`;
+              const projectUrl = isExternal ? project.data.link : basePath(`/projects/${project.id}`);
               const target = isExternal ? '_blank' : '_self';
 
               return (
@@ -259,7 +260,7 @@ const appearances = (await getCollection('appearances'))
         </h2>
         <div class="h-px flex-1 mx-4 sm:mx-8 bg-border opacity-70"></div>
         <a
-          href="/appearances"
+          href={basePath('/appearances')}
           class="px-2 py-0.5 rounded-md text-xs font-bold uppercase tracking-widest hover:bg-accent hover:text-primary transition-all no-underline"
           >View appearances</a
         >

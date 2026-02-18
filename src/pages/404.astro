@@ -1,5 +1,6 @@
 ---
 import Layout from '@/layouts/Layout.astro';
+import { basePath } from '@/lib/utils/basePath';
 ---
 
 <Layout title="404: Page Not Found" description="The page you're looking for doesn't exist.">
@@ -15,7 +16,7 @@ import Layout from '@/layouts/Layout.astro';
     </p>
     <div class="flex flex-wrap items-center justify-center gap-4">
       <a
-        href="/"
+        href={basePath('/')}
         class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-primary text-primary-foreground font-bold hover:scale-105 transition-all no-underline"
       >
         <svg
@@ -35,7 +36,7 @@ import Layout from '@/layouts/Layout.astro';
         Back to Home
       </a>
       <a
-        href="/posts"
+        href={basePath('/posts')}
         class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-secondary text-foreground font-bold hover:bg-accent transition-all no-underline"
       >
         Read the Blog

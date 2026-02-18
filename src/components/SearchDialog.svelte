@@ -1,6 +1,7 @@
 <script lang="ts">
   import { onMount } from 'svelte';
   import { uiState } from '@/lib/ui.svelte';
+  import { SITE } from '@/config';
 
   interface Post {
     id: string;
@@ -42,7 +43,7 @@
 
     (async () => {
       try {
-        const res = await fetch('/api/search.json');
+        const res = await fetch(`${SITE.base}/api/search.json`);
         if (res.ok) {
           posts = await res.json();
         }
@@ -108,7 +109,7 @@
         <div class="space-y-1">
           {#each filteredPosts as post (post.id)}
             <a
-              href={`/posts/${post.id}`}
+              href={`${SITE.base}/posts/${post.id}`}
               class="block p-4 sm:p-5 rounded-xl hover:bg-accent transition-all no-underline group"
               onclick={() => uiState.closeSearch()}
             >

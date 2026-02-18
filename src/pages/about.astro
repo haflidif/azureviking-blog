@@ -1,6 +1,7 @@
 ---
 import Layout from '@/layouts/Layout.astro';
 import { SITE } from '@/config';
+import { basePath } from '@/lib/utils/basePath';
 import Breadcrumbs from '@/components/Breadcrumbs.svelte';
 import { render, getEntry } from 'astro:content';
 import { getBreadcrumbSchema } from '@/lib/schemas';
@@ -43,7 +44,7 @@ const aboutTitle =
   description={`Learn more about ${SITE.author}, a developer and designer focused on building premium web experiences.`}
   schema={schema}
 >
-  <Breadcrumbs items={[{ name: 'About', href: '/about' }]} />
+  <Breadcrumbs items={[{ name: 'About', href: basePath('/about') }]} />
 
   <div class="flex flex-col lg:flex-row gap-8 lg:gap-10">
     <!-- Left Sidebar: Profile + Social -->

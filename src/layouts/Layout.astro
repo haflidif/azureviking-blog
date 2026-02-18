@@ -1,6 +1,7 @@
 ---
 import '@/styles/global.css';
 import { SITE } from '@/config';
+import { basePath } from '@/lib/utils/basePath';
 import Header from '@/components/Header.astro';
 import Footer from '@/components/Footer.astro';
 import SearchModal from '@/components/SearchModal.svelte';
@@ -61,9 +62,9 @@ const gaScript = `
 <html lang={pageLang}>
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" type="image/png" href="/favicon.png" />
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="icon" type="image/png" href={basePath('/favicon.png')} />
+    <link rel="apple-touch-icon" href={basePath('/apple-touch-icon.png')} />
+    <link rel="manifest" href={basePath('/site.webmanifest')} />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
     <link rel="preload" href={outfitFont400} as="font" type="font/woff2" crossorigin="anonymous" />
@@ -87,7 +88,7 @@ const gaScript = `
       rel="alternate"
       type="application/rss+xml"
       title={`${SITE.title} RSS Feed`}
-      href="/rss.xml"
+      href={basePath('/rss.xml')}
     />
 
     <!-- Theme Initialization -->

@@ -9,10 +9,10 @@
   }
 
   const navLinks: NavLink[] = [
-    { name: 'Posts', href: '/posts' },
-    { name: 'Projects', href: '/projects' },
-    { name: 'Appearances', href: '/appearances' },
-    { name: 'About', href: '/about' },
+    { name: 'Posts', href: `${SITE.base}/posts` },
+    { name: 'Projects', href: `${SITE.base}/projects` },
+    { name: 'Appearances', href: `${SITE.base}/appearances` },
+    { name: 'About', href: `${SITE.base}/about` },
   ];
 </script>
 
@@ -21,7 +21,7 @@
 >
   <div class="flex items-center justify-between w-full lg:w-auto">
     <a
-      href="/"
+      href={SITE.base || '/'}
       class="text-xl sm:text-2xl font-black tracking-normal text-foreground transition-all no-underline hover:text-primary whitespace-nowrap"
     >
       {SITE.title}

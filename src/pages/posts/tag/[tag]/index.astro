@@ -6,6 +6,7 @@ import Breadcrumbs from '@/components/Breadcrumbs.svelte';
 import { getBreadcrumbSchema } from '@/lib/schemas';
 import { getReadTime } from '@/lib/utils/readTime';
 import { getPublishedPosts, getPostSlug } from '@/lib/utils/posts';
+import { basePath } from '@/lib/utils/basePath';
 
 export const getStaticPaths = (async () => {
   const posts = await getPublishedPosts();
@@ -38,7 +39,7 @@ const schema = getBreadcrumbSchema([
 >
   <Breadcrumbs
     items={[
-      { name: 'Blog', href: '/posts' },
+      { name: 'Blog', href: basePath('/posts') },
       { name: `#${tag}`, href: '#' },
     ]}
   />

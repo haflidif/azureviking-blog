@@ -3,6 +3,7 @@ import Layout from '@/layouts/Layout.astro';
 import { getCollection } from 'astro:content';
 import Breadcrumbs from '@/components/Breadcrumbs.svelte';
 import { SITE } from '@/config';
+import { basePath } from '@/lib/utils/basePath';
 import { getBreadcrumbSchema } from '@/lib/schemas';
 
 const schema = getBreadcrumbSchema([
@@ -13,7 +14,7 @@ const projects = (await getCollection('projects')).sort((a, b) => a.data.order -
 ---
 
 <Layout title="Projects" description={SITE.projectsDescription} schema={schema}>
-  <Breadcrumbs items={[{ name: 'Projects', href: '/projects' }]} />
+  <Breadcrumbs items={[{ name: 'Projects', href: basePath('/projects') }]} />
 
   <div class="mb-12 sm:mb-16 lg:mb-24">
     <h1
@@ -30,7 +31,7 @@ const projects = (await getCollection('projects')).sort((a, b) => a.data.order -
     {
       projects.map((project) => {
         const isExternal = project.data.directLink;
-        const projectUrl = isExternal ? project.data.link : `/projects/${project.id}`;
+        const projectUrl = isExternal ? project.data.link : basePath(`/projects/${project.id}`);
         const target = isExternal ? '_blank' : '_self';
 
         return (
