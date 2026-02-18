@@ -1,8 +1,10 @@
 ---
 import { SITE } from '@/config';
 import { basePath } from '@/lib/utils/basePath';
+import { Image } from 'astro:assets';
 import ThemeToggle from '@/components/ThemeToggle.svelte';
 import Search from '@/components/Search.svelte';
+import logoImage from '@/site-assets/azure_viking_logo.png';
 
 interface NavLink {
   name: string;
@@ -23,12 +25,7 @@ const navLinks: NavLink[] = [
       href={basePath('/')}
       class="flex items-center gap-2.5 text-xl sm:text-2xl font-black tracking-normal text-foreground transition-all no-underline hover:text-primary whitespace-nowrap"
     >
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none" class="w-7 h-7 sm:w-8 sm:h-8 text-primary">
-        <path d="M16 2L4 8v8c0 7.18 5.12 13.88 12 16 6.88-2.12 12-8.82 12-16V8L16 2z" fill="currentColor" opacity="0.15"/>
-        <path d="M16 2L4 8v8c0 7.18 5.12 13.88 12 16 6.88-2.12 12-8.82 12-16V8L16 2z" stroke="currentColor" stroke-width="1.5" fill="none"/>
-        <path d="M16 7l-6 3.5v5c0 3.83 2.56 7.39 6 8.5 3.44-1.11 6-4.67 6-8.5v-5L16 7z" stroke="currentColor" stroke-width="1.2" fill="none" opacity="0.6"/>
-        <path d="M12 14h8M16 11v7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-      </svg>
+      <Image src={logoImage} alt="AzureViking Logo" width={32} height={32} class="w-7 h-7 sm:w-8 sm:h-8" />
       <span>{SITE.title}</span>
     </a>
     <div class="flex items-center gap-2 lg:hidden">
