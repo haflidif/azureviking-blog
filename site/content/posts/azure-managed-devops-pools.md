@@ -4,6 +4,7 @@ description: 'Discover Azure Managed DevOps Pools (MDP) in Public Preview: enhan
 pubDate: 2024-08-20
 tags: [azure, devops, infrastructure, cloud]
 featured: false
+coverImage: '/images/posts/azure-managed-devops-pools/cover.jpg'
 ---
 
 ## Introduction

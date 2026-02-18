@@ -4,6 +4,7 @@ description: 'A Terraform module to deploy subnets with NSG and route table asso
 pubDate: 2024-03-15
 tags: [terraform, azure, infrastructure-as-code, modules]
 featured: false
+coverImage: '/images/posts/terraform-module-azurerm-alz-subnet/cover.jpg'
 ---
 
 ## Introduction

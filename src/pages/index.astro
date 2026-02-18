@@ -2,26 +2,31 @@
 import Layout from '@/layouts/Layout.astro';
 import { getCollection } from 'astro:content';
 import PostGrid from '@/components/PostGrid.svelte';
+import FeaturedCarousel from '@/components/FeaturedCarousel.svelte';
+import BioCard from '@/components/BioCard.astro';
 import { getReadTime } from '@/lib/utils/readTime';
 import { getPublishedPosts, getPostSlug } from '@/lib/utils/posts';
 import { SITE } from '@/config';
 import { basePath } from '@/lib/utils/basePath';
-import { Image } from 'astro:assets';
-import profilePhoto from '@/site-assets/profile_photo.png';
 import { getLangFlag } from '@/lib/utils/lang';
-import { readFileSync } from 'fs';
-import { join } from 'path';
-import { parseMarkdown } from '@/lib/simple-markdown';
 import { formatDate } from '@/lib/utils/date';
-import { getTagColor } from '@/lib/utils/tagColors';
 
 const posts = (await getPublishedPosts()).sort(
   (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
 );
 
-const featuredPosts = posts.filter((post) => post.data.featured).slice(0, 1);
-const featuredPost = featuredPosts[0];
-const remainingPosts = posts.filter((post) => post !== featuredPost);
+const featuredPosts = posts.filter((post) => post.data.featured).slice(0, SITE.featuredPostsCount);
+const remainingPosts = posts.filter((post) => !featuredPosts.includes(post));
+
+const carouselPosts = featuredPosts.map((post) => ({
+  title: post.data.title,
+  description: post.data.description,
+  slug: getPostSlug(post),
+  coverImage: post.data.coverImage,
+  tags: post.data.tags,
+  pubDate: formatDate(post.data.pubDate),
+  readTime: getReadTime(post.body || ''),
+}));
 
 const projects = (await getCollection('projects'))
   .sort((a, b) => a.data.order - b.data.order)
@@ -31,7 +36,6 @@ const appearances = (await getCollection('appearances'))
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
   .slice(0, 3);
 
-// Prepare posts data for the Svelte grid
 const gridPosts = remainingPosts.map((post) => ({
   post,
   slug: getPostSlug(post),
@@ -40,174 +44,31 @@ const gridPosts = remainingPosts.map((post) => ({
 ---
 
 <Layout title="Welcome">
-  <!-- 1. Hero Section -->
-  <section
-    class="flex flex-col-reverse md:flex-row items-center gap-8 sm:gap-12 lg:gap-16 mb-16 lg:mb-20"
-  >
-    <div class="flex-1 text-center md:text-left">
-      <div
-        class="hero-content"
-        set:html={(() => {
-          try {
-            const fullPath = join(process.cwd(), SITE.hero.filePath);
-            const markdown = readFileSync(fullPath, 'utf-8');
-            return parseMarkdown(markdown.replace('{author}', SITE.author));
-          } catch (e) {
-            return `<h1>I'm ${SITE.author}, developer and designer.</h1><p>${SITE.homeHeroDescription}</p>`;
-          }
-        })()}
-      />
-      <div class="flex flex-wrap justify-center md:justify-start gap-4 sm:gap-5">
+  <!-- 1. Hero: Featured Carousel + Bio Card -->
+  <section class="mb-16 lg:mb-20">
+    <div class="grid grid-cols-1 lg:grid-cols-[1fr_340px] gap-6 lg:gap-8">
+      <!-- Bio Card (mobile: first, desktop: second via order) -->
+      <div class="order-1 lg:order-2">
+        <BioCard />
+      </div>
+
+      <!-- Featured Carousel (mobile: second, desktop: first) -->
+      <div class="order-2 lg:order-1">
         {
-          Object.entries(SITE.social).map(([platform, link]) => (
-            <a
-              href={link}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={`Visit ${platform} profile`}
-              class="text-muted-foreground hover:text-primary transition-all no-underline"
-            >
-              {platform === 'github' && (
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="w-5 h-5"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
-                  <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
-                  <path d="M9 18c-4.51 2-5-2-7-2" />
-                </svg>
-              )}
-              {platform === 'linkedin' && (
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="w-5 h-5"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
-                  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
-                  <rect width="4" height="12" x="2" y="9" />
-                  <circle cx="4" cy="4" r="2" />
-                </svg>
-              )}
-              {platform === 'x' && (
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="w-5 h-5"
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                >
-                  <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-                </svg>
-              )}
-            </a>
-          ))
+          carouselPosts.length > 0 ? (
+            <FeaturedCarousel posts={carouselPosts} client:load />
+          ) : (
+            <div class="aspect-[16/10] rounded-2xl bg-secondary/30 border border-border/50 flex items-center justify-center">
+              <p class="text-muted-foreground">No featured posts yet</p>
+            </div>
+          )
         }
       </div>
-    </div>
-    <div
-      class="w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 lg:w-56 lg:h-56 3xl:w-72 3xl:h-72 rounded-2xl overflow-hidden border border-border shadow-xl shrink-0"
-    >
-      <Image
-        src={profilePhoto}
-        alt={SITE.author}
-        width={400}
-        height={400}
-        widths={[200, 400, 800]}
-        sizes="(max-width: 639px) 128px, (max-width: 1023px) 160px, 400px"
-        class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700 ease-out scale-105 hover:scale-100"
-      />
     </div>
   </section>
 
   <div class="flex flex-col gap-16 lg:gap-20">
-    <!-- 2. Featured Post Hero Card -->
-    {
-      featuredPost && (
-        <section>
-          <div class="flex items-baseline justify-between mb-8 sm:mb-10">
-            <h2 class="text-xs font-bold uppercase tracking-[0.2em] text-muted-foreground">
-              Featured
-            </h2>
-            <div class="h-px flex-1 mx-4 sm:mx-8 bg-border opacity-70" />
-            <a
-              href={basePath('/posts')}
-              class="px-2 py-0.5 rounded-md text-xs font-bold uppercase tracking-widest hover:bg-accent hover:text-primary transition-all no-underline"
-            >
-              All posts
-            </a>
-          </div>
-          <a
-            href={`${SITE.base}/posts/${getPostSlug(featuredPost)}`}
-            class="group block rounded-2xl overflow-hidden border border-border/50 bg-secondary/20 hover:bg-secondary/40 hover:border-border hover:shadow-2xl transition-all duration-300 no-underline"
-          >
-            <div class="grid grid-cols-1 md:grid-cols-2">
-              <div class="aspect-[16/9] md:aspect-auto overflow-hidden bg-secondary/50">
-                {featuredPost.data.coverImage ? (
-                  <img
-                    src={`${SITE.base}${featuredPost.data.coverImage}`}
-                    alt={featuredPost.data.title}
-                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                  />
-                ) : (
-                  <div class="w-full h-full min-h-[200px] bg-gradient-to-br from-primary/20 via-secondary/30 to-accent/20" />
-                )}
-              </div>
-              <div class="p-6 sm:p-8 flex flex-col justify-center gap-4">
-                <div class="flex items-center gap-2">
-                  <span class="flex items-center gap-1 px-2.5 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      class="h-3 w-3"
-                      viewBox="0 0 20 20"
-                      fill="currentColor"
-                    >
-                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                    </svg>
-                    Featured
-                  </span>
-                </div>
-                <div class="flex flex-wrap gap-1.5">
-                  {featuredPost.data.tags.slice(0, 4).map((tag) => {
-                    const colors = getTagColor(tag);
-                    return (
-                      <span
-                        class={`inline-flex items-center px-2 py-0.5 rounded-md text-[11px] font-bold uppercase tracking-wide border ${colors.bg} ${colors.text} ${colors.border}`}
-                      >
-                        {tag}
-                      </span>
-                    );
-                  })}
-                </div>
-                <h3 class="text-xl sm:text-2xl font-black leading-tight text-foreground group-hover:text-primary transition-colors">
-                  {featuredPost.data.title}
-                </h3>
-                <p class="text-sm sm:text-base text-muted-foreground leading-relaxed line-clamp-3">
-                  {featuredPost.data.description}
-                </p>
-                <div class="flex items-center gap-3 text-xs text-muted-foreground font-medium">
-                  <time datetime={featuredPost.data.pubDate.toISOString()} class="tabular-nums">
-                    {formatDate(featuredPost.data.pubDate)}
-                  </time>
-                  <span class="text-border">·</span>
-                  <span>{getReadTime(featuredPost.body || '')}</span>
-                </div>
-              </div>
-            </div>
-          </a>
-        </section>
-      )
-    }
-
-    <!-- 3. All Posts Grid -->
+    <!-- 2. All Posts Grid -->
     <section>
       <div class="flex items-baseline justify-between mb-8 sm:mb-10">
         <h2 class="text-xs font-bold uppercase tracking-[0.2em] text-muted-foreground">
@@ -404,61 +265,3 @@ const gridPosts = remainingPosts.map((post) => ({
     </section>
   </div>
 </Layout>
-
-<style>
-  .hero-content :global(h1) {
-    font-size: 1.875rem; /* text-3xl */
-    line-height: 1.1;
-    font-weight: 900; /* font-black */
-    letter-spacing: -0.025em; /* tracking-tight */
-    margin-bottom: 1rem; /* mb-4 */
-    color: var(--color-foreground);
-  }
-
-  @media (min-width: 640px) {
-    .hero-content :global(h1) {
-      font-size: 2.25rem; /* sm:text-4xl */
-    }
-  }
-
-  @media (min-width: 1024px) {
-    .hero-content :global(h1) {
-      font-size: 3rem; /* lg:text-5xl */
-    }
-  }
-
-  @media (min-width: 1920px) {
-    .hero-content :global(h1) {
-      font-size: 3.75rem; /* 3xl:text-6xl */
-    }
-  }
-
-  .hero-content :global(p) {
-    font-size: 1rem; /* text-base */
-    line-height: 1.625; /* leading-relaxed */
-    color: var(--color-muted-foreground);
-    margin-bottom: 2rem; /* mb-8 */
-    max-width: 42rem; /* max-w-2xl */
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  @media (min-width: 640px) {
-    .hero-content :global(p) {
-      font-size: 1.125rem; /* sm:text-lg */
-    }
-  }
-
-  @media (min-width: 768px) {
-    .hero-content :global(p) {
-      margin-left: 0;
-      margin-right: 0;
-    }
-  }
-
-  @media (min-width: 1024px) {
-    .hero-content :global(p) {
-      font-size: 1.25rem; /* lg:text-xl */
-    }
-  }
-</style>
