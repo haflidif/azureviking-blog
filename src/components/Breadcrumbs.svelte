@@ -12,7 +12,12 @@
   class="flex items-center flex-wrap gap-x-2 gap-y-1 text-xs font-bold uppercase tracking-widest text-muted-foreground mb-8 sm:mb-12"
   aria-label="Breadcrumb"
 >
-  <a href={SITE.base || '/'} class="hover:text-primary transition-colors flex items-center shrink-0"> Home </a>
+  <a
+    href={SITE.base || '/'}
+    class="hover:text-primary transition-colors flex items-center shrink-0"
+  >
+    Home
+  </a>
 
   {#each items as item (item.name)}
     <span class="text-border shrink-0">/</span>

@@ -42,7 +42,9 @@
     <svg class="absolute inset-0 w-full h-full -rotate-90" viewBox="0 0 44 44">
       <!-- Background circle -->
       <circle
-        cx="22" cy="22" r={RADIUS}
+        cx="22"
+        cy="22"
+        r={RADIUS}
         fill="none"
         stroke="currentColor"
         stroke-width="2.5"
@@ -50,7 +52,9 @@
       />
       <!-- Progress arc -->
       <circle
-        cx="22" cy="22" r={RADIUS}
+        cx="22"
+        cy="22"
+        r={RADIUS}
         fill="none"
         stroke="currentColor"
         stroke-width="2.5"
@@ -61,8 +65,17 @@
       />
     </svg>
     <!-- Arrow icon -->
-    <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-foreground relative z-10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-      <path d="m18 15-6-6-6 6"/>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      class="w-4 h-4 text-foreground relative z-10"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2.5"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    >
+      <path d="m18 15-6-6-6 6" />
     </svg>
   </button>
 {/if}
