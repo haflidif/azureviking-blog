@@ -47,13 +47,20 @@ const projects = (await getCollection('projects'))
 ---
 
 <Layout title="Welcome">
-  <!-- Banner -->
-  <div class="mb-8 lg:mb-10 rounded-xl overflow-hidden">
-    <Image src={bannerLight} alt="Azure Viking" class="w-full h-auto dark:hidden" loading="eager" />
+  <!-- Banner — full bleed, zoomed on mobile -->
+  <div class="mb-6 lg:mb-10 w-[100vw] relative left-1/2 -translate-x-1/2 overflow-hidden">
+    <Image
+      src={bannerLight}
+      alt="Azure Viking"
+      format="png"
+      class="block w-full object-cover h-24 sm:h-32 md:h-auto dark:hidden"
+      loading="eager"
+    />
     <Image
       src={bannerDark}
       alt="Azure Viking"
-      class="w-full h-auto hidden dark:block"
+      format="png"
+      class="block w-full object-cover h-24 sm:h-32 md:h-auto hidden dark:block"
       loading="eager"
     />
   </div>
