@@ -33,7 +33,7 @@
   <img
     src={currentSrc}
     {alt}
-    class="block w-full object-cover h-24 sm:h-32 md:h-auto"
+    class="block w-full object-cover h-28 sm:h-36 md:h-auto scale-[2] sm:scale-150 md:scale-100 origin-center"
     loading="eager"
     decoding="async"
   />
