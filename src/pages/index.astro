@@ -1,10 +1,11 @@
 ---
 import Layout from '@/layouts/Layout.astro';
 import { getCollection } from 'astro:content';
-import { Image } from 'astro:assets';
+import { getImage } from 'astro:assets';
 import ContentGrid from '@/components/ContentGrid.svelte';
 import FeaturedCarousel from '@/components/FeaturedCarousel.svelte';
 import BioCard from '@/components/BioCard.astro';
+import ThemeBanner from '@/components/ThemeBanner.svelte';
 import { getReadTime } from '@/lib/utils/readTime';
 import { getPublishedPosts, getPostSlug } from '@/lib/utils/posts';
 import { SITE } from '@/config';
@@ -44,26 +45,13 @@ const contentItems = allContent.map(({ date: _date, ...rest }) => rest);
 const projects = (await getCollection('projects'))
   .sort((a, b) => a.data.order - b.data.order)
   .slice(0, SITE.homeProjects.count);
+
+const lightBannerImg = await getImage({ src: bannerLight, format: 'png' });
+const darkBannerImg = await getImage({ src: bannerDark, format: 'png' });
 ---
 
 <Layout title="Welcome">
-  <!-- Banner — full bleed, zoomed on mobile -->
-  <div class="mb-6 lg:mb-10 w-[100vw] relative left-1/2 -translate-x-1/2 overflow-hidden">
-    <Image
-      src={bannerLight}
-      alt="Azure Viking"
-      format="png"
-      class="block w-full object-cover h-24 sm:h-32 md:h-auto dark:hidden"
-      loading="eager"
-    />
-    <Image
-      src={bannerDark}
-      alt="Azure Viking"
-      format="png"
-      class="block w-full object-cover h-24 sm:h-32 md:h-auto hidden dark:block"
-      loading="eager"
-    />
-  </div>
+  <ThemeBanner lightSrc={lightBannerImg.src} darkSrc={darkBannerImg.src} client:load />
 
   <!-- 1. Hero: Featured Carousel + Bio Card -->
   <section class="mb-10 lg:mb-14">
