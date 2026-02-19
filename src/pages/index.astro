@@ -1,7 +1,7 @@
 ---
 import Layout from '@/layouts/Layout.astro';
 import { getCollection } from 'astro:content';
-import PostGrid from '@/components/PostGrid.svelte';
+import ContentGrid from '@/components/ContentGrid.svelte';
 import FeaturedCarousel from '@/components/FeaturedCarousel.svelte';
 import BioCard from '@/components/BioCard.astro';
 import { getReadTime } from '@/lib/utils/readTime';
@@ -9,14 +9,13 @@ import { getPublishedPosts, getPostSlug } from '@/lib/utils/posts';
 import { SITE } from '@/config';
 import { basePath } from '@/lib/utils/basePath';
 import { formatDate } from '@/lib/utils/date';
-import AppearanceCard from '@/components/AppearanceCard.svelte';
+import { postToUnified, appearanceToUnified } from '@/lib/types/content';
 
 const posts = (await getPublishedPosts()).sort(
   (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
 );
 
 const featuredPosts = posts.filter((post) => post.data.featured).slice(0, SITE.featuredPostsCount);
-const remainingPosts = posts.filter((post) => !featuredPosts.includes(post));
 
 const carouselPosts = featuredPosts.map((post) => ({
   title: post.data.title,
@@ -28,31 +27,29 @@ const carouselPosts = featuredPosts.map((post) => ({
   readTime: getReadTime(post.body || ''),
 }));
 
+const appearances = await getCollection('appearances');
+
+// Build unified content feed
+const allContent = [
+  ...posts.map((p) => postToUnified(p, SITE.base)),
+  ...appearances.map((a) => appearanceToUnified(a, SITE.base)),
+].sort((a, b) => b.date.valueOf() - a.date.valueOf());
+
+// Serialize for client component
+const contentItems = allContent.map(({ date: _date, ...rest }) => rest);
+
 const projects = (await getCollection('projects'))
   .sort((a, b) => a.data.order - b.data.order)
   .slice(0, SITE.homeProjects.count);
-
-const appearances = (await getCollection('appearances'))
-  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
-  .slice(0, 3);
-
-const gridPosts = remainingPosts.map((post) => ({
-  post,
-  slug: getPostSlug(post),
-  readTime: getReadTime(post.body || ''),
-}));
 ---
 
 <Layout title="Welcome">
   <!-- 1. Hero: Featured Carousel + Bio Card -->
   <section class="mb-10 lg:mb-14">
     <div class="grid grid-cols-1 lg:grid-cols-[1fr_240px] gap-4 lg:gap-5">
-      <!-- Bio Card (mobile: first, desktop: second via order) -->
       <div class="order-1 lg:order-2">
         <BioCard />
       </div>
-
-      <!-- Featured Carousel (mobile: second, desktop: first) -->
       <div class="order-2 lg:order-1 min-h-[250px]">
         {
           carouselPosts.length > 0 ? (
@@ -68,23 +65,23 @@ const gridPosts = remainingPosts.map((post) => ({
   </section>
 
   <div class="flex flex-col gap-10 lg:gap-14">
-    <!-- 2. All Posts Grid -->
+    <!-- 2. Unified Content Feed -->
     <section>
       <div class="flex items-baseline justify-between mb-6 sm:mb-8">
         <h2 class="text-xs font-bold uppercase tracking-[0.2em] text-muted-foreground">
-          Latest Posts
+          Latest Content
         </h2>
         <div class="h-px flex-1 mx-4 sm:mx-8 bg-border opacity-70"></div>
         <a
           href={basePath('/posts')}
           class="px-2 py-0.5 rounded-md text-xs font-bold uppercase tracking-widest hover:bg-accent hover:text-primary transition-all no-underline"
-          >All Posts</a
+          >View All</a
         >
       </div>
-      <PostGrid posts={gridPosts} client:load />
+      <ContentGrid items={contentItems} client:load />
     </section>
 
-    <!-- 4. Projects -->
+    <!-- 3. Projects -->
     {
       SITE.homeProjects.enabled && projects.length > 0 && (
         <section>
@@ -213,38 +210,5 @@ const gridPosts = remainingPosts.map((post) => ({
         </section>
       )
     }
-
-    <!-- 5. Talks / Appearances -->
-    <section>
-      <div class="flex items-baseline justify-between mb-6 sm:mb-8">
-        <h2 class="text-xs font-bold uppercase tracking-[0.2em] text-muted-foreground">
-          Talks & Appearances
-        </h2>
-        <div class="h-px flex-1 mx-4 sm:mx-8 bg-border opacity-70"></div>
-        <a
-          href={basePath('/appearances')}
-          class="px-2 py-0.5 rounded-md text-xs font-bold uppercase tracking-widest hover:bg-accent hover:text-primary transition-all no-underline"
-          >All Talks</a
-        >
-      </div>
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        {
-          appearances.map((item) => (
-            <AppearanceCard
-              title={item.data.title}
-              event={item.data.event}
-              date={formatDate(item.data.date)}
-              type={item.data.type}
-              slug={item.id}
-              youtubeId={item.data.youtubeId}
-              description={item.data.description}
-              tags={item.data.tags}
-              duration={item.data.duration}
-              coverImage={item.data.coverImage}
-            />
-          ))
-        }
-      </div>
-    </section>
   </div>
 </Layout>

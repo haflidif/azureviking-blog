@@ -3,6 +3,7 @@ title: 'A First Look at Revolutionizing Your Cloud Deployments with Azure Manage
 description: 'Discover Azure Managed DevOps Pools (MDP) in Public Preview: enhanced performance, cost efficiency, and secure network integration for Azure deployments.'
 pubDate: 2024-08-20
 tags: [azure, devops, infrastructure, cloud]
+category: blog
 featured: false
 coverImage: '/images/posts/azure-managed-devops-pools/cover.jpg'
 ---

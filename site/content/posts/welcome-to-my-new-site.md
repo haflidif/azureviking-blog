@@ -3,6 +3,7 @@ title: 'Welcome to My New Site'
 description: 'Welcome to the new AzureViking site! A brief introduction and an invitation to get to know me better.'
 pubDate: 2022-01-15
 tags: [personal, announcement]
+category: blog
 featured: false
 coverImage: '/images/posts/welcome-to-my-new-site/cover.png'
 ---

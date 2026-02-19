@@ -7,6 +7,7 @@ media: video
 youtubeId: '9e6Q8PSGiXU'
 description: 'A deep dive into Azure Managed DevOps Pools (MDP) — what they are, how they work, and how they can revolutionize your cloud deployments with enhanced performance, cost efficiency, and secure network integration.'
 tags: [azure, devops, managed-devops-pools, ci-cd]
+category: talk
 lang: en
 duration: '45 min'
 ---

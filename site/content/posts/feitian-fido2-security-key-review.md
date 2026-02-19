@@ -3,6 +3,7 @@ title: 'Feitian FIDO2 Security Key Review'
 description: 'Review of Feitian ePass K40 FIDO2 Security key with USB-C and NFC support, setup instructions, and insights on FIDO2 passwordless authentication.'
 pubDate: 2023-04-15
 tags: [security, fido2, review, passwordless]
+category: blog
 featured: false
 coverImage: '/images/posts/feitian-fido2-security-key-review/k40-key.jpg'
 ---

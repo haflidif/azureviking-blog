@@ -1,6 +1,8 @@
 import { defineCollection, z } from 'astro:content';
 import { glob } from 'astro/loaders';
 
+const categoryEnum = z.enum(['blog', 'talk', 'tutorial', 'lab', 'news', 'podcast']).default('blog');
+
 const posts = defineCollection({
   loader: glob({
     pattern: ['**/*.{md,mdx}', '!**/_*'],
@@ -10,6 +12,7 @@ const posts = defineCollection({
     title: z.string(),
     description: z.string(),
     pubDate: z.date(),
+    category: categoryEnum,
     slug: z.string().optional(),
     updatedDate: z.date().optional(),
     tags: z.array(z.string()).default(['others']),
@@ -59,6 +62,7 @@ const appearances = defineCollection({
     event: z.string(),
     date: z.date(),
     type: z.enum(['talk', 'podcast', 'article', 'workshop', 'video']),
+    category: z.enum(['blog', 'talk', 'tutorial', 'lab', 'news', 'podcast']).default('talk'),
     media: z.enum(['video', 'audio', 'text']).optional(),
     link: z.string().url().optional(),
     youtubeId: z.string().optional(),

@@ -7,6 +7,7 @@ media: video
 youtubeId: 'NxDKyRfD9gE'
 description: 'A comprehensive deep dive into Azure networking — covering virtual networks, subnets, NSGs, route tables, private endpoints, DNS, and network architecture best practices.'
 tags: [azure, networking, security, architecture]
+category: talk
 lang: en
 duration: '60 min'
 ---

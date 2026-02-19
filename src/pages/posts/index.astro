@@ -1,41 +1,33 @@
 ---
 import Layout from '@/layouts/Layout.astro';
-import PostGrid from '@/components/PostGrid.svelte';
+import ContentGrid from '@/components/ContentGrid.svelte';
 import Breadcrumbs from '@/components/Breadcrumbs.svelte';
-import { getReadTime } from '@/lib/utils/readTime';
-import { getPublishedPosts, getPostSlug } from '@/lib/utils/posts';
 import { SITE } from '@/config';
 import { basePath } from '@/lib/utils/basePath';
 import { getBreadcrumbSchema } from '@/lib/schemas';
+import { getAllUnifiedContent } from '@/lib/types/content';
 
 const schema = getBreadcrumbSchema([
-  { name: 'Blog', url: new URL('/posts', Astro.site).toString() },
+  { name: 'Content', url: new URL('/posts', Astro.site).toString() },
 ]);
 
-const posts = (await getPublishedPosts()).sort(
-  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
-);
-
-const gridPosts = posts.map((post) => ({
-  post,
-  slug: getPostSlug(post),
-  readTime: getReadTime(post.body || ''),
-}));
+const allContent = await getAllUnifiedContent(SITE.base);
+const contentItems = allContent.map(({ date: _date, ...rest }) => rest);
 ---
 
-<Layout title="Blog" description={SITE.blogDescription} schema={schema}>
-  <Breadcrumbs items={[{ name: 'Blog', href: basePath('/posts') }]} />
+<Layout title="All Content" description={SITE.blogDescription} schema={schema}>
+  <Breadcrumbs items={[{ name: 'All Content', href: basePath('/posts') }]} />
 
-  <div class="mb-10 sm:mb-12">
+  <div class="mb-8 sm:mb-10">
     <h1
-      class="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-foreground leading-[1.1]"
+      class="text-2xl sm:text-3xl lg:text-4xl font-black tracking-tight text-foreground leading-[1.1]"
     >
-      Writing
+      All Content
     </h1>
-    <p class="mt-3 text-base sm:text-lg text-muted-foreground max-w-2xl leading-relaxed">
-      {SITE.blogDescription}
+    <p class="mt-3 text-sm sm:text-base text-muted-foreground max-w-2xl leading-relaxed">
+      Blog posts, talks, tutorials, and more — all in one place.
     </p>
   </div>
 
-  <PostGrid posts={gridPosts} client:load />
+  <ContentGrid items={contentItems} client:load />
 </Layout>

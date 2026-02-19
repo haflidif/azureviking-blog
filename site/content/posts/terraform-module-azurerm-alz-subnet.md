@@ -3,6 +3,7 @@ title: 'Terraform Module: azurerm-alz-subnet'
 description: 'A Terraform module to deploy subnets with NSG and route table associations as a workaround for Azure Landing Zone policy conflicts.'
 pubDate: 2024-03-15
 tags: [terraform, azure, infrastructure-as-code, modules]
+category: blog
 featured: false
 coverImage: '/images/posts/terraform-module-azurerm-alz-subnet/cover.jpg'
 ---

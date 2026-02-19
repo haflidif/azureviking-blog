@@ -3,6 +3,7 @@ title: 'First Time Public Speaking — What a Thrill!'
 description: "Sharing my thrilling experience presenting at the Microsoft Security User Group's first event."
 pubDate: 2022-05-20
 tags: [community, speaking, career, microsoft-security-user-group]
+category: blog
 featured: false
 coverImage: '/images/posts/first-time-public-speaking/presenting.jpg'
 ---

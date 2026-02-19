@@ -7,6 +7,7 @@ media: video
 youtubeId: 'rfe2lVtctC4'
 description: 'A festive-themed talk on secure deployment practices in Azure, covering infrastructure as code security, pipeline hardening, and deployment best practices.'
 tags: [azure, security, devops, infrastructure-as-code]
+category: talk
 lang: en
 duration: '30 min'
 ---

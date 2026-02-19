@@ -3,6 +3,7 @@ title: 'Advanced Security Features in Microsoft Authenticator'
 description: 'Microsoft is enforcing number matching in Authenticator to prevent MFA fatigue attacks, along with new location and application context features.'
 pubDate: 2023-05-08
 tags: [security, microsoft, mfa, entra-id]
+category: blog
 featured: false
 coverImage: '/images/posts/advanced-security-features-microsoft-authenticator/number-matching.jpg'
 ---
