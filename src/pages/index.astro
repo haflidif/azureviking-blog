@@ -50,7 +50,7 @@ const lightBannerImg = await getImage({ src: bannerLight, format: 'png' });
 const darkBannerImg = await getImage({ src: bannerDark, format: 'png' });
 ---
 
-<Layout title="Welcome">
+<Layout>
   <ThemeBanner lightSrc={lightBannerImg.src} darkSrc={darkBannerImg.src} client:load />
 
   <!-- 1. Hero: Featured Carousel + Bio Card -->
