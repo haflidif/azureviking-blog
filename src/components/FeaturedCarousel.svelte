@@ -62,7 +62,7 @@
   <!-- Slides -->
   <a
     href={`${SITE.base}/posts/${currentPost.slug}`}
-    class="block relative aspect-[16/9] md:aspect-[16/10] overflow-hidden group no-underline"
+    class="block relative aspect-[16/7] overflow-hidden group no-underline"
   >
     <!-- Background image with crossfade -->
     {#each posts as post, i (post.slug)}
@@ -88,7 +88,7 @@
     <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
 
     <!-- Content overlay -->
-    <div class="absolute inset-0 flex flex-col justify-end p-5 sm:p-7">
+    <div class="absolute inset-0 flex flex-col justify-end p-4 sm:p-5">
       <!-- Tags -->
       <div class="flex flex-wrap gap-1.5 mb-3">
         {#each currentPost.tags.slice(0, 3) as tag (tag)}
@@ -102,13 +102,13 @@
 
       <!-- Title -->
       <h3
-        class="text-lg sm:text-xl md:text-2xl font-black leading-tight text-white mb-2 line-clamp-2 group-hover:text-primary transition-colors"
+        class="text-base sm:text-lg font-black leading-tight text-white mb-1.5 line-clamp-2 group-hover:text-primary transition-colors"
       >
         {currentPost.title}
       </h3>
 
       <!-- Description -->
-      <p class="text-sm text-white/80 leading-relaxed line-clamp-2 mb-3 max-w-[90%]">
+      <p class="text-xs text-white/80 leading-relaxed line-clamp-2 mb-2 max-w-[90%]">
         {currentPost.description}
       </p>
 

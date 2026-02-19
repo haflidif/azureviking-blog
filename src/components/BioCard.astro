@@ -7,12 +7,12 @@ import mvpBadge from '@/site-assets/mvp_alumni_badge.png';
 ---
 
 <div
-  class="flex flex-col items-center gap-5 p-6 sm:p-8 rounded-2xl bg-secondary/30 border border-border/50 backdrop-blur-sm"
+  class="flex flex-col items-center gap-3 p-4 sm:p-5 rounded-2xl bg-secondary/30 border border-border/50 backdrop-blur-sm"
 >
   <!-- Profile Photo with gradient ring -->
   <div class="relative">
     <div
-      class="w-28 h-28 sm:w-32 sm:h-32 rounded-full p-[3px] bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500"
+      class="w-20 h-20 sm:w-24 sm:h-24 rounded-full p-[2px] bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500"
     >
       <div class="w-full h-full rounded-full overflow-hidden bg-background">
         <Image
@@ -27,15 +27,14 @@ import mvpBadge from '@/site-assets/mvp_alumni_badge.png';
   </div>
 
   <!-- Name -->
-  <h2 class="text-xl sm:text-2xl font-black text-foreground text-center leading-tight">
-    Haflidi<br />Fridthjofsson
+  <h2 class="text-base sm:text-lg font-black text-foreground text-center leading-tight">
+    Haflidi Fridthjofsson
   </h2>
 
   <!-- Bio -->
-  <p class="text-sm text-muted-foreground text-center leading-relaxed max-w-[280px]">
-    My name is Haflidi Fridthjofsson, an Icelandic Technical Fellow and Senior Cloud Solution
-    Architect at Microsoft, with over a decade of experience in IT. I am a former Microsoft MVP in
-    Azure & Security, recognized for my expertise in Infrastructure as Code and Cloud Security....
+  <p class="text-xs text-muted-foreground text-center leading-relaxed max-w-[260px]">
+    Icelandic Technical Fellow & Senior Cloud Solution Architect at Microsoft. Former Microsoft MVP
+    in Azure & Security.
     <a
       href={basePath('/about')}
       class="text-foreground font-semibold hover:text-primary transition-colors underline underline-offset-2"
@@ -45,7 +44,7 @@ import mvpBadge from '@/site-assets/mvp_alumni_badge.png';
   </p>
 
   <!-- Social Icons -->
-  <div class="flex items-center gap-4">
+  <div class="flex items-center gap-3">
     {
       SITE.social.linkedin && (
         <a
@@ -107,13 +106,13 @@ import mvpBadge from '@/site-assets/mvp_alumni_badge.png';
   </div>
 
   <!-- MVP Alumni Badge -->
-  <div class="mt-2">
+  <div class="mt-1">
     <Image
       src={mvpBadge}
       alt="Microsoft MVP Alumni"
-      width={160}
-      height={160}
-      class="w-32 h-32 sm:w-36 sm:h-36 object-contain"
+      width={120}
+      height={120}
+      class="w-20 h-20 sm:w-24 sm:h-24 object-contain"
     />
   </div>
 </div>
