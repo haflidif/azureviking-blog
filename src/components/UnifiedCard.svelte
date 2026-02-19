@@ -1,13 +1,5 @@
 <script lang="ts">
-  import { getTagColor } from '@/lib/utils/tagColors';
-
   type ContentCategory = 'blog' | 'talk' | 'tutorial' | 'lab' | 'news' | 'podcast';
-
-  interface CategoryMeta {
-    label: string;
-    emoji: string;
-    color: string;
-  }
 
   interface Props {
     id: string;
@@ -39,32 +31,16 @@
     duration,
   }: Props = $props();
 
-  const CATEGORY_META: Record<ContentCategory, CategoryMeta> = {
-    blog: { label: 'Blog', emoji: '📝', color: 'bg-blue-500/10 text-blue-600 border-blue-500/20' },
-    talk: { label: 'Talk', emoji: '🎬', color: 'bg-red-500/10 text-red-600 border-red-500/20' },
-    tutorial: {
-      label: 'Tutorial',
-      emoji: '📺',
-      color: 'bg-green-500/10 text-green-600 border-green-500/20',
-    },
-    lab: {
-      label: 'Lab',
-      emoji: '🧪',
-      color: 'bg-purple-500/10 text-purple-600 border-purple-500/20',
-    },
-    news: {
-      label: 'News',
-      emoji: '📰',
-      color: 'bg-amber-500/10 text-amber-600 border-amber-500/20',
-    },
-    podcast: {
-      label: 'Podcast',
-      emoji: '🎙️',
-      color: 'bg-pink-500/10 text-pink-600 border-pink-500/20',
-    },
+  const CATEGORY_LABELS: Record<ContentCategory, string> = {
+    blog: 'Blog',
+    talk: 'Talk',
+    tutorial: 'Tutorial',
+    lab: 'Lab',
+    news: 'News',
+    podcast: 'Podcast',
   };
 
-  const meta = $derived(CATEGORY_META[category]);
+  const categoryLabel = $derived(CATEGORY_LABELS[category]);
 
   const thumbnail = $derived(
     coverImage
@@ -104,10 +80,9 @@
         {/if}
         <!-- Category badge -->
         <span
-          class="absolute top-2 left-2 px-2 py-0.5 rounded-md text-[10px] font-bold uppercase tracking-wide border backdrop-blur-sm {meta.color}"
+          class="absolute top-2 left-2 px-2 py-0.5 rounded-md text-[10px] font-bold uppercase tracking-wide border backdrop-blur-sm bg-black/60 text-white border-white/20"
         >
-          {meta.emoji}
-          {meta.label}
+          {categoryLabel}
         </span>
         <!-- Duration for talks -->
         {#if duration}
@@ -122,10 +97,9 @@
       <!-- No thumbnail: show category badge inline -->
       <div class="px-3 pt-3">
         <span
-          class="inline-flex items-center px-2 py-0.5 rounded-md text-[10px] font-bold uppercase tracking-wide border {meta.color}"
+          class="inline-flex items-center px-2 py-0.5 rounded-md text-[10px] font-bold uppercase tracking-wide border bg-foreground/90 text-background border-foreground/20"
         >
-          {meta.emoji}
-          {meta.label}
+          {categoryLabel}
         </span>
       </div>
     {/if}
@@ -159,9 +133,8 @@
       {#if tags.length > 0}
         <div class="flex flex-wrap gap-1 mb-2">
           {#each tags.slice(0, 3) as tag (tag)}
-            {@const colors = getTagColor(tag)}
             <span
-              class="inline-flex items-center px-1.5 py-0.5 rounded text-[9px] font-bold uppercase tracking-wide border {colors.bg} {colors.text} {colors.border}"
+              class="inline-flex items-center px-1.5 py-0.5 rounded text-[9px] font-bold uppercase tracking-wide border bg-black/5 dark:bg-white/10 text-foreground/70 border-border/50"
             >
               {tag}
             </span>

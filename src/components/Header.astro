@@ -12,7 +12,9 @@ interface NavLink {
 }
 
 const navLinks: NavLink[] = [
+  { name: 'All Content', href: basePath('/content') },
   { name: 'Posts', href: basePath('/posts') },
+  { name: 'Talks', href: basePath('/appearances') },
   { name: 'About', href: basePath('/about') },
 ];
 ---

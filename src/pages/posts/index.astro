@@ -1,33 +1,41 @@
 ---
 import Layout from '@/layouts/Layout.astro';
-import ContentGrid from '@/components/ContentGrid.svelte';
+import PostGrid from '@/components/PostGrid.svelte';
 import Breadcrumbs from '@/components/Breadcrumbs.svelte';
+import { getReadTime } from '@/lib/utils/readTime';
+import { getPublishedPosts, getPostSlug } from '@/lib/utils/posts';
 import { SITE } from '@/config';
 import { basePath } from '@/lib/utils/basePath';
 import { getBreadcrumbSchema } from '@/lib/schemas';
-import { getAllUnifiedContent } from '@/lib/types/content';
 
 const schema = getBreadcrumbSchema([
-  { name: 'Content', url: new URL('/posts', Astro.site).toString() },
+  { name: 'Posts', url: new URL('/posts', Astro.site).toString() },
 ]);
 
-const allContent = await getAllUnifiedContent(SITE.base);
-const contentItems = allContent.map(({ date: _date, ...rest }) => rest);
+const posts = (await getPublishedPosts()).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+
+const gridPosts = posts.map((post) => ({
+  post,
+  slug: getPostSlug(post),
+  readTime: getReadTime(post.body || ''),
+}));
 ---
 
-<Layout title="All Content" description={SITE.blogDescription} schema={schema}>
-  <Breadcrumbs items={[{ name: 'All Content', href: basePath('/posts') }]} />
+<Layout title="Blog Posts" description={SITE.blogDescription} schema={schema}>
+  <Breadcrumbs items={[{ name: 'Posts', href: basePath('/posts') }]} />
 
   <div class="mb-8 sm:mb-10">
     <h1
       class="text-2xl sm:text-3xl lg:text-4xl font-black tracking-tight text-foreground leading-[1.1]"
     >
-      All Content
+      Blog Posts
     </h1>
     <p class="mt-3 text-sm sm:text-base text-muted-foreground max-w-2xl leading-relaxed">
-      Blog posts, talks, tutorials, and more — all in one place.
+      {SITE.blogDescription}
     </p>
   </div>
 
-  <ContentGrid items={contentItems} client:load />
+  <PostGrid posts={gridPosts} client:load />
 </Layout>

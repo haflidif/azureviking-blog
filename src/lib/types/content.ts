@@ -64,7 +64,7 @@ export function postToUnified(post: CollectionEntry<'posts'>, basePath: string):
     tags: post.data.tags,
     slug,
     href: `${basePath}/posts/${slug}`,
-    coverImage: post.data.coverImage,
+    coverImage: post.data.coverImage ? `${basePath}${post.data.coverImage}` : undefined,
     readTime: getReadTime(post.body || ''),
     featured: post.data.featured,
   };
@@ -84,7 +84,7 @@ export function appearanceToUnified(
     tags: item.data.tags,
     slug: item.id,
     href: `${basePath}/appearances/${item.id}`,
-    coverImage: item.data.coverImage,
+    coverImage: item.data.coverImage ? `${basePath}${item.data.coverImage}` : undefined,
     youtubeId: item.data.youtubeId,
     event: item.data.event,
     duration: item.data.duration,

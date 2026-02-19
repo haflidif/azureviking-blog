@@ -1,0 +1,33 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import ContentGrid from '@/components/ContentGrid.svelte';
+import Breadcrumbs from '@/components/Breadcrumbs.svelte';
+import { SITE } from '@/config';
+import { basePath } from '@/lib/utils/basePath';
+import { getBreadcrumbSchema } from '@/lib/schemas';
+import { getAllUnifiedContent } from '@/lib/types/content';
+
+const schema = getBreadcrumbSchema([
+  { name: 'All Content', url: new URL('/content', Astro.site).toString() },
+]);
+
+const allContent = await getAllUnifiedContent(SITE.base);
+const contentItems = allContent.map(({ date: _date, ...rest }) => rest);
+---
+
+<Layout title="All Content" description="Blog posts, talks, tutorials, and more." schema={schema}>
+  <Breadcrumbs items={[{ name: 'All Content', href: basePath('/content') }]} />
+
+  <div class="mb-8 sm:mb-10">
+    <h1
+      class="text-2xl sm:text-3xl lg:text-4xl font-black tracking-tight text-foreground leading-[1.1]"
+    >
+      All Content
+    </h1>
+    <p class="mt-3 text-sm sm:text-base text-muted-foreground max-w-2xl leading-relaxed">
+      Blog posts, talks, tutorials, and more — all in one place.
+    </p>
+  </div>
+
+  <ContentGrid items={contentItems} client:load />
+</Layout>
