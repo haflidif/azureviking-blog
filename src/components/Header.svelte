@@ -2,7 +2,7 @@
   import { SITE } from '@/config';
   import ThemeToggle from './ThemeToggle.svelte';
   import Search from './Search.svelte';
-  import logoImage from '@/site-assets/azure_viking_logo.png';
+  import logoImage from '@/site-assets/azure_viking_head_logo.png';
 
   interface NavLink {
     name: string;
