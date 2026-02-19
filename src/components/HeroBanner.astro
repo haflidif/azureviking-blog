@@ -1,0 +1,52 @@
+---
+import { Image } from 'astro:assets';
+import logo from '@/site-assets/azure_viking_logo.png';
+---
+
+<div
+  class="relative mb-6 lg:mb-10 w-[100vw] left-1/2 -translate-x-1/2 overflow-hidden border-y border-sky-500/10 dark:border-sky-400/10"
+>
+  <!-- Diagonal stripe accents -->
+  <div
+    class="absolute inset-y-0 left-0 w-10 sm:w-20 lg:w-32 bg-[repeating-linear-gradient(45deg,transparent,transparent_4px,var(--stripe)_4px,var(--stripe)_8px)] [--stripe:rgba(56,189,248,0.08)] dark:[--stripe:rgba(56,189,248,0.06)]"
+  >
+  </div>
+  <div
+    class="absolute inset-y-0 right-0 w-10 sm:w-20 lg:w-32 bg-[repeating-linear-gradient(-45deg,transparent,transparent_4px,var(--stripe)_4px,var(--stripe)_8px)] [--stripe:rgba(56,189,248,0.08)] dark:[--stripe:rgba(56,189,248,0.06)]"
+  >
+  </div>
+
+  <!-- Content -->
+  <div
+    class="relative flex items-center justify-center gap-1.5 sm:gap-4 lg:gap-6 py-3 sm:py-5 lg:py-6 px-4 sm:px-12"
+  >
+    <!-- HAFLIDI'S watermark -->
+    <span
+      class="text-2xl sm:text-4xl lg:text-6xl font-black italic tracking-tight text-sky-400/15 dark:text-sky-300/10 select-none uppercase whitespace-nowrap"
+    >
+      Haflidi's
+    </span>
+
+    <!-- Logo -->
+    <Image
+      src={logo}
+      alt="Azure Viking"
+      class="w-14 h-14 sm:w-20 sm:h-20 lg:w-28 lg:h-28 shrink-0 drop-shadow-lg"
+      loading="eager"
+    />
+
+    <!-- TECHNICAL INSIGHTS -->
+    <div class="flex flex-col select-none whitespace-nowrap">
+      <span
+        class="text-xs sm:text-lg lg:text-2xl font-extrabold uppercase tracking-widest text-sky-900 dark:text-sky-100"
+      >
+        Technical
+      </span>
+      <span
+        class="text-[10px] sm:text-sm lg:text-xl font-bold uppercase tracking-[0.25em] text-sky-600 dark:text-sky-300/70"
+      >
+        Insights
+      </span>
+    </div>
+  </div>
+</div>
