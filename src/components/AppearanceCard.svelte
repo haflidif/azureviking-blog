@@ -28,13 +28,15 @@
     coverImage,
   }: Props = $props();
 
-  const thumbnail = coverImage
-    ? `${SITE.base}${coverImage}`
-    : youtubeId
-      ? `https://img.youtube.com/vi/${youtubeId}/mqdefault.jpg`
-      : null;
+  const thumbnail = $derived(
+    coverImage
+      ? `${SITE.base}${coverImage}`
+      : youtubeId
+        ? `https://img.youtube.com/vi/${youtubeId}/mqdefault.jpg`
+        : null
+  );
 
-  const href = `${SITE.base}/appearances/${slug}`;
+  const href = $derived(`${SITE.base}/appearances/${slug}`);
 </script>
 
 <a {href} class="group block no-underline">
