@@ -61,6 +61,10 @@ export const SITE: SiteConfig = {
   social: {
     github: 'https://github.com/haflidif',
     linkedin: 'https://www.linkedin.com/in/haflidif',
+    youtube: 'https://www.youtube.com/@azure-viking',
+    instagram: 'https://www.instagram.com/azureviking',
+    meetup: 'https://www.meetup.com/microsoft-security-user-group/',
+    sessionize: 'https://sessionize.com/haflidif/',
   },
   googleAnalyticsId: '',
   homeHeroDescription:
