@@ -53,7 +53,7 @@
 </script>
 
 <div
-  class="relative rounded-2xl overflow-hidden border border-border/50 bg-secondary/20"
+  class="relative rounded-2xl overflow-hidden border border-border/50 bg-secondary/20 h-full"
   role="region"
   aria-label="Featured posts carousel"
   onmouseenter={() => (paused = true)}
@@ -62,7 +62,7 @@
   <!-- Slides -->
   <a
     href={`${SITE.base}/posts/${currentPost.slug}`}
-    class="block relative aspect-[16/7] overflow-hidden group no-underline"
+    class="block relative aspect-[16/7] lg:aspect-auto lg:h-full overflow-hidden group no-underline"
   >
     <!-- Background image with crossfade -->
     {#each posts as post, i (post.slug)}
