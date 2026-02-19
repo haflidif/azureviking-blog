@@ -1,0 +1,111 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import { getCollection, render } from 'astro:content';
+import { formatDate } from '@/lib/utils/date';
+import Breadcrumbs from '@/components/Breadcrumbs.svelte';
+import { basePath } from '@/lib/utils/basePath';
+import YouTubeEmbed from '@/components/YouTubeEmbed.astro';
+import { getTagColor } from '@/lib/utils/tagColors';
+
+export async function getStaticPaths() {
+  const appearances = await getCollection('appearances');
+  return appearances.map((appearance) => ({
+    params: { slug: appearance.id },
+    props: { appearance },
+  }));
+}
+
+const { appearance } = Astro.props;
+const { Content } = await render(appearance);
+const { title, event, date, type, youtubeId, description, tags, duration, lang } = appearance.data;
+---
+
+<Layout title={`${title} — ${event}`} description={description}>
+  <Breadcrumbs
+    items={[{ name: 'Talks & Appearances', href: basePath('/appearances') }, { name: title }]}
+  />
+
+  <article class="max-w-4xl mx-auto">
+    <!-- Header -->
+    <header class="mb-8">
+      <div class="flex flex-wrap items-center gap-2 mb-3">
+        <span
+          class="inline-flex items-center px-2.5 py-1 rounded-md text-[11px] font-bold uppercase tracking-wide bg-primary/10 text-primary border border-primary/20"
+        >
+          {event}
+        </span>
+        <span
+          class="inline-flex items-center px-2 py-0.5 rounded-md text-[11px] font-bold uppercase tracking-wide bg-secondary/50 text-muted-foreground border border-border/50"
+        >
+          {type}
+        </span>
+      </div>
+
+      <h1
+        class="text-2xl sm:text-3xl lg:text-4xl font-black tracking-tight text-foreground leading-[1.1] mb-4"
+      >
+        {title}
+      </h1>
+
+      {
+        description && (
+          <p class="text-sm sm:text-base text-muted-foreground leading-relaxed mb-4 max-w-3xl">
+            {description}
+          </p>
+        )
+      }
+
+      <div class="flex flex-wrap items-center gap-3 text-xs text-muted-foreground font-medium">
+        <time datetime={date.toISOString()}>{formatDate(date)}</time>
+        {
+          duration && (
+            <>
+              <span>·</span>
+              <span>{duration}</span>
+            </>
+          )
+        }
+        {
+          lang && lang !== 'en' && (
+            <>
+              <span>·</span>
+              <span class="uppercase">{lang}</span>
+            </>
+          )
+        }
+      </div>
+    </header>
+
+    <!-- YouTube Embed -->
+    {
+      youtubeId && (
+        <div class="mb-8">
+          <YouTubeEmbed youtubeId={youtubeId} title={title} />
+        </div>
+      )
+    }
+
+    <!-- Tags -->
+    {
+      tags && tags.length > 0 && (
+        <div class="flex flex-wrap gap-1.5 mb-8">
+          {tags.map((tag: string) => {
+            const colors = getTagColor(tag);
+            return (
+              <span
+                class={`inline-flex items-center px-2.5 py-1 rounded-full text-[11px] font-bold uppercase tracking-wide border ${colors.bg} ${colors.text} ${colors.border}`}
+              >
+                {tag}
+              </span>
+            );
+          })}
+        </div>
+      )
+    }
+
+    <!-- Markdown body content -->
+    <div class="prose prose-sm sm:prose-base dark:prose-invert max-w-none">
+      <Content />
+    </div>
+  </article>
+</Layout>

@@ -8,8 +8,8 @@ import { getReadTime } from '@/lib/utils/readTime';
 import { getPublishedPosts, getPostSlug } from '@/lib/utils/posts';
 import { SITE } from '@/config';
 import { basePath } from '@/lib/utils/basePath';
-import { getLangFlag } from '@/lib/utils/lang';
 import { formatDate } from '@/lib/utils/date';
+import AppearanceCard from '@/components/AppearanceCard.svelte';
 
 const posts = (await getPublishedPosts()).sort(
   (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
@@ -224,41 +224,24 @@ const gridPosts = remainingPosts.map((post) => ({
         <a
           href={basePath('/appearances')}
           class="px-2 py-0.5 rounded-md text-xs font-bold uppercase tracking-widest hover:bg-accent hover:text-primary transition-all no-underline"
-          >View appearances</a
+          >All Talks</a
         >
       </div>
-      <div class="space-y-4 sm:space-y-6">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {
           appearances.map((item) => (
-            <a
-              href={item.data.link}
-              class="flex items-center justify-between py-3 group no-underline transition-all hover:translate-x-1"
-            >
-              <div class="flex flex-col">
-                <span class="text-xs font-bold uppercase tracking-widest text-muted-foreground mb-1">
-                  {item.data.event}
-                </span>
-                <span class="font-bold text-sm sm:text-base text-foreground group-hover:text-primary transition-colors leading-tight">
-                  {item.data.title}
-                </span>
-              </div>
-              <div class="flex items-center gap-4">
-                {item.data.lang && item.data.lang !== 'en' && (
-                  <span
-                    class="inline-flex items-center gap-1.5 px-1.5 py-0.5 rounded bg-secondary/50 text-[10px] font-bold uppercase tracking-tighter text-muted-foreground group-hover:text-foreground transition-colors cursor-help"
-                    title={`Language: ${item.data.lang}`}
-                  >
-                    <span class="text-sm leading-none group-hover:scale-110 transition-transform">
-                      {getLangFlag(item.data.lang)}
-                    </span>
-                    {item.data.lang}
-                  </span>
-                )}
-                <span class="text-xs font-medium text-muted-foreground tabular-nums">
-                  {item.data.date.getFullYear()}
-                </span>
-              </div>
-            </a>
+            <AppearanceCard
+              title={item.data.title}
+              event={item.data.event}
+              date={formatDate(item.data.date)}
+              type={item.data.type}
+              slug={item.id}
+              youtubeId={item.data.youtubeId}
+              description={item.data.description}
+              tags={item.data.tags}
+              duration={item.data.duration}
+              coverImage={item.data.coverImage}
+            />
           ))
         }
       </div>
