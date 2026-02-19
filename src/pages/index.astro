@@ -1,16 +1,19 @@
 ---
 import Layout from '@/layouts/Layout.astro';
 import { getCollection } from 'astro:content';
+import { getImage } from 'astro:assets';
 import ContentGrid from '@/components/ContentGrid.svelte';
 import FeaturedCarousel from '@/components/FeaturedCarousel.svelte';
 import BioCard from '@/components/BioCard.astro';
-import HeroBanner from '@/components/HeroBanner.astro';
+import ThemeBanner from '@/components/ThemeBanner.svelte';
 import { getReadTime } from '@/lib/utils/readTime';
 import { getPublishedPosts, getPostSlug } from '@/lib/utils/posts';
 import { SITE } from '@/config';
 import { basePath } from '@/lib/utils/basePath';
 import { formatDate } from '@/lib/utils/date';
 import { postToUnified, appearanceToUnified } from '@/lib/types/content';
+import bannerLight from '@/site-assets/azure_viking_banner_light_mode.png';
+import bannerDark from '@/site-assets/azure_viking_banner_dark_mode.png';
 
 const posts = (await getPublishedPosts()).sort(
   (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
@@ -42,10 +45,13 @@ const contentItems = allContent.map(({ date: _date, ...rest }) => rest);
 const projects = (await getCollection('projects'))
   .sort((a, b) => a.data.order - b.data.order)
   .slice(0, SITE.homeProjects.count);
+
+const lightBannerImg = await getImage({ src: bannerLight, format: 'png' });
+const darkBannerImg = await getImage({ src: bannerDark, format: 'png' });
 ---
 
 <Layout title="Welcome">
-  <HeroBanner />
+  <ThemeBanner lightSrc={lightBannerImg.src} darkSrc={darkBannerImg.src} client:load />
 
   <!-- 1. Hero: Featured Carousel + Bio Card -->
   <section class="mb-10 lg:mb-14">
