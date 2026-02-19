@@ -5,6 +5,7 @@ import { basePath } from '@/lib/utils/basePath';
 import Header from '@/components/Header.astro';
 import Footer from '@/components/Footer.astro';
 import SearchModal from '@/components/SearchModal.svelte';
+import ScrollToTop from '@/components/ScrollToTop.svelte';
 import { ClientRouter } from 'astro:transitions';
 import JsonLd from '@/components/JsonLd.astro';
 import { getWebSiteSchema, getOrganizationSchema, getPersonSchema } from '@/lib/schemas';
@@ -167,6 +168,7 @@ const gaScript = `
       </main>
       <Footer />
       <SearchModal client:idle />
+      <ScrollToTop client:idle />
     </div>
   </body>
 </html>
