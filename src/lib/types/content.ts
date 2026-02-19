@@ -97,7 +97,7 @@ export async function getAllUnifiedContent(basePath: string): Promise<UnifiedCon
 
   const unified: UnifiedContent[] = [
     ...posts.map((p) => postToUnified(p, basePath)),
-    ...appearances.map((a) => appearanceToUnified(a, basePath)),
+    ...appearances.map((a: CollectionEntry<'appearances'>) => appearanceToUnified(a, basePath)),
   ];
 
   return unified.sort((a, b) => b.date.valueOf() - a.date.valueOf());
