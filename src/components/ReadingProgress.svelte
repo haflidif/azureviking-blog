@@ -31,6 +31,7 @@
 </script>
 
 <!-- Circular progress ring with scroll-to-top button — bottom right -->
+<span id="reading-progress" class="hidden"></span>
 {#if visible}
   <button
     onclick={scrollToTop}

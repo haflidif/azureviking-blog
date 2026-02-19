@@ -2,12 +2,11 @@
   import { onMount } from 'svelte';
 
   let visible = $state(false);
-  let hasArticle = $state(false);
 
   onMount(() => {
-    hasArticle = !!document.querySelector('article');
+    const hasReadingProgress = !!document.getElementById('reading-progress');
     const update = () => {
-      visible = !hasArticle && window.scrollY > 300;
+      visible = !hasReadingProgress && window.scrollY > 300;
     };
     window.addEventListener('scroll', update, { passive: true });
     update();
