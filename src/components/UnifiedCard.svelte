@@ -1,4 +1,6 @@
 <script lang="ts">
+  import { getTagColor } from '@/lib/utils/tagColors';
+
   type ContentCategory = 'blog' | 'talk' | 'tutorial' | 'lab' | 'news' | 'podcast';
 
   interface Props {
@@ -97,7 +99,7 @@
       <!-- No thumbnail: show category badge inline -->
       <div class="px-3 pt-3">
         <span
-          class="inline-flex items-center px-2 py-0.5 rounded-md text-[10px] font-bold uppercase tracking-wide border bg-foreground/90 text-background border-foreground/20"
+          class="inline-flex items-center px-2 py-0.5 rounded-md text-[10px] font-bold uppercase tracking-wide bg-black/60 text-white"
         >
           {categoryLabel}
         </span>
@@ -133,8 +135,9 @@
       {#if tags.length > 0}
         <div class="flex flex-wrap gap-1 mb-2">
           {#each tags.slice(0, 3) as tag (tag)}
+            {@const colors = getTagColor(tag)}
             <span
-              class="inline-flex items-center px-1.5 py-0.5 rounded text-[9px] font-bold uppercase tracking-wide border bg-black/5 dark:bg-white/10 text-foreground/70 border-border/50"
+              class="inline-flex items-center px-1.5 py-0.5 rounded text-[9px] font-bold uppercase tracking-wide border {colors.bg} {colors.text} {colors.border}"
             >
               {tag}
             </span>
