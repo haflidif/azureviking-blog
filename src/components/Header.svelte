@@ -35,14 +35,21 @@
     <!-- Logo -->
     <a
       href={SITE.base || '/'}
-      class="flex items-center gap-2.5 text-xl sm:text-2xl font-black tracking-normal text-foreground transition-all no-underline hover:text-primary whitespace-nowrap"
+      class="flex items-center gap-2.5 text-foreground transition-all no-underline hover:text-primary whitespace-nowrap"
     >
       <img
         src={logoImage.src}
         alt="AzureViking Logo"
         class="w-[56px] h-[56px] sm:w-[72px] sm:h-[72px] lg:w-[88px] lg:h-[88px]"
       />
-      <span>{SITE.title}</span>
+      <div class="flex flex-col leading-tight">
+        <span class="text-xl sm:text-2xl font-black tracking-normal">
+          <span class="text-foreground">Azure</span><span class="text-[#7ec0f0]">Viking</span>
+        </span>
+        <span class="text-[9px] sm:text-[10px] font-medium tracking-wider text-muted-foreground">
+          Haflidi's Technical Insights
+        </span>
+      </div>
     </a>
 
     <!-- Desktop nav -->
