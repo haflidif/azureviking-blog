@@ -40,7 +40,7 @@
       <img
         src={logoImage.src}
         alt="AzureViking Logo"
-        class="w-[56px] h-[56px] sm:w-[72px] sm:h-[72px] lg:w-[88px] lg:h-[88px]"
+        class="w-[68px] h-[68px] sm:w-[84px] sm:h-[84px] lg:w-[100px] lg:h-[100px]"
       />
       <div class="flex flex-col leading-tight">
         <span class="text-xl sm:text-2xl font-black tracking-normal">
