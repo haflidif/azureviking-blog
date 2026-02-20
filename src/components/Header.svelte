@@ -31,7 +31,7 @@
   class="sticky top-0 z-50 backdrop-blur-md bg-background/80 border-b border-border transition-all duration-300"
 >
   <!-- Top bar -->
-  <div class="flex items-center justify-between py-3 sm:py-4 lg:py-5">
+  <div class="flex items-center justify-between py-3 sm:py-4 xl:py-5">
     <!-- Logo -->
     <a
       href={SITE.base || '/'}
@@ -40,7 +40,7 @@
       <img
         src={logoImage.src}
         alt="AzureViking Logo"
-        class="w-[68px] h-[68px] sm:w-[84px] sm:h-[84px] lg:w-[100px] lg:h-[100px]"
+        class="w-[68px] h-[68px] sm:w-[84px] sm:h-[84px] xl:w-[100px] xl:h-[100px]"
       />
       <div class="flex flex-col leading-tight">
         <span class="text-xl sm:text-2xl font-black tracking-normal">
@@ -53,7 +53,7 @@
     </a>
 
     <!-- Desktop nav -->
-    <nav class="hidden lg:flex items-center gap-4">
+    <nav class="hidden xl:flex items-center gap-4">
       <div class="flex items-center gap-2">
         {#each navLinks as link (link.name)}
           <a
@@ -154,7 +154,7 @@
     </nav>
 
     <!-- Mobile controls -->
-    <div class="flex items-center gap-2 lg:hidden">
+    <div class="flex items-center gap-2 xl:hidden">
       <Search />
       <ThemeToggle />
       <button
@@ -199,7 +199,7 @@
   </div>
 
   <!-- Mobile social icons (always visible) -->
-  <div class="flex items-center justify-center gap-3 pb-2 lg:hidden">
+  <div class="flex items-center justify-center gap-3 pb-2 xl:hidden">
     {#each Object.entries(SITE.social) as [platform, link] (platform)}
       <a
         href={link}
@@ -284,7 +284,7 @@
   <!-- Mobile drawer -->
   {#if menuOpen}
     <nav
-      class="lg:hidden border-t border-border/50 pb-4 pt-2 animate-in slide-in-from-top duration-200"
+      class="xl:hidden border-t border-border/50 pb-4 pt-2 animate-in slide-in-from-top duration-200"
     >
       <div class="flex flex-col gap-1">
         {#each navLinks as link (link.name)}
