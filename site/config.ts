@@ -68,7 +68,7 @@ export const SITE: SiteConfig = {
     sessionize: 'https://sessionize.com/haflidif/',
   },
   googleAnalyticsId: '',
-  viewCounterApi: '', // e.g., 'https://view-counter.youraccount.workers.dev/api/views'
+  viewCounterApi: 'https://azureviking-view-counter.haflidi-fridthjofsson.workers.dev/api/views',
   homeHeroDescription:
     'Senior Cloud Solution Architect at Microsoft. Former Microsoft MVP in Azure & Security. Sharing insights on Cloud Security, Infrastructure as Code, and Azure.',
   blogDescription:
