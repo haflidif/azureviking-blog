@@ -8,10 +8,17 @@
   $effect(() => {
     if (!SITE.viewCounterApi) return;
 
-    fetch(`${SITE.viewCounterApi}/${slug}`, { method: 'POST' })
+    const storageKey = `viewed:${slug}`;
+    const alreadyViewed = localStorage.getItem(storageKey);
+    const method = alreadyViewed ? 'GET' : 'POST';
+
+    fetch(`${SITE.viewCounterApi}/${slug}`, { method })
       .then((res) => res.json())
       .then((data) => {
         count = data.count;
+        if (!alreadyViewed) {
+          localStorage.setItem(storageKey, '1');
+        }
       })
       .catch(() => {
         // Silently fail — view counter is non-critical
