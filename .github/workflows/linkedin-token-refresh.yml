@@ -8,6 +8,8 @@ on:
   # Manual trigger
   workflow_dispatch:
 
+permissions: {}
+
 jobs:
   refresh:
     runs-on: ubuntu-latest
@@ -33,7 +35,7 @@ jobs:
           BODY=$(echo "$RESPONSE" | sed '$d')
 
           if [ "$HTTP_CODE" != "200" ]; then
-            echo "::error::Token refresh failed (HTTP $HTTP_CODE): $BODY"
+            echo "::error::Token refresh failed (HTTP $HTTP_CODE)"
             exit 1
           fi
 
@@ -41,13 +43,13 @@ jobs:
           NEW_REFRESH=$(echo "$BODY" | jq -r '.refresh_token // empty')
           EXPIRES_IN=$(echo "$BODY" | jq -r '.expires_in')
 
-          echo "Token refreshed. Expires in $((EXPIRES_IN / 86400)) days."
-
-          # Mask tokens in logs
+          # Mask tokens in logs before any output
           echo "::add-mask::$NEW_TOKEN"
           if [ -n "$NEW_REFRESH" ]; then
             echo "::add-mask::$NEW_REFRESH"
           fi
+
+          echo "Token refreshed. Expires in $((EXPIRES_IN / 86400)) days."
 
           echo "new_token=$NEW_TOKEN" >> $GITHUB_OUTPUT
           echo "new_refresh=$NEW_REFRESH" >> $GITHUB_OUTPUT
@@ -55,12 +57,13 @@ jobs:
       - name: Update access token secret
         env:
           GH_TOKEN: ${{ secrets.GH_PAT_SECRETS }}
+          NEW_TOKEN: ${{ steps.refresh.outputs.new_token }}
+          NEW_REFRESH: ${{ steps.refresh.outputs.new_refresh }}
         run: |
-          echo "${{ steps.refresh.outputs.new_token }}" | gh secret set LINKEDIN_ACCESS_TOKEN --repo ${{ github.repository }}
+          echo "$NEW_TOKEN" | gh secret set LINKEDIN_ACCESS_TOKEN --repo "${{ github.repository }}" > /dev/null 2>&1
           echo "✅ LINKEDIN_ACCESS_TOKEN updated."
 
-          REFRESH="${{ steps.refresh.outputs.new_refresh }}"
-          if [ -n "$REFRESH" ]; then
-            echo "$REFRESH" | gh secret set LINKEDIN_REFRESH_TOKEN --repo ${{ github.repository }}
+          if [ -n "$NEW_REFRESH" ]; then
+            echo "$NEW_REFRESH" | gh secret set LINKEDIN_REFRESH_TOKEN --repo "${{ github.repository }}" > /dev/null 2>&1
             echo "✅ LINKEDIN_REFRESH_TOKEN updated."
           fi
