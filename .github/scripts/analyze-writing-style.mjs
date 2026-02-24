@@ -298,7 +298,31 @@ function analyzeCommonPhrases(texts) {
     .slice(0, 20);
 
   const topTrigrams = Object.entries(trigrams)
-    .filter(([phrase]) => phrase.split(' ').some((w) => !['the', 'a', 'an', 'is', 'to', 'in', 'of', 'and', 'for', 'on', 'with', 'at', 'from', 'it', 'that', 'this'].includes(w)))
+    .filter(([phrase]) =>
+      phrase
+        .split(' ')
+        .some(
+          (w) =>
+            ![
+              'the',
+              'a',
+              'an',
+              'is',
+              'to',
+              'in',
+              'of',
+              'and',
+              'for',
+              'on',
+              'with',
+              'at',
+              'from',
+              'it',
+              'that',
+              'this',
+            ].includes(w)
+        )
+    )
     .sort((a, b) => b[1] - a[1])
     .slice(0, 20);
 
@@ -452,7 +476,9 @@ function main() {
     process.exit(1);
   }
 
-  console.log(`Loaded: ${posts.length} posts, ${comments.length} comments, ${articles.length} articles`);
+  console.log(
+    `Loaded: ${posts.length} posts, ${comments.length} comments, ${articles.length} articles`
+  );
 
   // Extract text content
   const postTexts = extractTexts(posts, 'posts');
@@ -460,7 +486,9 @@ function main() {
   const articleTexts = extractTexts(articles, 'articles');
   const allTexts = [...postTexts, ...commentTexts, ...articleTexts];
 
-  console.log(`Extracted text from: ${postTexts.length} posts, ${commentTexts.length} comments, ${articleTexts.length} articles`);
+  console.log(
+    `Extracted text from: ${postTexts.length} posts, ${commentTexts.length} comments, ${articleTexts.length} articles`
+  );
 
   if (allTexts.length === 0) {
     console.error('\nNo text content could be extracted from the data.');

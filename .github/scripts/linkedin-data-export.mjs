@@ -23,7 +23,9 @@ import { join } from 'path';
 const TOKEN = process.env.LINKEDIN_DPA_TOKEN;
 if (!TOKEN) {
   console.error('Error: Set LINKEDIN_DPA_TOKEN environment variable');
-  console.error('Generate one at: https://www.linkedin.com/developers/ → Docs and Tools → OAuth Token Tools');
+  console.error(
+    'Generate one at: https://www.linkedin.com/developers/ → Docs and Tools → OAuth Token Tools'
+  );
   process.exit(1);
 }
 

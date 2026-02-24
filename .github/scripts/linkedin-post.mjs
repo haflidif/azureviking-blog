@@ -96,8 +96,7 @@ function detectPostCategory(title, tags) {
   const titleLower = title.toLowerCase();
   const allTags = tags.map((t) => t.toLowerCase());
 
-  if (titleLower.includes('review') || titleLower.includes('first look'))
-    return 'review';
+  if (titleLower.includes('review') || titleLower.includes('first look')) return 'review';
   if (
     titleLower.includes('terraform') ||
     titleLower.includes('module') ||
@@ -199,9 +198,7 @@ function generatePostText(frontmatter, url, fileContent) {
 
   const category = detectPostCategory(title, tags);
   const intro = getPersonalIntro(category, title);
-  const excerpt = fileContent
-    ? getExcerpt(fileContent, 180)
-    : description;
+  const excerpt = fileContent ? getExcerpt(fileContent, 180) : description;
 
   const hashtags = tags
     .slice(0, 5)
@@ -231,9 +228,7 @@ async function postToLinkedIn(text, articleUrl, frontmatter) {
   const personUrn = process.env.LINKEDIN_PERSON_URN;
 
   if (!accessToken || !personUrn) {
-    throw new Error(
-      'Missing LINKEDIN_ACCESS_TOKEN or LINKEDIN_PERSON_URN environment variables'
-    );
+    throw new Error('Missing LINKEDIN_ACCESS_TOKEN or LINKEDIN_PERSON_URN environment variables');
   }
 
   const body = {
@@ -283,9 +278,10 @@ async function postToLinkedIn(text, articleUrl, frontmatter) {
 
 // Main
 async function main() {
-  const siteUrl = (
-    process.env.SITE_URL || 'https://haflidif.github.io/azureviking-blog'
-  ).replace(/\/$/, '');
+  const siteUrl = (process.env.SITE_URL || 'https://haflidif.github.io/azureviking-blog').replace(
+    /\/$/,
+    ''
+  );
   const specificSlug = process.env.POST_SLUG;
   const customText = process.env.CUSTOM_TEXT;
 
@@ -303,8 +299,7 @@ async function main() {
     for (const file of files) {
       const content = readFileSync(file, 'utf-8');
       const fm = parseFrontmatter(content);
-      const slug =
-        fm.slug || file.replace(`${POSTS_DIR}/`, '').replace('.md', '');
+      const slug = fm.slug || file.replace(`${POSTS_DIR}/`, '').replace('.md', '');
       if (slug === specificSlug) {
         postsToShare.push({ file, frontmatter: fm, slug, content });
         break;
@@ -340,8 +335,7 @@ async function main() {
         continue;
       }
 
-      const slug =
-        fm.slug || file.replace(`${POSTS_DIR}/`, '').replace('.md', '');
+      const slug = fm.slug || file.replace(`${POSTS_DIR}/`, '').replace('.md', '');
       postsToShare.push({ file, frontmatter: fm, slug, content });
     }
   }
@@ -350,7 +344,8 @@ async function main() {
 
   for (const { frontmatter, slug, content } of postsToShare) {
     const articleUrl = `${siteUrl}/post/${slug}/`;
-    const text = customText || frontmatter.social_text || generatePostText(frontmatter, articleUrl, content);
+    const text =
+      customText || frontmatter.social_text || generatePostText(frontmatter, articleUrl, content);
 
     // Dry run mode: preview without posting
     if (process.env.DRY_RUN === 'true') {
