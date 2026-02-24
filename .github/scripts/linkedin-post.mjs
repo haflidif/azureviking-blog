@@ -16,8 +16,7 @@
 import { readFileSync, existsSync } from 'node:fs';
 import { execSync } from 'node:child_process';
 
-const LINKEDIN_API = 'https://api.linkedin.com/rest/posts';
-const LINKEDIN_VERSION = '202602';
+const LINKEDIN_API = 'https://api.linkedin.com/v2/ugcPosts';
 const POSTS_DIR = 'site/content/posts';
 
 // Parse YAML frontmatter from a markdown file
@@ -124,22 +123,24 @@ async function postToLinkedIn(text, articleUrl, frontmatter) {
 
   const body = {
     author: personUrn,
-    commentary: text,
-    visibility: 'PUBLIC',
-    distribution: {
-      feedDistribution: 'MAIN_FEED',
-      targetEntities: [],
-      thirdPartyDistributionChannels: [],
-    },
-    content: {
-      article: {
-        source: articleUrl,
-        title: frontmatter.title || 'New Blog Post',
-        description: frontmatter.description || '',
+    lifecycleState: 'PUBLISHED',
+    specificContent: {
+      'com.linkedin.ugc.ShareContent': {
+        shareCommentary: { text },
+        shareMediaCategory: 'ARTICLE',
+        media: [
+          {
+            status: 'READY',
+            originalUrl: articleUrl,
+            title: { text: frontmatter.title || 'New Blog Post' },
+            description: { text: frontmatter.description || '' },
+          },
+        ],
       },
     },
-    lifecycleState: 'PUBLISHED',
-    isReshareDisabledByAuthor: false,
+    visibility: {
+      'com.linkedin.ugc.MemberNetworkVisibility': 'PUBLIC',
+    },
   };
 
   console.log(`Posting to LinkedIn: "${frontmatter.title}"`);
@@ -151,7 +152,6 @@ async function postToLinkedIn(text, articleUrl, frontmatter) {
       Authorization: `Bearer ${accessToken}`,
       'Content-Type': 'application/json',
       'X-Restli-Protocol-Version': '2.0.0',
-      'LinkedIn-Version': LINKEDIN_VERSION,
     },
     body: JSON.stringify(body),
   });
