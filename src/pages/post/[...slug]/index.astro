@@ -64,7 +64,7 @@ const schemas = [
   title={post.data.title}
   description={post.data.description}
   lang={post.data.lang}
-  ogImage={`/og/${effectiveSlug}.png`}
+  ogImage={`${basePath('/og/' + effectiveSlug + '.png')}`}
   schema={schemas}
 >
   <ReadingProgress client:load />
