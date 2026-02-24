@@ -58,7 +58,13 @@ async function fetchDomain(domain) {
       const text = await response.text();
       // "No data found" means we've reached the end
       if (text.includes('No data found') || response.status === 404) {
-        console.log(`  Reached end of ${domain} data at page ${start}`);
+        if (start === 0) {
+          console.log(`  No data available yet for ${domain}.`);
+          console.log(`  LinkedIn may still be processing your historical data after consent.`);
+          console.log(`  Try again in 30-60 minutes.`);
+        } else {
+          console.log(`  Reached end of ${domain} data at page ${start}`);
+        }
         break;
       }
       // Rate limit
