@@ -1,5 +1,6 @@
 ---
 title: 'Terraform Module: Azure DNS Private Resolver'
+slug: 'terraform-module-azure-dns-private-resolver'
 description: 'Azure DNS Private Resolver simplifies DNS Proxy services in Azure, reducing costs and management overhead with a PaaS solution.'
 pubDate: 2022-12-20
 tags: [terraform, azure, dns, infrastructure-as-code]

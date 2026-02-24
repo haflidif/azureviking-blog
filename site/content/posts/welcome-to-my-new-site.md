@@ -1,5 +1,6 @@
 ---
 title: 'Welcome to My New Site'
+slug: 'welcome-to-my-new-site'
 description: 'Welcome to the new AzureViking site! A brief introduction and an invitation to get to know me better.'
 pubDate: 2022-01-15
 tags: [personal, announcement]

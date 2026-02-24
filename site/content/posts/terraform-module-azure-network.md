@@ -1,5 +1,6 @@
 ---
 title: 'Terraform Module: Azure Network'
+slug: 'terraform-module-azure-network'
 description: 'A Terraform module to deploy Azure virtual networks, subnets, NSGs, route tables, and more — all in one reusable module.'
 pubDate: 2022-02-20
 tags: [terraform, azure, infrastructure-as-code, modules, networking]

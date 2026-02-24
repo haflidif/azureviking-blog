@@ -1,5 +1,6 @@
 ---
 title: 'Review: BioPass FIDO2 K-49 USB-C Biometric Security Key'
+slug: 'review-biopass-fido2-k-49-usb-c-biometric-security-key'
 description: 'The BioPass FIDO2 K-49 USB-C Biometric Security Key offers enhanced security through fingerprint authentication, but lacks NFC support and is pricier.'
 pubDate: 2024-11-15
 tags: [security, fido2, review, passwordless]

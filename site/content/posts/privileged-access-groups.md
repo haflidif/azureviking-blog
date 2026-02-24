@@ -1,5 +1,6 @@
 ---
 title: 'Privileged Access Groups (Preview)'
+slug: 'privileged-access-groups-preview'
 description: 'Learn how to create and manage Privileged Access Groups in Entra ID, assign roles, and test permissions for enhanced security and streamlined access control.'
 pubDate: 2022-10-15
 tags: [security, entra-id, pim, identity]

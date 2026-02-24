@@ -1,5 +1,6 @@
 ---
 title: 'Review: PONE Biometrics OFFPAD Biometric FIDO2 Authentication Device'
+slug: 'review-pone-biometrics-offpad-biometric-fido-2-authentication-device'
 description: 'The OFFPAD by PONE Biometrics offers secure, passwordless authentication with advanced technology, user-friendly design, and cost efficiency.'
 pubDate: 2024-12-15
 tags: [security, fido2, review, passwordless]

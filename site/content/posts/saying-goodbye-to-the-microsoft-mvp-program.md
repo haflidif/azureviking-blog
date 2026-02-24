@@ -1,5 +1,6 @@
 ---
 title: 'Saying Goodbye to the Microsoft MVP Program'
+slug: 'saying-goodbye-to-the-microsoft-mvp-program'
 description: 'Reflecting on my journey as a Microsoft MVP and my new role at Microsoft, expressing gratitude for the past and excitement for the future while continuing community contributions.'
 pubDate: 2024-11-22
 tags: [microsoft, mvp, career, community]
