@@ -15,7 +15,7 @@ _I purchased this product with my own funds. All opinions expressed in this revi
 
 ## Introduction
 
-The **BioPass FIDO2 K-49** is a USB-C biometric security key manufactured by Feitian Technologies. Building on the success of the K-40 model (which I reviewed previously — see my [Feitian FIDO2 Security Key Review](/posts/feitian-fido2-security-key-review)), the K-49 brings biometric fingerprint authentication to the table, adding an extra layer of security and convenience to the FIDO2 passwordless experience.
+The **BioPass FIDO2 K-49** is a USB-C biometric security key manufactured by Feitian Technologies. Building on the success of the K-40 model (which I reviewed previously — see my [Feitian FIDO2 Security Key Review](/post/feitian-fido2-security-key-review)), the K-49 brings biometric fingerprint authentication to the table, adding an extra layer of security and convenience to the FIDO2 passwordless experience.
 
 ![BioPass FIDO2 K-49 unboxed](/azureviking-blog/images/posts/review-biopass-fido2-k49/k49-unboxed.jpg)
 
@@ -50,7 +50,7 @@ The K-49 packs several noteworthy features into its compact form factor:
 
 ## Comparison with K-40
 
-If you have read my [review of the Feitian ePass K-40](/posts/feitian-fido2-security-key-review), you might be wondering how the K-49 stacks up. Here is a quick comparison:
+If you have read my [review of the Feitian ePass K-40](/post/feitian-fido2-security-key-review), you might be wondering how the K-49 stacks up. Here is a quick comparison:
 
 | Feature                 | K-40    | K-49            |
 | ----------------------- | ------- | --------------- |

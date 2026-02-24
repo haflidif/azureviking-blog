@@ -30,5 +30,5 @@ Azure networking is one of the most fundamental — and complex — areas of clo
 ## Resources
 
 - [My Terraform Azure Network Module](https://github.com/haflidif/terraform-azurerm-network)
-- [My blog post on Azure DNS Private Resolver](/azureviking-blog/posts/terraform-module-azure-dns-private-resolver)
+- [My blog post on Azure DNS Private Resolver](/azureviking-blog/post/terraform-module-azure-dns-private-resolver)
 - [Azure Networking Documentation](https://learn.microsoft.com/en-us/azure/networking/)

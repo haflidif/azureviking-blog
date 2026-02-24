@@ -33,4 +33,4 @@ Azure Managed DevOps Pools provide a fully managed solution for running your Azu
 ## Resources
 
 - [Azure Managed DevOps Pools Documentation](https://learn.microsoft.com/en-us/azure/devops/managed-devops-pools/)
-- [My blog post on MDP](/azureviking-blog/posts/azure-managed-devops-pools)
+- [My blog post on MDP](/azureviking-blog/post/azure-managed-devops-pools)

@@ -109,7 +109,7 @@
         <div class="space-y-1">
           {#each filteredPosts as post (post.id)}
             <a
-              href={`${SITE.base}/posts/${post.id}`}
+              href={`${SITE.base}/post/${post.id}`}
               class="block p-4 sm:p-5 rounded-xl hover:bg-accent transition-all no-underline group"
               onclick={() => uiState.closeSearch()}
             >

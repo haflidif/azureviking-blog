@@ -9,7 +9,7 @@ import { basePath } from '@/lib/utils/basePath';
 import { getBreadcrumbSchema } from '@/lib/schemas';
 
 const schema = getBreadcrumbSchema([
-  { name: 'Posts', url: new URL('/posts', Astro.site).toString() },
+  { name: 'Posts', url: new URL('/post', Astro.site).toString() },
 ]);
 
 const posts = (await getPublishedPosts()).sort(
@@ -24,7 +24,7 @@ const gridPosts = posts.map((post) => ({
 ---
 
 <Layout title="Blog Posts" description={SITE.blogDescription} schema={schema}>
-  <Breadcrumbs items={[{ name: 'Posts', href: basePath('/posts') }]} />
+  <Breadcrumbs items={[{ name: 'Posts', href: basePath('/post') }]} />
 
   <div class="mb-8 sm:mb-10">
     <h1

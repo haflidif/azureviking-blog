@@ -61,7 +61,7 @@
 >
   <!-- Slides -->
   <a
-    href={`${SITE.base}/posts/${currentPost.slug}`}
+    href={`${SITE.base}/post/${currentPost.slug}`}
     class="block relative aspect-[16/7] lg:aspect-auto lg:h-full overflow-hidden group no-underline"
   >
     <!-- Background image with crossfade -->

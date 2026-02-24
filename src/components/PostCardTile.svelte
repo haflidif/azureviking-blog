@@ -27,7 +27,7 @@
 </script>
 
 <a
-  href={`${SITE.base}/posts/${slug}`}
+  href={`${SITE.base}/post/${slug}`}
   class="group block rounded-2xl overflow-hidden border border-border/50 bg-secondary/20 hover:bg-secondary/40 hover:border-border hover:shadow-xl hover:-translate-y-1 transition-all duration-300 no-underline"
 >
   <!-- Thumbnail -->

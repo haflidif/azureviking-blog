@@ -63,7 +63,7 @@ export function postToUnified(post: CollectionEntry<'posts'>, basePath: string):
     dateFormatted: formatDate(post.data.pubDate),
     tags: post.data.tags,
     slug,
-    href: `${basePath}/posts/${slug}`,
+    href: `${basePath}/post/${slug}`,
     coverImage: post.data.coverImage ? `${basePath}${post.data.coverImage}` : undefined,
     readTime: getReadTime(post.body || ''),
     featured: post.data.featured,

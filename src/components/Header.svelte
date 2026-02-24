@@ -11,7 +11,7 @@
 
   const navLinks: NavLink[] = [
     { name: 'All Content', href: `${SITE.base}/content` },
-    { name: 'Posts', href: `${SITE.base}/posts` },
+    { name: 'Posts', href: `${SITE.base}/post` },
     { name: 'Talks', href: `${SITE.base}/appearances` },
     { name: 'About', href: `${SITE.base}/about` },
   ];
