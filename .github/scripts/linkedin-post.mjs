@@ -55,10 +55,17 @@ function parseFrontmatter(content) {
         inArray = true;
         arrayValues = [];
       } else {
-        fm[key] = value
-          .trim()
-          .replace(/^['"]/, '')
-          .replace(/['"]$/, '');
+        let val = value.trim().replace(/^['"]/, '').replace(/['"]$/, '');
+        // Handle inline arrays: [item1, item2, item3]
+        if (val.startsWith('[') && val.endsWith(']')) {
+          fm[key] = val
+            .slice(1, -1)
+            .split(',')
+            .map((v) => v.trim().replace(/^['"]/, '').replace(/['"]$/, ''))
+            .filter(Boolean);
+        } else {
+          fm[key] = val;
+        }
       }
     }
   }
@@ -164,7 +171,9 @@ function getExcerpt(content, maxLen = 200) {
       trimmed.startsWith('<') ||
       trimmed.startsWith('```') ||
       trimmed.startsWith('|') ||
-      trimmed.startsWith('-')
+      trimmed.startsWith('-') ||
+      trimmed.startsWith('_') ||
+      trimmed.toLowerCase().startsWith('disclaimer')
     )
       continue;
     // Clean markdown formatting
@@ -342,6 +351,15 @@ async function main() {
   for (const { frontmatter, slug, content } of postsToShare) {
     const articleUrl = `${siteUrl}/post/${slug}/`;
     const text = customText || frontmatter.social_text || generatePostText(frontmatter, articleUrl, content);
+
+    // Dry run mode: preview without posting
+    if (process.env.DRY_RUN === 'true') {
+      console.log('--- LinkedIn Post Preview ---');
+      console.log(text);
+      console.log('--- Article URL:', articleUrl, '---');
+      console.log();
+      continue;
+    }
 
     try {
       await postToLinkedIn(text, articleUrl, frontmatter);
