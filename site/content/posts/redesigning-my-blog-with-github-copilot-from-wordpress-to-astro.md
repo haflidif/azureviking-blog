@@ -16,24 +16,27 @@ social_text: |
   Hosting fees. Plugin bloat. Limited control. The constant "just update one more thing" cycle. 💸😩
 
   So I did something about it. I rebuilt my entire blog from scratch.
-  But here's the twist: I didn't write the code myself.
 
   👉 azureviking.com is now:
+
   ✅ Astro 5 + Svelte 5 (static site, blazing fast)
+
   ✅ Markdown in Git (version controlled content!)
+
   ✅ GitHub Pages (free hosting, forever)
+
   ✅ GitHub Actions (auto deploy on push)
 
-  The whole thing was built through conversation with GitHub Copilot CLI.
-
-  114 commits. 130+ files. Thousands of lines of code.
-  All from natural language prompts in my terminal.
-
   And yes, it still has:
+
   🔍 Full-text search
+
   🏷️ Categories and tag filtering
+
   🌙 Dark mode with themed banners
+
   📚 Reading progress indicator
+
   📊 View counter (Cloudflare Workers)
 
   Best part?
@@ -44,9 +47,9 @@ social_text: |
   No $48/year hosting bill.
   Just files, Git, and joy ❤️
 
-  I wrote up the full story of how this happened, including the bugs, the surprises, and what I learned about working with AI as a collaborator.
+  I wrote up the full story of how this happened, including the bugs, the surprises, and what I learned along the way.
 
-  Sometimes the best migration is the one you didn't have to code yourself 🚀
+  Sometimes the best migration is the one you just commit to 🚀
 ---
 
 ## The Idea
