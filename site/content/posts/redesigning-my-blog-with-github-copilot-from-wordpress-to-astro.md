@@ -9,7 +9,9 @@ featured: true
 draft: true
 coverImage: '/images/posts/redesigning-blog-with-copilot/cover.jpg'
 social_text: |
-  I got tired of WordPress.
+  I decided to reboot my blog. After not being very active the past year, I wanted a fresh start.
+
+  But I'd also grown tired of WordPress.
 
   Hosting fees. Plugin bloat. Limited control. The constant "just update one more thing" cycle. 💸😩
 
