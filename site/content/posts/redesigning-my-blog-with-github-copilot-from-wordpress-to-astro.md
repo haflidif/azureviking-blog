@@ -50,6 +50,8 @@ social_text: |
   I wrote up the full story of how this happened, including the bugs, the surprises, and what I learned along the way.
 
   Sometimes the best migration is the one you just commit to 🚀
+
+  #githubcopilot #astro #webdevelopment #github #opensource #blogging #wordpress #sharingiscaring
 ---
 
 ## The Idea
