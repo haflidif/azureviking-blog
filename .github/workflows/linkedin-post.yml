@@ -23,13 +23,51 @@ permissions:
   contents: read
 
 jobs:
-  share:
+  preview:
     runs-on: ubuntu-latest
-    environment: linkedin-post
     # Only run if deploy succeeded (or manual trigger)
     if: >
       github.event_name == 'workflow_dispatch' ||
       github.event.workflow_run.conclusion == 'success'
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Generate preview
+        id: preview
+        env:
+          DRY_RUN: 'true'
+          LINKEDIN_ACCESS_TOKEN: 'unused'
+          LINKEDIN_PERSON_URN: 'unused'
+          SITE_URL: 'https://azureviking.com'
+          POST_SLUG: ${{ github.event.inputs.post_slug || '' }}
+          CUSTOM_TEXT: ${{ github.event.inputs.custom_text || '' }}
+        run: |
+          OUTPUT=$(node .github/scripts/linkedin-post.mjs 2>&1)
+          echo "$OUTPUT"
+          # Write preview to job summary so it's visible when approving
+          {
+            echo "## 📋 LinkedIn Post Preview"
+            echo ""
+            echo '```'
+            echo "$OUTPUT"
+            echo '```'
+            echo ""
+            echo "**Review this preview, then approve the 'post' job to publish on LinkedIn.**"
+          } >> "$GITHUB_STEP_SUMMARY"
+
+  post:
+    runs-on: ubuntu-latest
+    needs: preview
+    environment: linkedin-post
 
     steps:
       - name: Checkout
