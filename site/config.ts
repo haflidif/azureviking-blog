@@ -57,7 +57,7 @@ export const SITE: SiteConfig = {
   title: "Azureviking | Haflidi's Technical Insights",
   ogImage: '/og.png',
   lang: 'en-US',
-  base: '/',
+  base: '',
   website: 'https://azureviking.com',
   social: {
     github: 'https://github.com/haflidif',
