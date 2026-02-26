@@ -21,16 +21,30 @@ const POSTS_DIR = 'site/content/posts';
 
 // Parse YAML frontmatter from a markdown file
 function parseFrontmatter(content) {
-  const match = content.match(/^---\n([\s\S]*?)\n---/);
+  const match = content.match(/^---\r?\n([\s\S]*?)\r?\n---/);
   if (!match) return {};
 
   const fm = {};
-  const lines = match[1].split('\n');
+  const lines = match[1].split(/\r?\n/);
   let currentKey = null;
   let inArray = false;
   let arrayValues = [];
+  let inMultiline = false;
+  let multilineLines = [];
 
   for (const line of lines) {
+    // Collecting multiline block scalar (| or >)
+    if (inMultiline) {
+      if (line.match(/^\s{2}/) || line.trim() === '') {
+        multilineLines.push(line.replace(/^ {2}/, ''));
+        continue;
+      } else {
+        fm[currentKey] = multilineLines.join('\n').trim();
+        inMultiline = false;
+        multilineLines = [];
+      }
+    }
+
     // Array item
     if (inArray && line.match(/^\s+-\s+/)) {
       arrayValues.push(line.replace(/^\s+-\s+/, '').replace(/['"]/g, ''));
@@ -48,14 +62,20 @@ function parseFrontmatter(content) {
     const kvMatch = line.match(/^(\w[\w_]*)\s*:\s*(.*)/);
     if (kvMatch) {
       const [, key, value] = kvMatch;
-      if (value.trim() === '') {
+      const trimmed = value.trim();
+      if (trimmed === '|' || trimmed === '>') {
+        // YAML block scalar
+        currentKey = key;
+        inMultiline = true;
+        multilineLines = [];
+      } else if (trimmed === '') {
         // Might be start of array or empty value
         currentKey = key;
         // Peek: if next items are array items, handle in next iteration
         inArray = true;
         arrayValues = [];
       } else {
-        let val = value.trim().replace(/^['"]/, '').replace(/['"]$/, '');
+        let val = trimmed.replace(/^['"]/, '').replace(/['"]$/, '');
         // Handle inline arrays: [item1, item2, item3]
         if (val.startsWith('[') && val.endsWith(']')) {
           fm[key] = val
@@ -72,6 +92,9 @@ function parseFrontmatter(content) {
 
   if (inArray && arrayValues.length > 0) {
     fm[currentKey] = arrayValues;
+  }
+  if (inMultiline && multilineLines.length > 0) {
+    fm[currentKey] = multilineLines.join('\n').trim();
   }
 
   return fm;

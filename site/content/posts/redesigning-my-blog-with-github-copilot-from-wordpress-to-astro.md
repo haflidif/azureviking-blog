@@ -8,6 +8,45 @@ category: blog
 featured: true
 draft: true
 coverImage: '/images/posts/redesigning-blog-with-copilot/cover.jpg'
+social_text: |
+  I got tired of WordPress.
+
+  Hosting fees. Plugin bloat. Limited control. The constant "just update one more thing" cycle. 💸😩
+
+  So I did something about it. I rebuilt my entire blog from scratch.
+  But here's the twist: I didn't write the code myself.
+
+  👉 azureviking.com is now:
+  ✅ Astro 5 + Svelte 5 (static site, blazing fast)
+  ✅ Markdown in Git (version controlled content!)
+  ✅ GitHub Pages (free hosting, forever)
+  ✅ GitHub Actions (auto deploy on push)
+  ✅ LinkedIn auto-posting (new post = automatic share)
+
+  The whole thing was built through conversation with GitHub Copilot CLI.
+
+  114 commits. 130+ files. Thousands of lines of code.
+  All from natural language prompts in my terminal.
+
+  And yes, it still has:
+  🔍 Full-text search
+  🏷️ Categories and tag filtering
+  🌙 Dark mode with themed banners
+  📚 Reading progress indicator
+  📊 View counter (Cloudflare Workers)
+  📣 Auto LinkedIn posting
+
+  Best part?
+  ➡️ Write a .md file. Push to main. It's live.
+
+  No database.
+  No PHP.
+  No $48/year hosting bill.
+  Just files, Git, and joy ❤️
+
+  I wrote up the full story of how this happened, including the bugs, the surprises, and what I learned about working with AI as a collaborator.
+
+  Sometimes the best migration is the one you didn't have to code yourself 🚀
 ---
 
 ## The Idea
