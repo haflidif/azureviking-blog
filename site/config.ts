@@ -55,7 +55,7 @@ export const SITE: SiteConfig = {
   author: 'Haflidi Fridthjofsson',
   desc: 'Senior Cloud Solution Architect at Microsoft. Former Microsoft MVP in Azure & Security. Sharing insights on Cloud Security, Infrastructure as Code, and Azure.',
   title: "Azureviking | Haflidi's Technical Insights",
-  ogImage: '/og.png',
+  ogImage: 'og.png',
   lang: 'en-US',
   base: '',
   website: 'https://azureviking.com',
