@@ -25,6 +25,7 @@ permissions:
 jobs:
   share:
     runs-on: ubuntu-latest
+    environment: linkedin-post
     # Only run if deploy succeeded (or manual trigger)
     if: >
       github.event_name == 'workflow_dispatch' ||
