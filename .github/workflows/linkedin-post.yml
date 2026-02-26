@@ -45,7 +45,7 @@ jobs:
         env:
           LINKEDIN_ACCESS_TOKEN: ${{ secrets.LINKEDIN_ACCESS_TOKEN }}
           LINKEDIN_PERSON_URN: ${{ secrets.LINKEDIN_PERSON_URN }}
-          SITE_URL: 'https://haflidif.github.io/azureviking-blog'
+          SITE_URL: 'https://azureviking.com'
           POST_SLUG: ${{ github.event.inputs.post_slug || '' }}
           CUSTOM_TEXT: ${{ github.event.inputs.custom_text || '' }}
         run: node .github/scripts/linkedin-post.mjs

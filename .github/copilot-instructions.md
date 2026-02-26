@@ -6,7 +6,7 @@
 - **Styling:** Tailwind CSS v4
 - **Language:** TypeScript (strict mode)
 - **Package manager:** pnpm
-- **Hosting:** GitHub Pages with base path `/azureviking-blog/`
+- **Hosting:** GitHub Pages with custom domain `azureviking.com`
 
 ## Commands
 
@@ -29,8 +29,8 @@
 
 ## Key Conventions
 
-- **Base path:** Always use `basePath()` from `src/lib/utils/basePath.ts` for internal URLs. Never hardcode paths without the `/azureviking-blog/` prefix.
-- **Image references in markdown:** Use `/azureviking-blog/images/posts/{slug}/filename.png`
+- **Base path:** Use `basePath()` from `src/lib/utils/basePath.ts` for internal URLs. With the custom domain, the base is `/`.
+- **Image references in markdown:** Use `/images/posts/{slug}/filename.png`
 - **Content schema:** Defined in `src/content.config.ts` with Zod validation
 - **Categories:** `blog`, `talk`, `tutorial`, `lab`, `news`, `podcast`
 - **Svelte 5:** Use runes (`$state`, `$derived`, `$effect`), not legacy reactive syntax
@@ -46,4 +46,4 @@
 
 - GitHub Actions deploys on push to `main`
 - LinkedIn auto-post triggers after successful deploy
-- Site URL: `https://haflidif.github.io/azureviking-blog`
+- Site URL: `https://azureviking.com`

@@ -2,7 +2,7 @@
 
 Personal tech blog by **Haflidi Fridthjofsson** — Senior Cloud Solution Architect at Microsoft. Sharing deep dives on Azure infrastructure, identity, security, FIDO2 authentication, and cloud networking.
 
-🔗 **Live site**: [haflidif.github.io/azureviking-blog](https://haflidif.github.io/azureviking-blog/)
+🔗 **Live site**: [azureviking.com](https://azureviking.com/)
 
 ## Tech Stack
 

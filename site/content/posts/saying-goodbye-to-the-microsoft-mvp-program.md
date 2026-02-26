@@ -19,7 +19,7 @@ It's been an incredible journey, and today I want to share some exciting news al
 
 My journey with the MVP program has been nothing short of extraordinary. When I first received the news that I had been awarded the Microsoft MVP title, it was a moment of immense pride and validation. It was recognition of the countless hours spent contributing to the community, writing blog posts, speaking at events, and helping others navigate the ever-evolving world of Microsoft technologies.
 
-![MVP Award statue on display](/azureviking-blog/images/posts/saying-goodbye-to-the-microsoft-mvp-program/mvp-award.jpg)
+![MVP Award statue on display](/images/posts/saying-goodbye-to-the-microsoft-mvp-program/mvp-award.jpg)
 
 ## Visiting Redmond for the MVP Summit
 
@@ -27,7 +27,7 @@ One of the highlights of being an MVP was the opportunity to visit Redmond for t
 
 The connections I made during the summit have turned into lasting friendships and professional relationships that I will cherish forever. The energy and enthusiasm of the MVP community is truly unmatched.
 
-![Visiting Microsoft campus during MVP Summit](/azureviking-blog/images/posts/saying-goodbye-to-the-microsoft-mvp-program/mvp-summit.jpg)
+![Visiting Microsoft campus during MVP Summit](/images/posts/saying-goodbye-to-the-microsoft-mvp-program/mvp-summit.jpg)
 
 ## Receiving My 2nd MVP Award
 
@@ -39,7 +39,7 @@ Now, for the exciting news — I am thrilled to announce that I have joined Micr
 
 However, with this transition comes the bittersweet reality of leaving the MVP program. As a Microsoft employee, I am no longer eligible for the MVP award. While saying goodbye to the MVP title is not easy, I am incredibly excited about the opportunities that lie ahead.
 
-![Team photo at Microsoft](/azureviking-blog/images/posts/saying-goodbye-to-the-microsoft-mvp-program/team-photo.jpg)
+![Team photo at Microsoft](/images/posts/saying-goodbye-to-the-microsoft-mvp-program/team-photo.jpg)
 
 ## Continuing Community Contributions
 

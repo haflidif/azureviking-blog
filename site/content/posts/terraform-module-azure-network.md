@@ -9,13 +9,13 @@ featured: false
 coverImage: '/images/posts/terraform-module-azure-network/cover.png'
 ---
 
-![Terraform Azure Network Module](/azureviking-blog/images/posts/terraform-module-azure-network/cover.png)
+![Terraform Azure Network Module](/images/posts/terraform-module-azure-network/cover.png)
 
 As a technical fellow I thrive on sharing my knowledge with others. I like to help others succeed in their field and understand what I've been so thankful to learn — mostly from experience, others, and by getting my hands dirty, doing a lot of mess, and then cleaning up after myself. I would say one of the most efficient ways to learn something is to get your hands dirty, fail by doing, figure out what you did wrong, and then learn from it.
 
 ## The Module
 
-![Module Overview](/azureviking-blog/images/posts/terraform-module-azure-network/module-overview.png)
+![Module Overview](/images/posts/terraform-module-azure-network/module-overview.png)
 
 [In this Terraform module](https://github.com/haflidif/terraform-azurerm-network), I gathered a few resources that I've been using for a while to create and deploy an Azure network. I looked around the internet and public code repositories and didn't find a module that had all these options and resources in one module.
 
@@ -33,7 +33,7 @@ The module deploys a few network resources:
 
 It has the option to associate an already created Azure DDoS Protection Plan to the virtual network, as it didn't make any sense creating the DDoS plan within the module since there is a limitation on creating only one Azure DDoS Plan Protection per region at the moment.
 
-![Module Resources](/azureviking-blog/images/posts/terraform-module-azure-network/module-resources.png)
+![Module Resources](/images/posts/terraform-module-azure-network/module-resources.png)
 
 ## Get Started
 

@@ -96,7 +96,7 @@ coverImage: '/images/posts/{slug}/cover.png'
 
 1. **Open with context or narrative.** Set the scene. Why does this topic matter? What prompted you to write about it? A personal story works great.
 2. **Build understanding progressively.** Don't dump all the technical detail at once. Layer it in as the reader follows along.
-3. **Use images with descriptive alt text.** Store in `site/assets/images/posts/{slug}/`. Reference in markdown as `/azureviking-blog/images/posts/{slug}/filename.png`.
+3. **Use images with descriptive alt text.** Store in `site/assets/images/posts/{slug}/`. Reference in markdown as `/images/posts/{slug}/filename.png`.
 4. **Include practical takeaways.** Readers should leave knowing what to do or what to look into next.
 5. **Close with a forward-looking statement.** What's next? What are you excited about? Thank the reader for their time.
 
@@ -104,7 +104,7 @@ coverImage: '/images/posts/{slug}/cover.png'
 
 - **Cover images:** `site/assets/images/posts/{slug}/cover.png`
 - **Inline images:** `site/assets/images/posts/{slug}/descriptive-name.png`
-- **Markdown reference:** `![Alt text](/azureviking-blog/images/posts/{slug}/descriptive-name.png)`
+- **Markdown reference:** `![Alt text](/images/posts/{slug}/descriptive-name.png)`
 - **Formats:** PNG or JPG. Optimize for web (compress before committing).
 
 ## LinkedIn Preview

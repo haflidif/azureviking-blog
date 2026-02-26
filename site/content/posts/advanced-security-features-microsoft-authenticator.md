@@ -28,7 +28,7 @@ This attack vector has been used in several high-profile breaches and highlights
 
 **Number matching** is Microsoft's answer to MFA fatigue attacks. When number matching is enabled, instead of simply tapping "Approve" on a push notification, the user is presented with a number on their sign-in screen and must enter that same number in the Authenticator app to complete the authentication.
 
-![Number matching prompt on sign-in screen](/azureviking-blog/images/posts/advanced-security-features-microsoft-authenticator/number-matching.jpg)
+![Number matching prompt on sign-in screen](/images/posts/advanced-security-features-microsoft-authenticator/number-matching.jpg)
 
 This simple but effective change means that even if an attacker triggers a push notification, the user cannot approve it without seeing the number displayed on the sign-in screen — which only the legitimate user would have access to.
 
@@ -45,7 +45,7 @@ Number matching is enabled through the **Microsoft Entra admin center** (formerl
 5. Choose the target users — you can enable it for all users or specific groups
 6. Click **Save**
 
-![Number matching configuration in Entra admin center](/azureviking-blog/images/posts/advanced-security-features-microsoft-authenticator/number-matching-config.jpg)
+![Number matching configuration in Entra admin center](/images/posts/advanced-security-features-microsoft-authenticator/number-matching-config.jpg)
 
 ## Location Context
 
@@ -53,7 +53,7 @@ Number matching is enabled through the **Microsoft Entra admin center** (formerl
 
 For example, if you are sitting in your office in Reykjavik and receive a push notification showing a sign-in attempt from Lagos, you can immediately recognize that this is not a legitimate request and deny it.
 
-![Location context shown in Authenticator push notification](/azureviking-blog/images/posts/advanced-security-features-microsoft-authenticator/location-context.jpg)
+![Location context shown in Authenticator push notification](/images/posts/advanced-security-features-microsoft-authenticator/location-context.jpg)
 
 ### How to Enable Location Context
 
@@ -70,7 +70,7 @@ For example, if you are sitting in your office in Reykjavik and receive a push n
 
 If you receive a push notification and it shows that the application requesting access is one you did not initiate, you know to deny the request immediately.
 
-![Application context shown in Authenticator push notification](/azureviking-blog/images/posts/advanced-security-features-microsoft-authenticator/application-context.jpg)
+![Application context shown in Authenticator push notification](/images/posts/advanced-security-features-microsoft-authenticator/application-context.jpg)
 
 ### How to Enable Application Context
 

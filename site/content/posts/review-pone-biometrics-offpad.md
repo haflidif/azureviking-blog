@@ -17,11 +17,11 @@ _I received this product for free for review purposes. All opinions expressed in
 
 The **OFFPAD** by PONE Biometrics is a biometric FIDO2 authentication device that aims to provide secure, passwordless authentication. In a world where passwords are increasingly becoming a liability, devices like the OFFPAD offer a promising alternative. In this review, I will go through the features, pros, cons, and my overall experience with the device.
 
-![OFFPAD device front view](/azureviking-blog/images/posts/review-pone-biometrics-offpad/offpad-front.jpg)
+![OFFPAD device front view](/images/posts/review-pone-biometrics-offpad/offpad-front.jpg)
 
 The OFFPAD stands out from other FIDO2 security keys by incorporating an on-device biometric sensor along with a display, allowing for a more secure and user-friendly authentication experience. The device communicates via Bluetooth and NFC, making it versatile across different platforms and use cases.
 
-![OFFPAD device in use](/azureviking-blog/images/posts/review-pone-biometrics-offpad/offpad-in-use.jpg)
+![OFFPAD device in use](/images/posts/review-pone-biometrics-offpad/offpad-in-use.jpg)
 
 ## Pros
 
@@ -41,7 +41,7 @@ The OFFPAD stands out from other FIDO2 security keys by incorporating an on-devi
 3. **Limited ecosystem support** — While FIDO2 support is growing, not all services and platforms fully support all features of the OFFPAD, particularly the display-based transaction confirmation.
 4. **Bulkier than traditional keys** — Due to the built-in display and battery, the OFFPAD is larger and heavier than minimalist USB security keys, making it less pocket-friendly.
 
-![OFFPAD device comparison](/azureviking-blog/images/posts/review-pone-biometrics-offpad/offpad-comparison.jpg)
+![OFFPAD device comparison](/images/posts/review-pone-biometrics-offpad/offpad-comparison.jpg)
 
 ## Conclusion
 

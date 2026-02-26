@@ -8,7 +8,7 @@
  * Environment variables:
  *   LINKEDIN_ACCESS_TOKEN  - OAuth2 access token
  *   LINKEDIN_PERSON_URN    - LinkedIn person URN (urn:li:person:xxx)
- *   SITE_URL               - Blog base URL (e.g., https://haflidif.github.io/azureviking-blog)
+ *   SITE_URL               - Blog base URL (e.g., https://azureviking.com)
  *   POST_SLUG              - (optional) Specific post slug to share
  *   CUSTOM_TEXT             - (optional) Custom LinkedIn post text
  */
@@ -301,7 +301,7 @@ async function postToLinkedIn(text, articleUrl, frontmatter) {
 
 // Main
 async function main() {
-  const siteUrl = (process.env.SITE_URL || 'https://haflidif.github.io/azureviking-blog').replace(
+  const siteUrl = (process.env.SITE_URL || 'https://azureviking.com').replace(
     /\/$/,
     ''
   );
