@@ -23,7 +23,6 @@ social_text: |
   ✅ Markdown in Git (version controlled content!)
   ✅ GitHub Pages (free hosting, forever)
   ✅ GitHub Actions (auto deploy on push)
-  ✅ LinkedIn auto-posting (new post = automatic share)
 
   The whole thing was built through conversation with GitHub Copilot CLI.
 
@@ -36,7 +35,6 @@ social_text: |
   🌙 Dark mode with themed banners
   📚 Reading progress indicator
   📊 View counter (Cloudflare Workers)
-  📣 Auto LinkedIn posting
 
   Best part?
   ➡️ Write a .md file. Push to main. It's live.
@@ -168,20 +166,9 @@ I wanted to display view counts on each post without any server-side infrastruct
 
 For broader traffic analytics, we added the **Cloudflare Web Analytics** beacon to the layout. Since GitHub Pages doesn't support Cloudflare's DNS proxy injection, we added the snippet manually. It's conditional on a config token, so it doesn't load until you set it up.
 
-### LinkedIn Auto-Posting
-
-This was a fun one. I wanted every new blog post to automatically generate a **LinkedIn post** promoting it. Copilot built a complete automation pipeline:
-
-- A GitHub Actions workflow that triggers after a successful deploy
-- A Node.js script that detects new posts via `git diff`, parses frontmatter, and generates a personalized LinkedIn post
-- Category detection that picks contextual opening lines matching my conversational voice
-- Integration with LinkedIn's **Consumer UGC API** for personal profile posting
-
-The workflow also supports manual dispatch if I want to re-share an older post. I tested it live and the LinkedIn post looked great.
-
 ### OG Image Fixes for Social Previews
 
-When I shared a post on LinkedIn, I noticed the preview card had no image. The Open Graph image URLs were missing the `/azureviking-blog/` base path, so social media platforms couldn't find them. A quick fix to use the `basePath()` utility in the OG meta tags solved this.
+When I shared a post on social media, I noticed the preview card had no image. The Open Graph image URLs were missing the `/azureviking-blog/` base path, so social media platforms couldn't find them. A quick fix to use the `basePath()` utility in the OG meta tags solved this.
 
 ### Repository Cleanup
 
@@ -191,8 +178,8 @@ Since we started from the Spaceship theme, the repository still had the theme's 
 
 Before making the repository public, I asked Copilot to do a full security audit of the codebase. It scanned every file for hardcoded secrets, tokens, credentials, and internal URLs. The result was clean, but we did find three workflow improvements:
 
-- Token masking in the LinkedIn token refresh workflow (preventing potential log exposure)
-- Explicit permission blocks on all LinkedIn workflows
+- Token masking in workflow secrets (preventing potential log exposure)
+- Explicit permission blocks on all workflows
 - Input sanitization for workflow dispatch parameters
 
 ## What Surprised Me
@@ -205,7 +192,7 @@ In a single session, Copilot:
 - **Wrote Python scripts** for image scraping and resizing
 - **Created 15+ Svelte and Astro components** from scratch
 - **Debugged CI failures** with TypeScript errors, formatting issues, and missing assets
-- **Built LinkedIn API integrations** with OAuth flows and UGC posting
+- **Built API integrations** with OAuth flows and external services
 - **Deployed Cloudflare Workers** for serverless view counting
 - **Managed Git** including working around my GPG signing and lefthook hooks
 - **Ran security audits** across the entire codebase
@@ -222,7 +209,7 @@ Some of the bugs we encountered were genuinely tricky:
 | Images returning 404                   | Astro's `publicDir` configured differently     | Moved 42 images to correct directory         |
 | Banner lost transparency               | Astro converts PNG to WebP by default          | Used `format="png"` to preserve transparency |
 | Dark mode toggle didn't swap banners   | Server-rendered images are static              | Built Svelte component with MutationObserver |
-| LinkedIn post had no preview image     | OG image URLs missing base path                | Applied `basePath()` to OG meta tags         |
+| Social preview had no image            | OG image URLs missing base path                | Applied `basePath()` to OG meta tags         |
 | Scroll-to-top button hiding everywhere | Detected `<article>` tags from card components | Used specific marker element for detection   |
 
 Copilot didn't just fix these bugs. It explained the root causes and chose the right architectural solutions.
@@ -235,18 +222,17 @@ The speed of iteration was remarkable. I could say _"the layout feels too spread
 
 Here is what we ended up with:
 
-| Metric            | Before (WordPress)       | After (Astro)                  |
-| ----------------- | ------------------------ | ------------------------------ |
-| Hosting Cost      | ~$48/year                | **$0/year**                    |
-| Page Load         | 3-4 seconds              | **< 1 second**                 |
-| Build Time        | N/A                      | **~11 seconds**                |
-| Content Format    | Database                 | **Markdown in Git**            |
-| Deployment        | Manual/FTP               | **Automatic (GitHub Actions)** |
-| Customization     | Limited by theme/plugins | **Full control**               |
-| Version Control   | None                     | **Full Git history**           |
-| Social Automation | None                     | **Auto LinkedIn posting**      |
-| Analytics         | Plugin-dependent         | **Cloudflare Web Analytics**   |
-| View Counter      | Plugin-dependent         | **Cloudflare Workers (free)**  |
+| Metric          | Before (WordPress)       | After (Astro)                  |
+| --------------- | ------------------------ | ------------------------------ |
+| Hosting Cost    | ~$48/year                | **$0/year**                    |
+| Page Load       | 3-4 seconds              | **< 1 second**                 |
+| Build Time      | N/A                      | **~11 seconds**                |
+| Content Format  | Database                 | **Markdown in Git**            |
+| Deployment      | Manual/FTP               | **Automatic (GitHub Actions)** |
+| Customization   | Limited by theme/plugins | **Full control**               |
+| Version Control | None                     | **Full Git history**           |
+| Analytics       | Plugin-dependent         | **Cloudflare Web Analytics**   |
+| View Counter    | Plugin-dependent         | **Cloudflare Workers (free)**  |
 
 The site now features:
 
@@ -257,7 +243,6 @@ The site now features:
 - Reading progress indicator
 - Full-text search
 - Post view counter
-- LinkedIn auto-posting on new blog posts
 - OG images for social media previews
 - $0/month hosting
 
@@ -281,7 +266,7 @@ Every change was committed to Git. When the CSS banner didn't work out, we rever
 
 ### 5. Automation Compounds the Value
 
-The LinkedIn auto-posting, the view counter, the analytics integration. None of these were in the original plan. But once the foundation was solid, adding each new feature through conversation was fast and natural. The initial investment in a good architecture pays dividends.
+The view counter, the analytics integration, the security hardening. None of these were in the original plan. But once the foundation was solid, adding each new feature through conversation was fast and natural. The initial investment in a good architecture pays dividends.
 
 ## What Is Next
 
