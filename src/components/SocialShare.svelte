@@ -14,12 +14,6 @@
 
   const platforms = [
     {
-      name: 'X',
-      icon: 'M4 4l11.733 16h4.267l-11.733-16zM4 20l6.768-6.768m2.46-2.46l6.772-6.772',
-      getShareUrl: (t: string, u: string) =>
-        `https://x.com/intent/post?text=${encodeURIComponent(t)}&url=${encodeURIComponent(u)}`,
-    },
-    {
       name: 'LinkedIn',
       icon: 'M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2zM4 2a2 2 0 1 1 0 4 2 2 0 0 1 0-4z',
       getShareUrl: (_t: string, u: string) =>
@@ -31,6 +25,12 @@
       viewBox: '0 0 24 22',
       getShareUrl: (t: string, u: string) =>
         `https://bsky.app/intent/compose?text=${encodeURIComponent(`${t} ${u}`)}`,
+    },
+    {
+      name: 'X',
+      icon: 'M4 4l11.733 16h4.267l-11.733-16zM4 20l6.768-6.768m2.46-2.46l6.772-6.772',
+      getShareUrl: (t: string, u: string) =>
+        `https://x.com/intent/post?text=${encodeURIComponent(t)}&url=${encodeURIComponent(u)}`,
     },
     {
       name: 'Telegram',
