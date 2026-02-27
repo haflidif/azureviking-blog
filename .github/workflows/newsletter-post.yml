@@ -1,0 +1,114 @@
+name: Send Newsletter
+
+on:
+  # Auto-trigger after successful deploy
+  workflow_run:
+    workflows: ['Deploy to GitHub Pages']
+    types: [completed]
+    branches: [main]
+
+  # Manual trigger for specific posts
+  workflow_dispatch:
+    inputs:
+      post_slug:
+        description: 'Slug of the post to send newsletter for'
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    outputs:
+      has-new-posts: ${{ steps.detect.outputs.has-new-posts }}
+    if: >
+      github.event_name == 'workflow_dispatch' ||
+      github.event.workflow_run.conclusion == 'success'
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Detect new posts
+        id: detect
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "has-new-posts=true" >> "$GITHUB_OUTPUT"
+            echo "Manual trigger — slug: ${{ github.event.inputs.post_slug }}"
+            exit 0
+          fi
+          NEW_POSTS=$(git diff --name-only --diff-filter=A HEAD~1 HEAD -- 'site/content/posts/*.md' | head -5)
+          if [ -n "$NEW_POSTS" ]; then
+            echo "has-new-posts=true" >> "$GITHUB_OUTPUT"
+            echo "New posts detected:"
+            echo "$NEW_POSTS"
+          else
+            echo "has-new-posts=false" >> "$GITHUB_OUTPUT"
+            echo "No new posts — skipping newsletter"
+          fi
+
+  preview:
+    runs-on: ubuntu-latest
+    needs: check
+    if: needs.check.outputs.has-new-posts == 'true'
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Generate preview
+        env:
+          DRY_RUN: 'true'
+          EMAILOCTOPUS_API_KEY: 'unused'
+          EMAILOCTOPUS_LIST_ID: 'unused'
+          EMAILOCTOPUS_AUTOMATION_ID: 'unused'
+          SITE_URL: 'https://azureviking.com'
+          POST_SLUG: ${{ github.event.inputs.post_slug || '' }}
+        run: |
+          OUTPUT=$(node .github/scripts/newsletter-post.mjs 2>&1)
+          echo "$OUTPUT"
+          {
+            echo "## 📧 Newsletter Preview"
+            echo ""
+            echo '```'
+            echo "$OUTPUT"
+            echo '```'
+            echo ""
+            echo "**Review this preview, then approve the 'send' job to deliver the newsletter.**"
+          } >> "$GITHUB_STEP_SUMMARY"
+
+  send:
+    runs-on: ubuntu-latest
+    needs: preview
+    environment: newsletter-send
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Send newsletter
+        env:
+          EMAILOCTOPUS_API_KEY: ${{ secrets.EMAILOCTOPUS_API_KEY }}
+          EMAILOCTOPUS_LIST_ID: ${{ secrets.EMAILOCTOPUS_LIST_ID }}
+          EMAILOCTOPUS_AUTOMATION_ID: ${{ secrets.EMAILOCTOPUS_AUTOMATION_ID }}
+          SITE_URL: 'https://azureviking.com'
+          POST_SLUG: ${{ github.event.inputs.post_slug || '' }}
+        run: node .github/scripts/newsletter-post.mjs
