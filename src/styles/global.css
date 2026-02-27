@@ -290,3 +290,44 @@ h6:hover .heading-link {
 .heading-link:hover {
   color: var(--color-primary);
 }
+
+/* Copilot "thinking" callout block */
+.copilot-thinking {
+  position: relative;
+  margin: 2rem 0;
+  padding: 1.25rem 1.5rem 1.25rem 1.5rem;
+  border-left: 4px solid #8b5cf6;
+  border-radius: 0 8px 8px 0;
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.06), rgba(59, 130, 246, 0.04));
+  font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--color-foreground);
+}
+
+.dark .copilot-thinking {
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.12), rgba(59, 130, 246, 0.08));
+}
+
+.copilot-thinking::before {
+  content: "🤖 Copilot's reasoning";
+  display: block;
+  font-weight: 700;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #8b5cf6;
+  margin-bottom: 0.75rem;
+  font-family: var(--font-sans);
+}
+
+.copilot-thinking p {
+  margin: 0.5rem 0;
+}
+
+.copilot-thinking code {
+  background-color: rgba(139, 92, 246, 0.1);
+  padding: 0.1em 0.4em;
+  border-radius: 3px;
+  font-size: 0.85em;
+}

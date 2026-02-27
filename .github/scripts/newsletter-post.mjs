@@ -105,8 +105,15 @@ function extractExcerpt(content, maxLen = 200) {
   for (const line of lines) {
     const trimmed = line.trim();
     // Skip headings, images, code blocks, HTML, empty lines
-    if (!trimmed || trimmed.startsWith('#') || trimmed.startsWith('!') ||
-        trimmed.startsWith('```') || trimmed.startsWith('<') || trimmed.startsWith('---')) continue;
+    if (
+      !trimmed ||
+      trimmed.startsWith('#') ||
+      trimmed.startsWith('!') ||
+      trimmed.startsWith('```') ||
+      trimmed.startsWith('<') ||
+      trimmed.startsWith('---')
+    )
+      continue;
     // Strip markdown formatting
     excerpt = trimmed
       .replace(/\*\*(.*?)\*\*/g, '$1')
@@ -199,7 +206,9 @@ async function batchUpdateFields(contacts, fields) {
     }));
 
     await apiRequest('PUT', `/lists/${LIST_ID}/contacts/batch`, { contacts: members });
-    console.log(`  Updated fields for contacts ${i + 1}-${Math.min(i + BATCH_SIZE, contacts.length)}`);
+    console.log(
+      `  Updated fields for contacts ${i + 1}-${Math.min(i + BATCH_SIZE, contacts.length)}`
+    );
     await sleep(RATE_LIMIT_DELAY);
   }
 }
@@ -222,7 +231,9 @@ async function triggerAutomation(contacts) {
 
     // Progress update every 50
     if ((success + errors) % 50 === 0) {
-      console.log(`  Progress: ${success + errors}/${contacts.length} (${success} ok, ${errors} errors)`);
+      console.log(
+        `  Progress: ${success + errors}/${contacts.length} (${success} ok, ${errors} errors)`
+      );
     }
   }
 
@@ -232,7 +243,9 @@ async function triggerAutomation(contacts) {
 // --- Main ---
 async function main() {
   if (!DRY_RUN && (!API_KEY || !LIST_ID || !AUTOMATION_ID)) {
-    console.error('Missing required environment variables: EMAILOCTOPUS_API_KEY, EMAILOCTOPUS_LIST_ID, EMAILOCTOPUS_AUTOMATION_ID');
+    console.error(
+      'Missing required environment variables: EMAILOCTOPUS_API_KEY, EMAILOCTOPUS_LIST_ID, EMAILOCTOPUS_AUTOMATION_ID'
+    );
     process.exit(1);
   }
 

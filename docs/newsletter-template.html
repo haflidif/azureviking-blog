@@ -1,110 +1,205 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>New Post from AzureViking</title>
-  <!--[if mso]>
-  <style>
-    table { border-collapse: collapse; }
-    td { font-family: Arial, sans-serif; }
-  </style>
-  <![endif]-->
-</head>
-<body style="margin:0;padding:0;background-color:#0f172a;font-family:'Segoe UI',Arial,Helvetica,sans-serif;">
-  <!-- Preheader (hidden preview text) -->
-  <div style="display:none;max-height:0;overflow:hidden;mso-hide:all;">
-    New post: {{LatestPostTitle}} — Read it on AzureViking
-  </div>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>New Post from AzureViking</title>
+    <!--[if mso]>
+      <style>
+        table {
+          border-collapse: collapse;
+        }
+        td {
+          font-family: Arial, sans-serif;
+        }
+      </style>
+    <![endif]-->
+  </head>
+  <body
+    style="
+      margin: 0;
+      padding: 0;
+      background-color: #0f172a;
+      font-family: 'Segoe UI', Arial, Helvetica, sans-serif;
+    "
+  >
+    <!-- Preheader (hidden preview text) -->
+    <div style="display: none; max-height: 0; overflow: hidden; mso-hide: all">
+      New post: {{LatestPostTitle}} — Read it on AzureViking
+    </div>
 
-  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#0f172a;">
-    <tr>
-      <td align="center" style="padding:24px 16px;">
+    <table
+      role="presentation"
+      width="100%"
+      cellpadding="0"
+      cellspacing="0"
+      border="0"
+      style="background-color: #0f172a"
+    >
+      <tr>
+        <td align="center" style="padding: 24px 16px">
+          <!-- Main Container -->
+          <table
+            role="presentation"
+            width="600"
+            cellpadding="0"
+            cellspacing="0"
+            border="0"
+            style="
+              max-width: 600px;
+              width: 100%;
+              background-color: #1e293b;
+              border-radius: 12px;
+              overflow: hidden;
+            "
+          >
+            <!-- Header -->
+            <tr>
+              <td
+                style="
+                  background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+                  padding: 32px 40px;
+                  text-align: center;
+                  border-bottom: 3px solid #f43676;
+                "
+              >
+                <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+                  <tr>
+                    <td align="center">
+                      <img
+                        src="https://azureviking.com/azure_viking_banner_dark_mode.png"
+                        alt="AzureViking"
+                        width="520"
+                        style="display: block; margin: 0 auto 12px; max-width: 100%; height: auto"
+                      />
+                      <p
+                        style="
+                          margin: 6px 0 0;
+                          font-size: 13px;
+                          color: #94a3b8;
+                          letter-spacing: 0.05em;
+                          text-transform: uppercase;
+                        "
+                      >
+                        New Blog Post
+                      </p>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
 
-        <!-- Main Container -->
-        <table role="presentation" width="600" cellpadding="0" cellspacing="0" border="0" style="max-width:600px;width:100%;background-color:#1e293b;border-radius:12px;overflow:hidden;">
+            <!-- Body -->
+            <tr>
+              <td style="padding: 40px">
+                <!-- Post Title -->
+                <h2
+                  style="
+                    margin: 0 0 16px;
+                    font-size: 24px;
+                    font-weight: 700;
+                    color: #f1f5f9;
+                    line-height: 1.3;
+                  "
+                >
+                  <a href="{{LatestPostUrl}}" style="color: #f1f5f9; text-decoration: none">
+                    {{LatestPostTitle}}
+                  </a>
+                </h2>
 
-          <!-- Header -->
-          <tr>
-            <td style="background:linear-gradient(135deg,#1e293b 0%,#334155 100%);padding:32px 40px;text-align:center;border-bottom:3px solid #f43676;">
-              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
-                <tr>
-                  <td align="center">
-                    <img src="https://azureviking.com/azure_viking_banner_dark_mode.png" alt="AzureViking" width="520" style="display:block;margin:0 auto 12px;max-width:100%;height:auto;">
-                    <p style="margin:6px 0 0;font-size:13px;color:#94a3b8;letter-spacing:0.05em;text-transform:uppercase;">
-                      New Blog Post
-                    </p>
-                  </td>
-                </tr>
-              </table>
-            </td>
-          </tr>
+                <!-- Divider -->
+                <div
+                  style="
+                    width: 48px;
+                    height: 3px;
+                    background-color: #f43676;
+                    border-radius: 2px;
+                    margin: 0 0 20px;
+                  "
+                ></div>
 
-          <!-- Body -->
-          <tr>
-            <td style="padding:40px;">
-              <!-- Post Title -->
-              <h2 style="margin:0 0 16px;font-size:24px;font-weight:700;color:#f1f5f9;line-height:1.3;">
-                <a href="{{LatestPostUrl}}" style="color:#f1f5f9;text-decoration:none;">
-                  {{LatestPostTitle}}
-                </a>
-              </h2>
+                <!-- Excerpt -->
+                <p style="margin: 0 0 28px; font-size: 16px; line-height: 1.7; color: #cbd5e1">
+                  {{LatestPostExcerpt}}
+                </p>
 
-              <!-- Divider -->
-              <div style="width:48px;height:3px;background-color:#f43676;border-radius:2px;margin:0 0 20px;"></div>
+                <!-- CTA Button -->
+                <table role="presentation" cellpadding="0" cellspacing="0" border="0">
+                  <tr>
+                    <td align="center" style="background-color: #f43676; border-radius: 8px">
+                      <a
+                        href="{{LatestPostUrl}}"
+                        style="
+                          display: inline-block;
+                          padding: 14px 32px;
+                          font-size: 16px;
+                          font-weight: 600;
+                          color: #ffffff;
+                          text-decoration: none;
+                          border-radius: 8px;
+                        "
+                      >
+                        Read the full post &rarr;
+                      </a>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
 
-              <!-- Excerpt -->
-              <p style="margin:0 0 28px;font-size:16px;line-height:1.7;color:#cbd5e1;">
-                {{LatestPostExcerpt}}
-              </p>
-
-              <!-- CTA Button -->
-              <table role="presentation" cellpadding="0" cellspacing="0" border="0">
-                <tr>
-                  <td align="center" style="background-color:#f43676;border-radius:8px;">
-                    <a href="{{LatestPostUrl}}" style="display:inline-block;padding:14px 32px;font-size:16px;font-weight:600;color:#ffffff;text-decoration:none;border-radius:8px;">
-                      Read the full post &rarr;
-                    </a>
-                  </td>
-                </tr>
-              </table>
-            </td>
-          </tr>
-
-          <!-- Footer -->
-          <tr>
-            <td style="background-color:#0f172a;padding:28px 40px;border-top:1px solid #334155;">
-              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
-                <tr>
-                  <td style="text-align:center;">
-                    <p style="margin:0 0 8px;font-size:13px;color:#64748b;">
-                      You're receiving this because you subscribed to the AzureViking newsletter.
-                      <br>Don't want to receive these anymore? You can <a href="{{UnsubscribeURL}}" style="color:#f43676;text-decoration:underline;">unsubscribe here</a>.
-                    </p>
-                    <p style="margin:0;font-size:13px;color:#64748b;">
-                      <a href="https://azureviking.com" style="color:#f43676;text-decoration:none;">Visit Blog</a>
-                      &nbsp;&bull;&nbsp;
-                      <a href="https://linkedin.com/in/haflidif" style="color:#f43676;text-decoration:none;">LinkedIn</a>
-                      &nbsp;&bull;&nbsp;
-                      <a href="https://github.com/haflidif" style="color:#f43676;text-decoration:none;">GitHub</a>
-                    </p>
-                    <p style="margin:12px 0 0;font-size:11px;color:#475569;">
-                      {{SenderInfoLine}}
-                    </p>
-                    <p style="margin:8px 0 0;font-size:11px;color:#475569;">
-                      <a href="{{RewardsURL}}" style="color:#64748b;text-decoration:none;">Powered by EmailOctopus</a>
-                    </p>
-                  </td>
-                </tr>
-              </table>
-            </td>
-          </tr>
-
-        </table>
-        <!-- /Main Container -->
-
-      </td>
-    </tr>
-  </table>
-</body>
+            <!-- Footer -->
+            <tr>
+              <td
+                style="background-color: #0f172a; padding: 28px 40px; border-top: 1px solid #334155"
+              >
+                <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+                  <tr>
+                    <td style="text-align: center">
+                      <p style="margin: 0 0 8px; font-size: 13px; color: #64748b">
+                        You're receiving this because you subscribed to the AzureViking newsletter.
+                        <br />Don't want to receive these anymore? You can
+                        <a
+                          href="{{UnsubscribeURL}}"
+                          style="color: #f43676; text-decoration: underline"
+                          >unsubscribe here</a
+                        >.
+                      </p>
+                      <p style="margin: 0; font-size: 13px; color: #64748b">
+                        <a
+                          href="https://azureviking.com"
+                          style="color: #f43676; text-decoration: none"
+                          >Visit Blog</a
+                        >
+                        &nbsp;&bull;&nbsp;
+                        <a
+                          href="https://linkedin.com/in/haflidif"
+                          style="color: #f43676; text-decoration: none"
+                          >LinkedIn</a
+                        >
+                        &nbsp;&bull;&nbsp;
+                        <a
+                          href="https://github.com/haflidif"
+                          style="color: #f43676; text-decoration: none"
+                          >GitHub</a
+                        >
+                      </p>
+                      <p style="margin: 12px 0 0; font-size: 11px; color: #475569">
+                        {{SenderInfoLine}}
+                      </p>
+                      <p style="margin: 8px 0 0; font-size: 11px; color: #475569">
+                        <a href="{{RewardsURL}}" style="color: #64748b; text-decoration: none"
+                          >Powered by EmailOctopus</a
+                        >
+                      </p>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+          <!-- /Main Container -->
+        </td>
+      </tr>
+    </table>
+  </body>
 </html>
