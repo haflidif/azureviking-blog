@@ -5,6 +5,40 @@ import logoImage from '@/site-assets/azure_viking_logo.png';
 ---
 
 <footer class="py-12 mt-24 sm:mt-32 lg:mt-48 border-t border-border">
+  {
+    SITE.newsletter.enabled && (
+      <div class="subscribe-footer-section">
+        <div class="subscribe-footer-header">
+          <svg
+            class="subscribe-bell"
+            xmlns="http://www.w3.org/2000/svg"
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9" />
+            <path d="M10.3 21a1.94 1.94 0 0 0 3.4 0" />
+          </svg>
+          <h3 class="subscribe-footer-title">Never Miss a Post</h3>
+        </div>
+        <p class="subscribe-footer-desc">
+          Subscribe to get notified when I publish new articles. No spam, unsubscribe anytime.
+        </p>
+        <div class="subscribe-footer-form">
+          <script
+            async
+            src={`https://eomail5.com/form/${SITE.newsletter.formId}.js`}
+            data-form={SITE.newsletter.formId}
+          />
+        </div>
+      </div>
+    )
+  }
   <div class="flex flex-col md:flex-row justify-between items-center gap-8 sm:gap-6">
     <div class="flex items-center gap-3">
       <Image
@@ -137,3 +171,240 @@ import logoImage from '@/site-assets/azure_viking_logo.png';
     Fridthjofsson).
   </p>
 </footer>
+
+<!-- Subscribe Modal -->
+{
+  SITE.newsletter.enabled && (
+    <div class="subscribe-modal-overlay" id="subscribeModal">
+      <div class="subscribe-modal">
+        <button class="subscribe-modal-close" id="subscribeModalClose" aria-label="Close">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M18 6 6 18" />
+            <path d="m6 6 12 12" />
+          </svg>
+        </button>
+        <svg
+          class="subscribe-bell subscribe-bell-modal"
+          xmlns="http://www.w3.org/2000/svg"
+          width="32"
+          height="32"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9" />
+          <path d="M10.3 21a1.94 1.94 0 0 0 3.4 0" />
+        </svg>
+        <h3 class="subscribe-modal-title">Never Miss a Post</h3>
+        <p class="subscribe-modal-desc">
+          Subscribe to get notified when I publish new articles. No spam, unsubscribe anytime.
+        </p>
+        <div class="subscribe-modal-form">
+          <script
+            async
+            src={`https://eomail5.com/form/${SITE.newsletter.formId}.js`}
+            data-form={SITE.newsletter.formId}
+          />
+        </div>
+      </div>
+    </div>
+  )
+}
+
+<style>
+  /* Footer subscribe section */
+  .subscribe-footer-section {
+    text-align: center;
+    padding: 1.5rem 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .subscribe-footer-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .subscribe-bell {
+    color: #d4a853;
+  }
+
+  .subscribe-bell-modal {
+    margin: 0 auto 0.75rem;
+  }
+
+  .subscribe-footer-title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--color-foreground);
+    margin: 0;
+  }
+
+  .subscribe-footer-desc {
+    font-size: 0.75rem;
+    color: var(--color-muted-foreground);
+    margin: 0 0 1rem;
+    max-width: 32rem;
+    margin-inline: auto;
+    line-height: 1.5;
+  }
+
+  .subscribe-footer-form {
+    max-width: 28rem;
+    margin-inline: auto;
+  }
+
+  /* Modal overlay */
+  .subscribe-modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(4px);
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+  }
+
+  .subscribe-modal-overlay.active {
+    display: flex;
+  }
+
+  /* Modal */
+  .subscribe-modal {
+    position: relative;
+    background: var(--color-card, var(--color-background));
+    border: 1px solid var(--color-border, rgba(128, 128, 128, 0.2));
+    border-radius: 1rem;
+    padding: 2.5rem 2rem;
+    max-width: 28rem;
+    width: 100%;
+    text-align: center;
+    box-shadow:
+      0 25px 50px -12px rgba(0, 0, 0, 0.5),
+      0 0 0 1px rgba(255, 255, 255, 0.05);
+  }
+
+  .subscribe-modal-close {
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+    background: none;
+    border: none;
+    color: var(--color-muted-foreground);
+    cursor: pointer;
+    padding: 0.25rem;
+    border-radius: 0.375rem;
+    transition: color 0.2s;
+  }
+
+  .subscribe-modal-close:hover {
+    color: var(--color-foreground);
+  }
+
+  .subscribe-modal-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--color-foreground);
+    margin: 0 0 0.5rem;
+  }
+
+  .subscribe-modal-desc {
+    font-size: 0.875rem;
+    color: var(--color-muted-foreground);
+    margin: 0 0 1.25rem;
+    line-height: 1.5;
+  }
+
+  .subscribe-modal-form {
+    max-width: 24rem;
+    margin-inline: auto;
+  }
+
+  /* EmailOctopus form overrides */
+  .subscribe-footer-form :global(input[type='email']),
+  .subscribe-modal-form :global(input[type='email']) {
+    border-radius: 0.5rem !important;
+    border: 1px solid var(--color-border, rgba(128, 128, 128, 0.3)) !important;
+    background: var(--color-background) !important;
+    color: var(--color-foreground) !important;
+    padding: 0.625rem 0.875rem !important;
+    font-size: 0.875rem !important;
+  }
+
+  .subscribe-footer-form :global(button[type='submit']),
+  .subscribe-modal-form :global(button[type='submit']) {
+    border-radius: 0.5rem !important;
+    background: var(--color-primary) !important;
+    color: var(--color-primary-foreground) !important;
+    font-weight: 600 !important;
+    padding: 0.625rem 1.25rem !important;
+    font-size: 0.875rem !important;
+    cursor: pointer !important;
+    transition: opacity 0.2s !important;
+  }
+
+  .subscribe-footer-form :global(button[type='submit']:hover),
+  .subscribe-modal-form :global(button[type='submit']:hover) {
+    opacity: 0.9 !important;
+  }
+</style>
+
+<script>
+  // Subscribe modal logic
+  function initSubscribeModal() {
+    const modal = document.getElementById('subscribeModal');
+    const closeBtn = document.getElementById('subscribeModalClose');
+    if (!modal || !closeBtn) return;
+
+    // Open modal from any link with [data-subscribe-modal]
+    document.querySelectorAll('[data-subscribe-modal]').forEach((link) => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      });
+    });
+
+    // Close modal
+    closeBtn.addEventListener('click', () => {
+      modal.classList.remove('active');
+      document.body.style.overflow = '';
+    });
+
+    // Close on overlay click
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+    });
+
+    // Close on Escape
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modal.classList.contains('active')) {
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+    });
+  }
+
+  initSubscribeModal();
+  document.addEventListener('astro:after-swap', initSubscribeModal);
+</script>

@@ -63,6 +63,15 @@
             {link.name}
           </a>
         {/each}
+        {#if SITE.newsletter.enabled}
+          <a
+            href="#subscribe"
+            data-subscribe-modal
+            class="px-1.5 py-1 rounded-md text-xs font-bold uppercase tracking-widest text-muted-foreground hover:bg-accent hover:text-primary transition-all shrink-0"
+          >
+            Subscribe
+          </a>
+        {/if}
       </div>
       <div class="h-4 w-px bg-border"></div>
       <div class="flex items-center gap-2">
@@ -156,7 +165,34 @@
     <!-- Mobile controls -->
     <div class="flex items-center gap-2 xl:hidden">
       <Search />
-      <ThemeToggle />
+      {#if SITE.newsletter.enabled}
+        <button
+          onclick={() => {
+            const modal = document.getElementById('subscribeModal');
+            if (modal) {
+              modal.classList.add('active');
+              document.body.style.overflow = 'hidden';
+            }
+            closeMenu();
+          }}
+          aria-label="Subscribe"
+          class="p-2 rounded-md text-muted-foreground hover:text-primary hover:bg-accent transition-all cursor-pointer"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="w-5 h-5"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            ><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9" /><path
+              d="M10.3 21a1.94 1.94 0 0 0 3.4 0"
+            /></svg
+          >
+        </button>
+      {/if}
       <button
         onclick={toggleMenu}
         aria-label={menuOpen ? 'Close menu' : 'Open menu'}
@@ -296,6 +332,10 @@
             {link.name}
           </a>
         {/each}
+      </div>
+      <div class="mt-2 border-t border-border/50 pt-3 px-3 flex items-center justify-between">
+        <span class="text-xs font-bold uppercase tracking-widest text-muted-foreground">Theme</span>
+        <ThemeToggle />
       </div>
     </nav>
   {/if}

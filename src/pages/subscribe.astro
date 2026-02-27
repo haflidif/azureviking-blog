@@ -1,0 +1,28 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import { SITE } from '@/config';
+import Breadcrumbs from '@/components/Breadcrumbs.svelte';
+import { getBreadcrumbSchema } from '@/lib/schemas';
+import SubscribeForm from '@/components/SubscribeForm.astro';
+
+const schema = getBreadcrumbSchema([
+  { name: 'Subscribe', url: new URL('/subscribe', Astro.site).toString() },
+]);
+---
+
+<Layout
+  title={`Subscribe | ${SITE.title}`}
+  description="Subscribe to AzureViking's newsletter for the latest posts on Cloud Security, Azure, and Infrastructure as Code."
+  schemas={[schema]}
+>
+  <main class="mx-auto w-full max-w-3xl px-4 pb-12">
+    <Breadcrumbs items={[{ label: 'Subscribe', href: '/subscribe' }]} client:load />
+
+    <div class="mt-8">
+      <SubscribeForm
+        heading="Stay in the Loop"
+        description="Get notified when I publish new articles about Cloud Security, Azure, Infrastructure as Code, and more. No spam, unsubscribe anytime."
+      />
+    </div>
+  </main>
+</Layout>

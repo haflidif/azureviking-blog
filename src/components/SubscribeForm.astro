@@ -1,0 +1,124 @@
+---
+import { SITE } from '@/config';
+
+interface Props {
+  compact?: boolean;
+  heading?: string;
+  description?: string;
+}
+
+const {
+  compact = false,
+  heading = 'Never Miss a Post',
+  description = 'Subscribe to get notified when I publish new articles. No spam, unsubscribe anytime.',
+} = Astro.props;
+
+const { enabled, formId } = SITE.newsletter;
+---
+
+{
+  enabled && formId && formId !== 'REPLACE_WITH_YOUR_FORM_ID' && (
+    <div class:list={['subscribe-block', { compact }]}>
+      {!compact && (
+        <div class="subscribe-header">
+          <svg
+            class="subscribe-icon"
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9" />
+            <path d="M10.3 21a1.94 1.94 0 0 0 3.4 0" />
+          </svg>
+          <h3 class="subscribe-title">{heading}</h3>
+          <p class="subscribe-desc">{description}</p>
+        </div>
+      )}
+      <div class="subscribe-form">
+        <script async src={`https://eomail5.com/form/${formId}.js`} data-form={formId} />
+      </div>
+    </div>
+  )
+}
+
+<style>
+  .subscribe-block {
+    text-align: center;
+    padding: 2rem 1.5rem;
+    border-radius: 1rem;
+    background: var(--color-card, var(--color-background));
+    border: 1px solid var(--color-border, rgba(128, 128, 128, 0.2));
+  }
+
+  .subscribe-block.compact {
+    padding: 1rem;
+    border-radius: 0.75rem;
+  }
+
+  .subscribe-header {
+    margin-bottom: 1.5rem;
+  }
+
+  .subscribe-icon {
+    width: 2rem;
+    height: 2rem;
+    color: var(--color-primary);
+    margin-bottom: 0.75rem;
+  }
+
+  .subscribe-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--color-foreground);
+    margin: 0 0 0.5rem;
+  }
+
+  .subscribe-desc {
+    font-size: 0.875rem;
+    color: var(--color-muted-foreground);
+    margin: 0;
+    max-width: 28rem;
+    margin-inline: auto;
+    line-height: 1.5;
+  }
+
+  .subscribe-form {
+    max-width: 24rem;
+    margin-inline: auto;
+  }
+
+  /* Style overrides for EmailOctopus embedded form */
+  .subscribe-form :global(.eo-form-wrapper) {
+    font-family: inherit !important;
+  }
+
+  .subscribe-form :global(input[type='email']) {
+    border-radius: 0.5rem !important;
+    border: 1px solid var(--color-border, rgba(128, 128, 128, 0.3)) !important;
+    background: var(--color-background) !important;
+    color: var(--color-foreground) !important;
+    padding: 0.625rem 0.875rem !important;
+    font-size: 0.875rem !important;
+  }
+
+  .subscribe-form :global(button[type='submit']) {
+    border-radius: 0.5rem !important;
+    background: var(--color-primary) !important;
+    color: var(--color-primary-foreground) !important;
+    font-weight: 600 !important;
+    padding: 0.625rem 1.25rem !important;
+    font-size: 0.875rem !important;
+    cursor: pointer !important;
+    transition: opacity 0.2s !important;
+  }
+
+  .subscribe-form :global(button[type='submit']:hover) {
+    opacity: 0.9 !important;
+  }
+</style>

@@ -49,6 +49,13 @@ export interface SiteConfig {
     theme: string; // e.g., 'preferred_color_scheme', 'light', 'dark'
     lang: string;
   };
+
+  // Newsletter subscription
+  newsletter: {
+    enabled: boolean;
+    provider: 'emailoctopus';
+    formId: string; // EmailOctopus embedded form ID
+  };
 }
 
 export const SITE: SiteConfig = {
@@ -105,5 +112,11 @@ export const SITE: SiteConfig = {
     inputPosition: 'bottom',
     theme: 'preferred_color_scheme',
     lang: 'en',
+  },
+
+  newsletter: {
+    enabled: true,
+    provider: 'emailoctopus',
+    formId: '42f67d3a-13bd-11f1-b287-85e2229ceba6',
   },
 };
