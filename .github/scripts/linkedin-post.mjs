@@ -399,10 +399,7 @@ async function postToLinkedIn(text, articleUrl, frontmatter) {
 
 // Main
 async function main() {
-  const siteUrl = (process.env.SITE_URL || 'https://azureviking.com').replace(
-    /\/$/,
-    ''
-  );
+  const siteUrl = (process.env.SITE_URL || 'https://azureviking.com').replace(/\/$/, '');
   const specificSlug = process.env.POST_SLUG?.replace(/[^a-zA-Z0-9_-]/g, '') || '';
   const customText = process.env.CUSTOM_TEXT?.slice(0, 3000) || '';
 
