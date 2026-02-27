@@ -171,5 +171,32 @@ const gaScript = `
       <SearchModal client:idle />
       <ScrollToTop client:idle />
     </div>
+
+    <script>
+      // Prevent ClientRouter from intercepting heading anchor links (#slug)
+      // which otherwise navigate to the root URL instead of scrolling in-page
+      // Use capture phase to run before Astro's ClientRouter handler
+      document.addEventListener(
+        'click',
+        (e) => {
+          const link = (e.target as Element)?.closest?.('.heading-link');
+          if (link instanceof HTMLAnchorElement) {
+            e.preventDefault();
+            e.stopImmediatePropagation();
+            const id = link.getAttribute('href')?.slice(1);
+            if (id) {
+              const el = document.getElementById(id);
+              if (el) {
+                const offset = 100;
+                const top = el.getBoundingClientRect().top + window.scrollY - offset;
+                window.scrollTo({ top, behavior: 'smooth' });
+                history.replaceState(null, '', `${window.location.pathname}#${id}`);
+              }
+            }
+          }
+        },
+        true
+      );
+    </script>
   </body>
 </html>
