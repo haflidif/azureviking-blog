@@ -29,7 +29,6 @@
       name: 'Bluesky',
       icon: 'M12 10.8c-1.087-2.114-4.046-6.053-6.798-7.995C2.566.944 1.561 1.266.902 1.565.139 1.908 0 3.08 0 3.768c0 .69.378 5.65.624 6.479.785 2.63 3.625 3.502 6.301 3.082-4.876.807-6.406 3.291-3.601 5.726C6.259 21.57 9.12 22 11.999 20.086 14.88 22 17.742 21.57 20.676 19.055c2.805-2.435 1.275-4.92-3.601-5.726 2.676.42 5.516-.452 6.3-3.082.247-.828.625-5.79.625-6.479 0-.688-.139-1.86-.902-2.203-.659-.3-1.664-.62-4.3 1.24C16.046 4.748 13.087 8.687 12 10.8',
       viewBox: '0 0 24 22',
-      filled: true,
       getShareUrl: (t: string, u: string) =>
         `https://bsky.app/intent/compose?text=${encodeURIComponent(`${t} ${u}`)}`,
     },
@@ -78,9 +77,9 @@
           width="18"
           height="18"
           viewBox={platform.viewBox || '0 0 24 24'}
-          fill={platform.filled ? 'currentColor' : 'none'}
-          stroke={platform.filled ? 'none' : 'currentColor'}
-          stroke-width={platform.filled ? '0' : '2'}
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
           stroke-linecap="round"
           stroke-linejoin="round"
         >
