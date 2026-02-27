@@ -20,6 +20,18 @@
         `https://x.com/intent/post?text=${encodeURIComponent(t)}&url=${encodeURIComponent(u)}`,
     },
     {
+      name: 'LinkedIn',
+      icon: 'M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2zM4 2a2 2 0 1 1 0 4 2 2 0 0 1 0-4z',
+      getShareUrl: (_t: string, u: string) =>
+        `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(u)}`,
+    },
+    {
+      name: 'Bluesky',
+      icon: 'M12 2C9.5 4.5 5 8.5 5 11.5c0 2.5 1.5 4 3.5 4 1.2 0 2.3-.6 3-1.5.1-.1.3-.1.4 0 .4.5.8 1 1.6 1.3.3.1.6.2 1 .2 2 0 3.5-1.5 3.5-4C18 8.5 14.5 4.5 12 2zM8 18c0 1.1.9 2 2 2h4c1.1 0 2-.9 2-2v-1H8v1z',
+      getShareUrl: (t: string, u: string) =>
+        `https://bsky.app/intent/compose?text=${encodeURIComponent(`${t} ${u}`)}`,
+    },
+    {
       name: 'Telegram',
       icon: 'M22 2L11 13M22 2l-7 20-4-9L2 9l20-7z',
       getShareUrl: (t: string, u: string) =>
