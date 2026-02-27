@@ -245,6 +245,68 @@ function generatePostText(frontmatter, url, fileContent) {
   return lines.join('\n');
 }
 
+// Register an image upload with LinkedIn
+async function registerImageUpload(accessToken, personUrn) {
+  const response = await fetch('https://api.linkedin.com/v2/assets?action=registerUpload', {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${accessToken}`,
+      'Content-Type': 'application/json',
+      'X-Restli-Protocol-Version': '2.0.0',
+    },
+    body: JSON.stringify({
+      registerUploadRequest: {
+        recipes: ['urn:li:digitalmediaRecipe:feedshare-image'],
+        owner: personUrn,
+        serviceRelationships: [
+          { relationshipType: 'OWNER', identifier: 'urn:li:userGeneratedContent' },
+        ],
+      },
+    }),
+  });
+
+  if (!response.ok) {
+    const err = await response.text();
+    throw new Error(`LinkedIn register upload failed (${response.status}): ${err}`);
+  }
+
+  const data = await response.json();
+  const uploadUrl =
+    data.value.uploadMechanism['com.linkedin.digitalmedia.uploading.MediaUploadHttpRequest']
+      .uploadUrl;
+  const asset = data.value.asset;
+  console.log(`📸 Registered image upload: ${asset}`);
+  return { uploadUrl, asset };
+}
+
+// Upload image binary to LinkedIn
+async function uploadImageBinary(uploadUrl, imageBuffer, accessToken) {
+  const response = await fetch(uploadUrl, {
+    method: 'PUT',
+    headers: {
+      Authorization: `Bearer ${accessToken}`,
+      'Content-Type': 'application/octet-stream',
+    },
+    body: imageBuffer,
+  });
+
+  if (!response.ok && response.status !== 201) {
+    throw new Error(`LinkedIn image upload failed (${response.status})`);
+  }
+  console.log('📤 Image uploaded successfully');
+}
+
+// Download image from URL and return as Buffer
+async function downloadImage(imageUrl) {
+  console.log(`📥 Downloading image: ${imageUrl}`);
+  const response = await fetch(imageUrl);
+  if (!response.ok) {
+    throw new Error(`Failed to download image (${response.status}): ${imageUrl}`);
+  }
+  const arrayBuffer = await response.arrayBuffer();
+  return Buffer.from(arrayBuffer);
+}
+
 // Post to LinkedIn
 async function postToLinkedIn(text, articleUrl, frontmatter) {
   const accessToken = process.env.LINKEDIN_ACCESS_TOKEN;
@@ -254,29 +316,65 @@ async function postToLinkedIn(text, articleUrl, frontmatter) {
     throw new Error('Missing LINKEDIN_ACCESS_TOKEN or LINKEDIN_PERSON_URN environment variables');
   }
 
-  const body = {
-    author: personUrn,
-    lifecycleState: 'PUBLISHED',
-    specificContent: {
-      'com.linkedin.ugc.ShareContent': {
-        shareCommentary: { text },
-        shareMediaCategory: 'ARTICLE',
-        media: [
-          {
-            status: 'READY',
-            originalUrl: articleUrl,
-            title: { text: frontmatter.title || 'New Blog Post' },
-            description: { text: frontmatter.description || '' },
-          },
-        ],
-      },
-    },
-    visibility: {
-      'com.linkedin.ugc.MemberNetworkVisibility': 'PUBLIC',
-    },
-  };
+  const siteUrl = (process.env.SITE_URL || 'https://azureviking.com').replace(/\/$/, '');
+  const socialImage = frontmatter.socialImage || frontmatter.social_image || frontmatter.coverImage;
 
-  console.log(`Posting to LinkedIn: "${frontmatter.title}"`);
+  let body;
+
+  if (socialImage) {
+    // IMAGE share: upload cover photo directly for reliable preview
+    const imageUrl = socialImage.startsWith('http') ? socialImage : `${siteUrl}${socialImage}`;
+    const imageBuffer = await downloadImage(imageUrl);
+    const { uploadUrl, asset } = await registerImageUpload(accessToken, personUrn);
+    await uploadImageBinary(uploadUrl, imageBuffer, accessToken);
+
+    body = {
+      author: personUrn,
+      lifecycleState: 'PUBLISHED',
+      specificContent: {
+        'com.linkedin.ugc.ShareContent': {
+          shareCommentary: { text },
+          shareMediaCategory: 'IMAGE',
+          media: [
+            {
+              status: 'READY',
+              media: asset,
+              title: { text: frontmatter.title || 'New Blog Post' },
+              description: { text: frontmatter.description || '' },
+            },
+          ],
+        },
+      },
+      visibility: {
+        'com.linkedin.ugc.MemberNetworkVisibility': 'PUBLIC',
+      },
+    };
+  } else {
+    // ARTICLE share: fallback when no image
+    body = {
+      author: personUrn,
+      lifecycleState: 'PUBLISHED',
+      specificContent: {
+        'com.linkedin.ugc.ShareContent': {
+          shareCommentary: { text },
+          shareMediaCategory: 'ARTICLE',
+          media: [
+            {
+              status: 'READY',
+              originalUrl: articleUrl,
+              title: { text: frontmatter.title || 'New Blog Post' },
+              description: { text: frontmatter.description || '' },
+            },
+          ],
+        },
+      },
+      visibility: {
+        'com.linkedin.ugc.MemberNetworkVisibility': 'PUBLIC',
+      },
+    };
+  }
+
+  console.log(`Posting to LinkedIn: "${frontmatter.title}" (${socialImage ? 'IMAGE' : 'ARTICLE'})`);
   console.log(`Article URL: ${articleUrl}`);
 
   const response = await fetch(LINKEDIN_API, {
@@ -372,7 +470,12 @@ async function main() {
 
     // Dry run mode: preview without posting
     if (process.env.DRY_RUN === 'true') {
+      const socialImage =
+        frontmatter.socialImage || frontmatter.social_image || frontmatter.coverImage;
       console.log('--- LinkedIn Post Preview ---');
+      console.log(`Share type: ${socialImage ? 'IMAGE' : 'ARTICLE'}`);
+      if (socialImage) console.log(`Image: ${socialImage}`);
+      console.log('');
       console.log(text);
       console.log('--- Article URL:', articleUrl, '---');
       console.log();
