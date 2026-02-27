@@ -5,7 +5,7 @@ description: 'The OFFPAD by PONE Biometrics offers secure, passwordless authenti
 pubDate: 2024-12-15
 tags: [security, fido2, review, passwordless]
 category: blog
-featured: true
+featured: false
 coverImage: '/images/posts/review-pone-biometrics-offpad/offpad-front.jpg'
 ---
 
