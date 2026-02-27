@@ -47,7 +47,7 @@
         behavior: 'smooth',
       });
 
-      history.pushState(null, '', `#${slug}`);
+      history.pushState(null, '', `${window.location.pathname}#${slug}`);
     }
   };
 </script>
