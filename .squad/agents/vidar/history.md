@@ -30,3 +30,9 @@
 **Event delegation pattern established:** The subscribe modal now uses document-level event delegation instead of static `querySelectorAll()`. This fixes issue #2 (mobile button bypassing EmailOctopus). Any new subscribe trigger should use the `data-subscribe-modal` attribute — do NOT add inline DOM manipulation. The Footer.astro delegated handler owns all modal state.
 
 See `.squad/decisions.md` for full rationale and affected agents.
+
+## Dual EmailOctopus Form Fix (2026-03-02)
+
+**Problem:** Having the same EmailOctopus embed script twice on one page (footer + modal) breaks the AJAX handler, causing a native GET fallback → 405 error.
+
+**Fix:** Created a second EmailOctopus form (`modalFormId: 775b1b8c-166d-11f1-8ddb-47be6204b8d8`) dedicated to the subscribe modal. Added `modalFormId` to the `SiteConfig` type and config. Updated `Footer.astro` modal to use `SITE.newsletter.modalFormId` while the footer form keeps using `SITE.newsletter.formId`. Each form embed script now has a unique ID, so there's no AJAX handler collision.

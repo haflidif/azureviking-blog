@@ -175,7 +175,11 @@ import logoImage from '@/site-assets/azure_viking_logo.png';
 <!-- Subscribe Modal -->
 {
   SITE.newsletter.enabled && (
-    <div class="subscribe-modal-overlay" id="subscribeModal" data-form-id={SITE.newsletter.formId}>
+    <div
+      class="subscribe-modal-overlay"
+      id="subscribeModal"
+      data-form-id={SITE.newsletter.modalFormId || SITE.newsletter.formId}
+    >
       <div class="subscribe-modal">
         <button class="subscribe-modal-close" id="subscribeModalClose" aria-label="Close">
           <svg
@@ -215,8 +219,8 @@ import logoImage from '@/site-assets/azure_viking_logo.png';
         <div class="subscribe-modal-form">
           <script
             async
-            src={`https://eocampaign1.com/form/${SITE.newsletter.formId}.js`}
-            data-form={SITE.newsletter.formId}
+            src={`https://eocampaign1.com/form/${SITE.newsletter.modalFormId || SITE.newsletter.formId}.js`}
+            data-form={SITE.newsletter.modalFormId || SITE.newsletter.formId}
           />
         </div>
       </div>

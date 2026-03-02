@@ -55,6 +55,7 @@ export interface SiteConfig {
     enabled: boolean;
     provider: 'emailoctopus';
     formId: string; // EmailOctopus embedded form ID
+    modalFormId?: string; // Separate form ID for the subscribe modal
   };
 }
 
@@ -118,5 +119,6 @@ export const SITE: SiteConfig = {
     enabled: true,
     provider: 'emailoctopus',
     formId: '42f67d3a-13bd-11f1-b287-85e2229ceba6',
+    modalFormId: '775b1b8c-166d-11f1-8ddb-47be6204b8d8',
   },
 };
