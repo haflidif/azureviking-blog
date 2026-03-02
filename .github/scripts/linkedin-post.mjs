@@ -462,8 +462,13 @@ async function main() {
 
   for (const { frontmatter, slug, content } of postsToShare) {
     const articleUrl = `${siteUrl}/post/${slug}/`;
-    const text =
+    let text =
       customText || frontmatter.social_text || generatePostText(frontmatter, articleUrl, content);
+
+    // Ensure the article URL is always in the post text (social_text may omit it)
+    if (!text.includes(articleUrl) && !text.includes(siteUrl)) {
+      text += `\n\nRead more 👉 ${articleUrl}`;
+    }
 
     // Dry run mode: preview without posting
     if (process.env.DRY_RUN === 'true') {
