@@ -1,0 +1,44 @@
+{
+  "agents": {
+    "tyr": {
+      "persistent_name": "Tyr",
+      "universe": "Norse Mythology",
+      "role": "Lead",
+      "created_at": "2026-03-02T15:24:14Z",
+      "legacy_named": false,
+      "status": "active"
+    },
+    "bragi": {
+      "persistent_name": "Bragi",
+      "universe": "Norse Mythology",
+      "role": "Content Dev",
+      "created_at": "2026-03-02T15:24:14Z",
+      "legacy_named": false,
+      "status": "active"
+    },
+    "vidar": {
+      "persistent_name": "Vidar",
+      "universe": "Norse Mythology",
+      "role": "Frontend Dev",
+      "created_at": "2026-03-02T15:24:14Z",
+      "legacy_named": false,
+      "status": "active"
+    },
+    "heimdall": {
+      "persistent_name": "Heimdall",
+      "universe": "Norse Mythology",
+      "role": "Automation Dev",
+      "created_at": "2026-03-02T15:24:14Z",
+      "legacy_named": false,
+      "status": "active"
+    },
+    "idunn": {
+      "persistent_name": "Idunn",
+      "universe": "Norse Mythology",
+      "role": "Image Specialist",
+      "created_at": "2026-03-02T15:24:14Z",
+      "legacy_named": false,
+      "status": "active"
+    }
+  }
+}
