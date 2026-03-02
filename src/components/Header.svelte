@@ -64,13 +64,12 @@
           </a>
         {/each}
         {#if SITE.newsletter.enabled}
-          <a
-            href="#subscribe"
+          <button
             data-subscribe-modal
-            class="px-1.5 py-1 rounded-md text-xs font-bold uppercase tracking-widest text-muted-foreground hover:bg-accent hover:text-primary transition-all shrink-0"
+            class="px-1.5 py-1 rounded-md text-xs font-bold uppercase tracking-widest text-muted-foreground hover:bg-accent hover:text-primary transition-all shrink-0 cursor-pointer"
           >
             Subscribe
-          </a>
+          </button>
         {/if}
       </div>
       <div class="h-4 w-px bg-border"></div>
