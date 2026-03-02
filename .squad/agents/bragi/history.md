@@ -23,7 +23,12 @@
 - **Gratitude is baked in.** Haflidi thanks people, tools, and communities constantly. It's authentic, not performative.
 - **Forward-looking closings work best.** End with what's next or what you're excited about, not a generic summary.
 - **Frontmatter requires `draft: true` at creation, `draft: false` when published.** Other fields: `title`, `slug`, `description`, `pubDate` (YYYY-MM-DD), `tags` (array), `category` (one of: blog, talk, tutorial, lab, news, podcast), `featured` (boolean), `coverImage` (path to `/images/posts/{slug}/cover.png`).
+- **Collaborative image contracts work well for parallel workflows.** Image specialist (Idunn) can create assets in parallel while I write the post. Document the shared contract upfront: image filenames, locations, and a list of where each will be referenced. This allows both agents to work independently without blocking. The post writer references all images by path; the image specialist delivers to those exact paths.
 
 ## Cross-Agent Updates (2026-03-02T15:38)
 
 **Content path decision:** All content work targets `site/content/posts/` per team decision in `.squad/decisions.md`. Vidar, Heimdall, and Idunn have been notified.
+
+## Collaboration Validation (2026-03-02T16:32)
+
+**Bragi+Idunn parallel test:** Successfully executed conference summary post + 4 image set in parallel. Bragi wrote post with forward image references; Idunn created images to matching specs (1200x630, palette-consistent, 24–53 KB). No blocking dependencies. Test confirmed that collaborative contract works when documented clearly upfront. Key insight: image specialist can deliver quality assets in parallel if contract (filenames, dimensions, count) is locked before content creation starts.
