@@ -18,7 +18,7 @@
 - **Blog posts location:** Content lives in `site/content/posts/`, not `src/content/posts/`. This is critical for layout and routing work (see team decision in `.squad/decisions.md`).
 
 - **Subscribe modal pattern:** The subscribe overlay modal in `Footer.astro` uses event delegation on `document` for open/close triggers (not `querySelectorAll` at init time). Any element with `data-subscribe-modal` attribute will open the modal — this works across Astro and Svelte boundaries without timing issues.
-- **EmailOctopus dynamic injection:** The EmailOctopus embed script is injected dynamically on first modal open (not statically at page load) because `display: none` containers cause EmailOctopus to skip its AJAX handler, resulting in native form submission redirects.
+- **EmailOctopus modal: custom form, not embed script:** The modal subscribe form is a hand-built HTML form that POSTs to `https://eomail5.com/form/{formId}` via `fetch()` with `mode: 'no-cors'`. This replaces the dynamic script injection approach which had two fatal bugs: (1) form duplication on repeated open/close because the embed script replaces its own `<script>` tag with rendered HTML, defeating the script-tag guard; (2) 405 Method Not Allowed because the embed script's AJAX handler doesn't attach when injected dynamically, causing native GET submission. The footer form still uses the static EmailOctopus embed script (works fine at page load).
 - **Mobile subscribe button:** `Header.svelte` mobile subscribe button uses `data-subscribe-modal` attribute — do NOT add inline DOM manipulation for modal logic. The Footer.astro delegated handler owns modal state.
 
 ## Cross-Agent Updates (2026-03-02T15:38)
