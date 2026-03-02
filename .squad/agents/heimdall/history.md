@@ -16,4 +16,8 @@
 
 ## Learnings
 
-<!-- Append new learnings below. Each entry is something lasting about the project. -->
+- **Blog posts location:** Content lives in `site/content/posts/`, not `src/content/posts/`. This is critical for deployment and publishing workflows (see team decision in `.squad/decisions.md`).
+
+## Cross-Agent Updates (2026-03-02T15:38)
+
+**Content path decision:** All deployment work should reference `site/content/posts/` for content directories per team decision.

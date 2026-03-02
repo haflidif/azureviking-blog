@@ -9,7 +9,7 @@
 ## Key References
 
 - `.github/copilot/agents/blog-writer.md` — authoritative writing style guide with full voice analysis
-- `src/content/posts/` — blog post markdown files
+- `site/content/posts/` — blog post markdown files
 - `site/assets/images/posts/{slug}/` — post-specific images
 
 ## Learnings
@@ -23,3 +23,7 @@
 - **Gratitude is baked in.** Haflidi thanks people, tools, and communities constantly. It's authentic, not performative.
 - **Forward-looking closings work best.** End with what's next or what you're excited about, not a generic summary.
 - **Frontmatter requires `draft: true` at creation, `draft: false` when published.** Other fields: `title`, `slug`, `description`, `pubDate` (YYYY-MM-DD), `tags` (array), `category` (one of: blog, talk, tutorial, lab, news, podcast), `featured` (boolean), `coverImage` (path to `/images/posts/{slug}/cover.png`).
+
+## Cross-Agent Updates (2026-03-02T15:38)
+
+**Content path decision:** All content work targets `site/content/posts/` per team decision in `.squad/decisions.md`. Vidar, Heimdall, and Idunn have been notified.

@@ -15,4 +15,8 @@
 
 ## Learnings
 
-<!-- Append new learnings below. Each entry is something lasting about the project. -->
+- **Blog posts location:** Content lives in `site/content/posts/`, not `src/content/posts/`. This is critical for layout and routing work (see team decision in `.squad/decisions.md`).
+
+## Cross-Agent Updates (2026-03-02T15:38)
+
+**Content path decision:** Bragi's decision confirms all content work targets `site/content/posts/` per team decision in `.squad/decisions.md`.

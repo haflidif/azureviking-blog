@@ -14,4 +14,8 @@
 
 ## Learnings
 
-<!-- Append new learnings below. Each entry is something lasting about the project. -->
+- **Asset structure:** Post-specific images go in `site/assets/images/posts/{slug}/`. The `site/assets/` directory is Astro's publicDir (NOT `public/`). This is confirmed by team decision in `.squad/decisions.md`.
+
+## Cross-Agent Updates (2026-03-02T15:38)
+
+**Content path decision:** All asset work for blog posts targets `site/assets/images/posts/{slug}/` per team decision.
