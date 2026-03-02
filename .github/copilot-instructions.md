@@ -47,3 +47,12 @@
 - GitHub Actions deploys on push to `main`
 - LinkedIn auto-post triggers after successful deploy
 - Site URL: `https://azureviking.com`
+
+## Code Quality Expectations
+
+- **Simplicity first.** Make every change as simple as possible. Impact minimal code.
+- **Root causes only.** Find and fix the actual problem. No temporary workarounds or band-aids.
+- **Prove it works.** Never consider a task complete without verifying. Run `pnpm build`, `pnpm lint`, `pnpm check` as appropriate. Diff behavior between `main` and your changes when relevant.
+- **Demand elegance.** For non-trivial changes, pause and ask "is there a more elegant way?" If a fix feels hacky, implement the proper solution. Skip this for simple, obvious fixes.
+- **Minimal impact.** Changes should only touch what's necessary. Avoid introducing unrelated changes or regressions.
+- **Senior-level standards.** Ask yourself: "Would a staff engineer approve this?" Write code that's clear, maintainable, and well-structured.
