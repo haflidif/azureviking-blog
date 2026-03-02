@@ -1,0 +1,152 @@
+name: PR Visual Preview
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+    paths:
+      - 'site/content/posts/**'
+      - 'src/components/**'
+      - 'src/layouts/**'
+      - 'src/styles/**'
+      - 'src/pages/**'
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  preview:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build site
+        run: pnpm build
+
+      - name: Install Playwright
+        run: npx playwright install --with-deps chromium
+
+      - name: Detect changed files
+        id: changes
+        run: |
+          CHANGED=$(git diff --name-only ${{ github.event.pull_request.base.sha }}...${{ github.sha }} || echo "")
+          echo "files<<EOF" >> "$GITHUB_OUTPUT"
+          echo "$CHANGED" >> "$GITHUB_OUTPUT"
+          echo "EOF" >> "$GITHUB_OUTPUT"
+
+      - name: Start preview server
+        run: |
+          npx serve dist -l 4321 &
+          sleep 3
+          curl -s -o /dev/null -w "%{http_code}" http://localhost:4321 || true
+
+      - name: Take screenshots
+        env:
+          BASE_URL: http://localhost:4321
+          CHANGED_FILES: ${{ steps.changes.outputs.files }}
+          OUTPUT_DIR: screenshots
+        run: node .github/scripts/pr-screenshots.mjs
+
+      - name: Upload screenshots
+        uses: actions/upload-artifact@v4
+        with:
+          name: pr-screenshots
+          path: screenshots/
+          retention-days: 7
+
+      - name: Post PR comment
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const path = require('path');
+
+            // Read results
+            const resultsPath = 'screenshots/results.json';
+            if (!fs.existsSync(resultsPath)) {
+              console.log('No results file found. Skipping comment.');
+              return;
+            }
+
+            const { screenshots } = JSON.parse(fs.readFileSync(resultsPath, 'utf-8'));
+            if (screenshots.length === 0) {
+              console.log('No screenshots taken. Skipping comment.');
+              return;
+            }
+
+            // Group by slug
+            const bySlug = {};
+            for (const s of screenshots) {
+              if (!bySlug[s.slug]) bySlug[s.slug] = [];
+              bySlug[s.slug].push(s);
+            }
+
+            // Build comment body
+            const runUrl = `https://github.com/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`;
+            let body = `## 📸 Visual Preview\n\n`;
+            body += `Screenshots taken automatically by Playwright. [Download all](${runUrl}#artifacts)\n\n`;
+
+            for (const [slug, shots] of Object.entries(bySlug)) {
+              const pageUrl = shots[0].url;
+              body += `### 📄 \`${slug}\`\n`;
+              body += `URL: ${pageUrl}\n\n`;
+              body += `| | 🌞 Light | 🌙 Dark |\n`;
+              body += `|---|---|---|\n`;
+
+              for (const viewport of ['desktop', 'mobile']) {
+                const light = shots.find(s => s.viewport === viewport && s.theme === 'light');
+                const dark = shots.find(s => s.viewport === viewport && s.theme === 'dark');
+                const icon = viewport === 'desktop' ? '🖥️' : '📱';
+                const lightCell = light ? `![${light.filename}](${runUrl}#artifacts)` : '—';
+                const darkCell = dark ? `![${dark.filename}](${runUrl}#artifacts)` : '—';
+                body += `| ${icon} ${viewport} | ${lightCell} | ${darkCell} |\n`;
+              }
+              body += '\n';
+            }
+
+            body += `\n> 💡 Download the \`pr-screenshots\` artifact from [this run](${runUrl}) to view full-resolution screenshots.`;
+
+            // Find existing bot comment
+            const marker = '## 📸 Visual Preview';
+            const { data: comments } = await github.rest.issues.listComments({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+            });
+
+            const existing = comments.find(c =>
+              c.user.type === 'Bot' && c.body.includes(marker)
+            );
+
+            if (existing) {
+              await github.rest.issues.updateComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                comment_id: existing.id,
+                body,
+              });
+              console.log('Updated existing PR comment');
+            } else {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.issue.number,
+                body,
+              });
+              console.log('Created new PR comment');
+            }
