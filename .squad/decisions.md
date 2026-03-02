@@ -25,3 +25,17 @@
 **Affected agents:** Bragi (content references), Vidar (layout components), Idunn (image generation).
 
 **Confirmed by:** Idunn (Image Specialist, via conference summary test).
+
+## Subscribe Modal: Event Delegation Pattern (2026-03-02T18:20)
+
+**What:** The subscribe overlay modal uses **document-level event delegation** for all trigger buttons instead of attaching handlers via `querySelectorAll` at initialization time.
+
+**Why:** The previous approach had a timing dependency on Svelte component hydration — the mobile button in `Header.svelte` might not exist in the DOM when the Footer.astro script ran. Additionally, the mobile button had duplicated inline DOM manipulation that bypassed the EmailOctopus script injection, causing form redirects. Event delegation eliminates both issues: it works regardless of render order and centralizes modal logic.
+
+**How:** Any element with the `data-subscribe-modal` attribute will open the modal. This is the single source of truth for modal open logic — individual components should NOT manually manipulate modal DOM state.
+
+**Affected files:** `src/components/Footer.astro`, `src/components/Header.svelte`
+
+**Affected agents:** Vidar (component ownership), any agent adding new subscribe triggers (just add `data-subscribe-modal` attribute)
+
+**Issue:** #2
