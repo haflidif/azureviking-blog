@@ -175,7 +175,7 @@ import logoImage from '@/site-assets/azure_viking_logo.png';
 <!-- Subscribe Modal -->
 {
   SITE.newsletter.enabled && (
-    <div class="subscribe-modal-overlay" id="subscribeModal">
+    <div class="subscribe-modal-overlay" id="subscribeModal" data-form-id={SITE.newsletter.formId}>
       <div class="subscribe-modal">
         <button class="subscribe-modal-close" id="subscribeModalClose" aria-label="Close">
           <svg
@@ -212,13 +212,7 @@ import logoImage from '@/site-assets/azure_viking_logo.png';
         <p class="subscribe-modal-desc">
           Subscribe to get notified when I publish new articles. No spam, unsubscribe anytime.
         </p>
-        <div class="subscribe-modal-form">
-          <script
-            async
-            src={`https://eomail5.com/form/${SITE.newsletter.formId}.js`}
-            data-form={SITE.newsletter.formId}
-          />
-        </div>
+        <div class="subscribe-modal-form" />
       </div>
     </div>
   )
@@ -373,10 +367,24 @@ import logoImage from '@/site-assets/azure_viking_logo.png';
     const closeBtn = document.getElementById('subscribeModalClose');
     if (!modal || !closeBtn) return;
 
+    const formId = (modal as HTMLElement).dataset.formId;
+
     // Open modal from any link with [data-subscribe-modal]
     document.querySelectorAll('[data-subscribe-modal]').forEach((link) => {
       link.addEventListener('click', (e) => {
         e.preventDefault();
+
+        // Dynamically inject EmailOctopus form on first open so it initializes
+        // while the modal is visible (static injection fails because the modal is
+        // hidden at page-load time, causing EmailOctopus to skip its AJAX handler).
+        const formContainer = modal.querySelector('.subscribe-modal-form');
+        if (formContainer && formId && !formContainer.querySelector('script')) {
+          const script = document.createElement('script');
+          script.src = `https://eomail5.com/form/${formId}.js`;
+          script.setAttribute('data-form', formId);
+          formContainer.appendChild(script);
+        }
+
         modal.classList.add('active');
         document.body.style.overflow = 'hidden';
       });
