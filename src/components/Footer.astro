@@ -361,58 +361,61 @@ import logoImage from '@/site-assets/azure_viking_logo.png';
 </style>
 
 <script>
-  // Subscribe modal logic
-  function initSubscribeModal() {
+  // Subscribe modal logic — uses event delegation so triggers rendered
+  // by any framework (Astro, Svelte) work without init timing issues.
+  function openSubscribeModal() {
     const modal = document.getElementById('subscribeModal');
-    const closeBtn = document.getElementById('subscribeModalClose');
-    if (!modal || !closeBtn) return;
+    if (!modal) return;
 
+    // Dynamically inject EmailOctopus form on first open so it initializes
+    // while the modal is visible (the modal is display:none at page load,
+    // which causes EmailOctopus to skip its AJAX handler).
     const formId = (modal as HTMLElement).dataset.formId;
+    const formContainer = modal.querySelector('.subscribe-modal-form');
+    if (formContainer && formId && !formContainer.querySelector('script')) {
+      const script = document.createElement('script');
+      script.src = `https://eomail5.com/form/${formId}.js`;
+      script.setAttribute('data-form', formId);
+      formContainer.appendChild(script);
+    }
 
-    // Open modal from any link with [data-subscribe-modal]
-    document.querySelectorAll('[data-subscribe-modal]').forEach((link) => {
-      link.addEventListener('click', (e) => {
-        e.preventDefault();
-
-        // Dynamically inject EmailOctopus form on first open so it initializes
-        // while the modal is visible (static injection fails because the modal is
-        // hidden at page-load time, causing EmailOctopus to skip its AJAX handler).
-        const formContainer = modal.querySelector('.subscribe-modal-form');
-        if (formContainer && formId && !formContainer.querySelector('script')) {
-          const script = document.createElement('script');
-          script.src = `https://eomail5.com/form/${formId}.js`;
-          script.setAttribute('data-form', formId);
-          formContainer.appendChild(script);
-        }
-
-        modal.classList.add('active');
-        document.body.style.overflow = 'hidden';
-      });
-    });
-
-    // Close modal
-    closeBtn.addEventListener('click', () => {
-      modal.classList.remove('active');
-      document.body.style.overflow = '';
-    });
-
-    // Close on overlay click
-    modal.addEventListener('click', (e) => {
-      if (e.target === modal) {
-        modal.classList.remove('active');
-        document.body.style.overflow = '';
-      }
-    });
-
-    // Close on Escape
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && modal.classList.contains('active')) {
-        modal.classList.remove('active');
-        document.body.style.overflow = '';
-      }
-    });
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
   }
 
-  initSubscribeModal();
-  document.addEventListener('astro:after-swap', initSubscribeModal);
+  function closeSubscribeModal() {
+    const modal = document.getElementById('subscribeModal');
+    if (!modal) return;
+    modal.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  // Delegated click handler — works for any [data-subscribe-modal] element
+  // regardless of when it enters the DOM (covers Svelte-hydrated buttons).
+  document.addEventListener('click', (e) => {
+    const target = e.target as Element;
+
+    if (target.closest('[data-subscribe-modal]')) {
+      e.preventDefault();
+      openSubscribeModal();
+      return;
+    }
+
+    if (target.closest('#subscribeModalClose')) {
+      closeSubscribeModal();
+      return;
+    }
+
+    // Close on overlay background click
+    if (target.id === 'subscribeModal') {
+      closeSubscribeModal();
+    }
+  });
+
+  document.addEventListener('keydown', (e) => {
+    const modal = document.getElementById('subscribeModal');
+    if (e.key === 'Escape' && modal?.classList.contains('active')) {
+      closeSubscribeModal();
+    }
+  });
 </script>

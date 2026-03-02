@@ -167,14 +167,8 @@
       <Search />
       {#if SITE.newsletter.enabled}
         <button
-          onclick={() => {
-            const modal = document.getElementById('subscribeModal');
-            if (modal) {
-              modal.classList.add('active');
-              document.body.style.overflow = 'hidden';
-            }
-            closeMenu();
-          }}
+          data-subscribe-modal
+          onclick={() => closeMenu()}
           aria-label="Subscribe"
           class="p-2 rounded-md text-muted-foreground hover:text-primary hover:bg-accent transition-all cursor-pointer"
         >
