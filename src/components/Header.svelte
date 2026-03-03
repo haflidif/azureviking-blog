@@ -154,6 +154,29 @@
           </a>
         {/each}
       </div>
+      <a
+        href={`${SITE.base}/rss.xml`}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="RSS Feed"
+        class="px-1 py-1 rounded-md text-muted-foreground hover:text-primary transition-all"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="w-4.5 h-4.5"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          ><path d="M4 11a9 9 0 0 1 9 9" /><path d="M4 4a16 16 0 0 1 16 16" /><circle
+            cx="5"
+            cy="19"
+            r="1"
+          /></svg
+        >
+      </a>
       <div class="h-4 w-px bg-border"></div>
       <div class="flex items-center gap-4">
         <Search />
@@ -308,6 +331,29 @@
         {/if}
       </a>
     {/each}
+    <a
+      href={`${SITE.base}/rss.xml`}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="RSS Feed"
+      class="p-1 rounded-md text-muted-foreground hover:text-primary transition-all"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="w-4 h-4"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        ><path d="M4 11a9 9 0 0 1 9 9" /><path d="M4 4a16 16 0 0 1 16 16" /><circle
+          cx="5"
+          cy="19"
+          r="1"
+        /></svg
+      >
+    </a>
   </div>
 
   <!-- Mobile drawer -->
