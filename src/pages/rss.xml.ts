@@ -25,6 +25,6 @@ export async function GET(context: APIContext) {
       categories: post.data.tags,
     })),
     customData: `<language>en-us</language>
-<atom:link href="${(context.site || SITE.website).toString().replace(/\/$/, '')}/rss.xml" rel="self" type="application/rss+xml" xmlns:atom="http://www.w3.org/2005/Atom" />`,
+<atom:link href="${new URL('/rss.xml', context.site || SITE.website).href}" rel="self" type="application/rss+xml" xmlns:atom="http://www.w3.org/2005/Atom" />`,
   });
 }
