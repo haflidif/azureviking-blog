@@ -53,26 +53,34 @@
     </a>
 
     <!-- Desktop nav -->
-    <nav class="hidden xl:flex items-center gap-4">
-      <div class="flex items-center gap-2">
-        {#each navLinks as link (link.name)}
-          <a
-            href={link.href}
-            class="px-1.5 py-1 rounded-md text-xs font-bold uppercase tracking-widest text-muted-foreground hover:bg-accent hover:text-primary transition-all shrink-0"
-          >
-            {link.name}
-          </a>
-        {/each}
-        {#if SITE.newsletter.enabled}
-          <button
-            data-subscribe-modal
-            class="px-1.5 py-1 rounded-md text-xs font-bold uppercase tracking-widest text-muted-foreground hover:bg-accent hover:text-primary transition-all shrink-0 cursor-pointer"
-          >
-            Subscribe
-          </button>
-        {/if}
+    <nav class="hidden xl:flex flex-col items-end gap-1.5">
+      <!-- Row 1: nav links + utilities -->
+      <div class="flex items-center gap-4">
+        <div class="flex items-center gap-2">
+          {#each navLinks as link (link.name)}
+            <a
+              href={link.href}
+              class="px-1.5 py-1 rounded-md text-xs font-bold uppercase tracking-widest text-muted-foreground hover:bg-accent hover:text-primary transition-all shrink-0"
+            >
+              {link.name}
+            </a>
+          {/each}
+          {#if SITE.newsletter.enabled}
+            <button
+              data-subscribe-modal
+              class="px-1.5 py-1 rounded-md text-xs font-bold uppercase tracking-widest text-muted-foreground hover:bg-accent hover:text-primary transition-all shrink-0 cursor-pointer"
+            >
+              Subscribe
+            </button>
+          {/if}
+        </div>
+        <div class="h-4 w-px bg-border"></div>
+        <div class="flex items-center gap-4">
+          <Search />
+          <ThemeToggle />
+        </div>
       </div>
-      <div class="h-4 w-px bg-border"></div>
+      <!-- Row 2: social icons -->
       <div class="flex items-center gap-2">
         {#each Object.entries(SITE.social) as [platform, link] (platform)}
           <a
@@ -153,34 +161,29 @@
             {/if}
           </a>
         {/each}
-      </div>
-      <a
-        href={`${SITE.base}/rss.xml`}
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="RSS Feed"
-        class="px-1 py-1 rounded-md text-muted-foreground hover:text-primary transition-all"
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          class="w-4.5 h-4.5"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          ><path d="M4 11a9 9 0 0 1 9 9" /><path d="M4 4a16 16 0 0 1 16 16" /><circle
-            cx="5"
-            cy="19"
-            r="1"
-          /></svg
+        <a
+          href={`${SITE.base}/rss.xml`}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="RSS Feed"
+          class="px-1 py-1 rounded-md text-muted-foreground hover:text-primary transition-all"
         >
-      </a>
-      <div class="h-4 w-px bg-border"></div>
-      <div class="flex items-center gap-4">
-        <Search />
-        <ThemeToggle />
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="w-4.5 h-4.5"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            ><path d="M4 11a9 9 0 0 1 9 9" /><path d="M4 4a16 16 0 0 1 16 16" /><circle
+              cx="5"
+              cy="19"
+              r="1"
+            /></svg
+          >
+        </a>
       </div>
     </nav>
 
