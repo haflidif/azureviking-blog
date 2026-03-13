@@ -54,7 +54,7 @@
 
     <!-- Desktop nav -->
     <nav class="hidden xl:flex flex-col items-end gap-1.5">
-      <!-- Row 1: nav links + utilities -->
+      <!-- Row 1: nav links + theme toggle -->
       <div class="flex items-center gap-4">
         <div class="flex items-center gap-2">
           {#each navLinks as link (link.name)}
@@ -75,13 +75,10 @@
           {/if}
         </div>
         <div class="h-4 w-px bg-border"></div>
-        <div class="flex items-center gap-4">
-          <Search />
-          <ThemeToggle />
-        </div>
+        <ThemeToggle />
       </div>
-      <!-- Row 2: social icons -->
-      <div class="flex items-center gap-2">
+      <!-- Row 2: social icons + search (centered) -->
+      <div class="flex items-center justify-center gap-2 w-full">
         {#each Object.entries(SITE.social) as [platform, link] (platform)}
           <a
             href={link}
@@ -184,6 +181,7 @@
             /></svg
           >
         </a>
+        <Search />
       </div>
     </nav>
 
