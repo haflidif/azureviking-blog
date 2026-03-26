@@ -227,4 +227,120 @@ const schemas = [
       <TableOfContents client:load {headings} />
     </div>
   </div>
+
+  <!-- Terminal chat typewriter animation -->
+  <script>
+    function animateTerminalChat(chat: HTMLElement) {
+      if (chat.hasAttribute('data-animated')) return;
+      chat.setAttribute('data-animated', '');
+
+      const prompt = chat.querySelector('.terminal-chat-prompt') as HTMLElement | null;
+      const reasoning = chat.querySelector('.terminal-chat-reasoning') as HTMLElement | null;
+      const reasoningLines = chat.querySelectorAll('.reasoning-line');
+      const divider = chat.querySelector('.terminal-chat-divider') as HTMLElement | null;
+      const response = chat.querySelector('.terminal-chat-response') as HTMLElement | null;
+      const agents = chat.querySelectorAll('.agent-line');
+      const status = chat.querySelector('.terminal-chat-status') as HTMLElement | null;
+
+      if (!prompt) return;
+
+      const fullText = prompt.textContent || '';
+      prompt.textContent = '';
+
+      const cursor = document.createElement('span');
+      cursor.className = 'terminal-chat-cursor';
+      prompt.appendChild(cursor);
+
+      let charIndex = 0;
+      const speed = 25;
+
+      function typeNext() {
+        if (charIndex < fullText.length) {
+          cursor.before(document.createTextNode(fullText[charIndex]));
+          charIndex++;
+          setTimeout(typeNext, speed);
+        } else {
+          cursor.remove();
+          if (reasoning) {
+            setTimeout(revealReasoning, 400);
+          } else {
+            setTimeout(revealResponse, 400);
+          }
+        }
+      }
+
+      function revealReasoning() {
+        if (!reasoning) return;
+        reasoning.classList.add('is-visible');
+
+        reasoningLines.forEach((line, i) => {
+          setTimeout(
+            () => {
+              line.classList.add('is-visible');
+            },
+            300 + i * 250
+          );
+        });
+
+        const reasoningDuration = 300 + reasoningLines.length * 250 + 600;
+        setTimeout(revealResponse, reasoningDuration);
+      }
+
+      function revealResponse() {
+        if (divider) {
+          divider.classList.add('is-visible');
+        }
+
+        if (response) {
+          response.classList.add('is-visible');
+        }
+
+        agents.forEach((agent, i) => {
+          setTimeout(
+            () => {
+              agent.classList.add('is-visible');
+            },
+            200 + i * 180
+          );
+        });
+
+        if (status) {
+          setTimeout(
+            () => {
+              status.classList.add('is-visible');
+            },
+            200 + agents.length * 180 + 150
+          );
+        }
+      }
+
+      typeNext();
+    }
+
+    function initTerminalChats() {
+      const chats = document.querySelectorAll('.terminal-chat[data-animate]:not([data-animated])');
+
+      if (!('IntersectionObserver' in window)) {
+        chats.forEach((c) => (c as HTMLElement).removeAttribute('data-animate'));
+        return;
+      }
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              observer.unobserve(entry.target);
+              animateTerminalChat(entry.target as HTMLElement);
+            }
+          });
+        },
+        { threshold: 0.3 }
+      );
+
+      chats.forEach((chat) => observer.observe(chat));
+    }
+
+    // astro:page-load fires on initial load and on client-side navigation
+    document.addEventListener('astro:page-load', initTerminalChats);
+  </script>
 </Layout>

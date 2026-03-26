@@ -107,6 +107,18 @@ coverImage: '/images/posts/{slug}/cover.png'
 - **Markdown reference:** `![Alt text](/images/posts/{slug}/descriptive-name.png)`
 - **Formats:** PNG or JPG. Optimize for web (compress before committing).
 
+## Terminal Chat Blocks
+
+For posts about Copilot CLI, Squad, or any AI conversation flow, use the **terminal-chat** component to visualize interactions. See `.github/skills/terminal-chat/SKILL.md` for the full reference.
+
+**Quick guide:**
+
+- Wrap in `<div class="terminal-chat" data-animate>` for animated typewriter + staggered reveal
+- Use title bar `Copilot Chat` for Copilot conversations, `Squad` for Squad demos
+- Add a `terminal-chat-reasoning` block with `🤖 Thinking...` (Copilot) or `🧠 Coordinator is thinking...` (Squad)
+- 9 agent colors available: yellow, blue, green, purple, pink, orange, red, cyan, gray
+- Works in plain `.md` files — no MDX needed
+
 ## LinkedIn Preview
 
 When asked to preview a LinkedIn post for a blog article, generate text matching the style in `.github/scripts/linkedin-post.mjs`. The post should have a personal opening line, an excerpt from the article, relevant hashtags, and a link to the post.
