@@ -2,7 +2,7 @@
 title: 'GitHub Copilot CLI: More Than Just Code - Part 2'
 slug: 'github-copilot-cli-more-than-just-code-part-2'
 description: 'Part 2 of the series. This time I used GitHub Copilot in the terminal to compress terminal recordings, trim video clips, and create cover photos. All from the command line.'
-pubDate: 2026-03-18
+pubDate: 2026-03-26
 tags: [github-copilot, cli, ffmpeg, video, creative, tools]
 category: blog
 featured: false
