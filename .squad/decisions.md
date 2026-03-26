@@ -39,3 +39,42 @@
 **Affected agents:** Vidar (component ownership), any agent adding new subscribe triggers (just add `data-subscribe-modal` attribute)
 
 **Issue:** #2
+
+## Dual EmailOctopus Forms for Footer & Modal (2026-03-02)
+
+**Author:** Vidar (Frontend Dev)  
+**Status:** Implemented
+
+The subscribe modal and footer both embedded the same EmailOctopus form, which broke EmailOctopus's AJAX submission handler (405 error on fallback GET). Use two separate forms:
+
+- **Footer form ID:** `42f67d3a-13bd-11f1-b287-85e2229ceba6`
+- **Modal form ID:** `775b1b8c-166d-11f1-8ddb-47be6204b8d8`
+
+Added `modalFormId` as optional field in `SiteConfig.newsletter`. Both forms feed the same EmailOctopus list.
+
+**Files changed:** `site/config.ts`, `src/components/Footer.astro`
+
+## EmailOctopus Real Embed Script Integration (2026-03-02T20:07)
+
+**Author:** Vidar (Frontend Dev)  
+**Status:** Implemented
+
+Use the **real EmailOctopus embed script** for both footer and modal subscribe forms. Do NOT use custom HTML forms with fetch POST.
+
+**Key technical details:**
+
+- Correct domain: `eocampaign1.com`, NOT `eomail5.com`
+- Modal visibility: Use `visibility: hidden` + `pointer-events: none` + `opacity: 0` (NOT `display: none`)
+- Script format: `<script async src="https://eocampaign1.com/form/{formId}.js" data-form="{formId}" />`
+
+Previous custom form failed with `mode: 'no-cors'`. Display:none breaks EmailOctopus script initialization.
+
+**Affected files:** `src/components/Footer.astro`
+
+## Subscribe Modal: Custom Form Instead of Embed Script (v2) [SUPERSEDED]
+
+**Author:** Vidar (Frontend Dev)  
+**Date:** 2026-03-02  
+**Status:** Superseded by "EmailOctopus Real Embed Script Integration"
+
+This decision was replaced by the real embed script approach. Kept for historical record.

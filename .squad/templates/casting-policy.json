@@ -14,9 +14,7 @@
     "Breaking Bad",
     "Lost",
     "Marvel Cinematic Universe",
-    "DC Universe",
-    "Star Trek",
-    "Norse Mythology"
+    "DC Universe"
   ],
   "universe_capacity": {
     "The Usual Suspects": 6,
@@ -32,8 +30,6 @@
     "Breaking Bad": 12,
     "Lost": 18,
     "Marvel Cinematic Universe": 25,
-    "DC Universe": 18,
-    "Star Trek": 14,
-    "Norse Mythology": 15
+    "DC Universe": 18
   }
 }

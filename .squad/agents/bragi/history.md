@@ -32,3 +32,29 @@
 ## Collaboration Validation (2026-03-02T16:32)
 
 **Bragi+Idunn parallel test:** Successfully executed conference summary post + 4 image set in parallel. Bragi wrote post with forward image references; Idunn created images to matching specs (1200x630, palette-consistent, 24–53 KB). No blocking dependencies. Test confirmed that collaborative contract works when documented clearly upfront. Key insight: image specialist can deliver quality assets in parallel if contract (filenames, dimensions, count) is locked before content creation starts.
+
+## Editorial Review: Part 2 Copilot CLI Post (2026-03-18)
+
+**Post:** `site/content/posts/github-copilot-cli-more-than-just-code-part-2.md`
+
+**Review result:** Post is publication-ready after minor polish edits.
+
+**What was clean:**
+
+- No AI filler words, no forbidden dashes in prose, no formulaic intros/closings, no stiff transitions, no passive voice
+- Terminal chat blocks (3 total) all match the `terminal-chat` skill spec exactly
+- `copilot-thinking` blocks (4 total) are properly styled via `src/styles/global.css` — a new component introduced in Part 2
+- Bold on first mention of all key concepts (ffmpeg, Playwright, Pillow, numpy, ZoomIt, etc.)
+- Emoji only at sign-off (🛠️), matching Part 1
+- "I will not lie..." Haflidi-ism present
+- Frontmatter valid, slug matches filename, series metadata matches Part 1
+
+**What I polished:**
+
+- Gratitude paragraph: "Shout-out to" → "Huge thanks to" + added Copilot connection ("Copilot made them feel like they were built into my terminal") for warmer voice consistency with Part 1
+- "Your Turn" invitation: Broadened from video-specific ("compress a video or trim a clip") to creative-task-general ("Got a creative task that feels like it needs a GUI?") to match Part 1's broader invitation style
+- Part 3 teaser: Added "I cannot wait to share that one" for more energy/excitement, consistent with Part 1's forward-looking warmth
+
+**Pattern noted:** Image folder naming in this series uses descriptive names (e.g., `github-copilot-cli-video-editing`) rather than matching the slug (`github-copilot-cli-more-than-just-code-part-2`). Both Part 1 and Part 2 follow this pattern. This is the established convention for this series.
+
+**Key skill reference:** `.github/skills/terminal-chat/SKILL.md` defines terminal chat HTML structure. `copilot-thinking` is a separate component styled in `src/styles/global.css` — not part of the terminal-chat skill but used alongside it in Copilot CLI posts.
