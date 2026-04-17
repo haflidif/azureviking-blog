@@ -35,3 +35,31 @@
 ## Collaboration Validation (2026-03-02T16:32)
 
 **Bragi+Idunn parallel test:** Successfully executed 4 conference images in parallel with Bragi's post. Idunn created cover + 3 inline images at locked dimensions (1200x630) and palette. File sizes 24–53 KB. No rework needed. Test confirmed that parallel asset generation works when contract is locked upfront. Key takeaway: can deliver multi-image sets in parallel if content writer and image specialist agree on slug, filenames, dimensions, and count before either starts.
+
+## Squad on ACA Visuals (2026-07-14)
+
+**Created 5 images** for `squad-on-aca-serverless-ai-agents` post:
+
+| File                   | Dimensions | Size  | Purpose                                                                      |
+| ---------------------- | ---------- | ----- | ---------------------------------------------------------------------------- |
+| cover.png              | 1200×630   | 28 KB | OG cover — Azure gradient + container geometry                               |
+| architecture-flow.png  | 1200×700   | 44 KB | Full pipeline: Issue → Actions → Queue → KEDA → ACA Job → PR + feedback loop |
+| dual-token-pattern.png | 1200×630   | 51 KB | GitHub App Token vs Copilot PAT with GIT_ASKPASS swap                        |
+| scale-to-zero.png      | 1200×630   | 42 KB | Idle ($0) vs Active side-by-side panels                                      |
+| iteration-journey.png  | 1200×630   | 59 KB | 4 per-agent jobs → 1 generic job simplification                              |
+
+**Techniques learned:**
+
+- **RGBA compositing for covers:** RGB mode doesn't support semi-transparent fills. Use `Image.new('RGBA')` + `Image.alpha_composite()` for transparent overlays (grid, tag pills), then convert to RGB for final save.
+- **Unicode dollar sign:** Pillow with Segoe UI may clip the `$` character in string literals. Using `\u0024` ensures reliable rendering.
+- **Segoe UI font family:** `segoeuib.ttf` (bold), `segoeui.ttf` (regular), `segoeuil.ttf` (light) all available on Windows — excellent for technical diagrams.
+- **Color palette for Azure/GitHub diagrams:** GitHub purple (#6e5494), Azure blue (#0078D4), output green (#28a745), with orange (#FF9800) and purple (#9C27B0) for token differentiation.
+- **Architecture diagram layout:** 1200×700 (slightly taller than standard) works better for flow diagrams with feedback loops — gives room for the return path without cramping.
+- **Conceptual diagrams:** Side-by-side panel layout (idle/active, before/after) is highly effective for showing state transitions and simplification journeys.
+
+## Session: Squad ACA Blog Post (2026-04-17T08:11:44.9637043Z)
+
+- Participated in multi-agent blog content creation
+- Delivered on all assigned tasks
+- Coordinated with Tyr (planning), Bragi (content), Idunn (visuals)
+- Post ready for review at site/content/posts/squad-on-aca-serverless-ai-agents.md

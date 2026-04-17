@@ -58,3 +58,26 @@
 **Pattern noted:** Image folder naming in this series uses descriptive names (e.g., `github-copilot-cli-video-editing`) rather than matching the slug (`github-copilot-cli-more-than-just-code-part-2`). Both Part 1 and Part 2 follow this pattern. This is the established convention for this series.
 
 **Key skill reference:** `.github/skills/terminal-chat/SKILL.md` defines terminal chat HTML structure. `copilot-thinking` is a separate component styled in `src/styles/global.css` — not part of the terminal-chat skill but used alongside it in Copilot CLI posts.
+
+## Squad on ACA Blog Post Draft (2026-04-17)
+
+**Post:** `site/content/posts/squad-on-aca-serverless-ai-agents.md`
+
+**Writing decisions:**
+
+- **~2,237 words** (within the 2,500–2,600 target range). Slightly under but every sentence earns its place.
+- **5 code snippets** (up from Tyr's planned 1): dual-token swap bash, `copilot --yolo` invocation, queue message JSON, KEDA identity auth HCL, and the architecture flow is described in numbered steps rather than a diagram-only approach. Short teasers, not tutorials.
+- **Building-process moments included:** The 14 executions breakthrough ("lean back in your chair"), the first PR from a container ("stared at it"), the 4-jobs-to-1 simplification, Squad building Squad (meta-irony landed in section 1 with named agents).
+- **No terminal chat blocks** per Tyr's decision. This post is about the platform, not a Squad session demo.
+- **Bodhi retirement** positioned as final struggle (Struggle D) for narrative momentum. Warm, reflective tone. Alumni directory mentioned.
+- **Gratitude for Brady Gaster** added in The Potential section. Authentic, not performative.
+- **Voice compliance verified:** No prose dashes, no AI filler, no formulaic patterns, no second-person commands. Emoji only at sign-off. Bold on first mention of key concepts. Contractions natural throughout.
+- **`/squad revise` loop** fully described in Section 2 (What It Does) with guard details, not deferred to Section 4.
+- **Frontmatter uses Haflidi's title** (shorter than Tyr's recommendation, per Haflidi's explicit request). pubDate set to 2026-04-17. `draft: true`.
+
+## Session: Squad ACA Blog Post (2026-04-17T08:11:44.9637043Z)
+
+- Participated in multi-agent blog content creation
+- Delivered on all assigned tasks
+- Coordinated with Tyr (planning), Bragi (content), Idunn (visuals)
+- Post ready for review at site/content/posts/squad-on-aca-serverless-ai-agents.md

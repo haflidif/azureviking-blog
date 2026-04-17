@@ -101,6 +101,46 @@ const TAG_COLORS: Record<string, { bg: string; text: string; border: string }> =
     text: 'text-violet-600 dark:text-violet-400',
     border: 'border-violet-500/20',
   },
+  squad: {
+    bg: 'bg-pink-500/10',
+    text: 'text-pink-600 dark:text-pink-400',
+    border: 'border-pink-500/20',
+  },
+  ai: {
+    bg: 'bg-purple-500/10',
+    text: 'text-purple-600 dark:text-purple-400',
+    border: 'border-purple-500/20',
+  },
+  'github-copilot': {
+    bg: 'bg-sky-500/10',
+    text: 'text-sky-600 dark:text-sky-400',
+    border: 'border-sky-500/20',
+  },
+  github: {
+    bg: 'bg-slate-500/10',
+    text: 'text-slate-600 dark:text-slate-400',
+    border: 'border-slate-500/20',
+  },
+  containers: {
+    bg: 'bg-cyan-500/10',
+    text: 'text-cyan-600 dark:text-cyan-400',
+    border: 'border-cyan-500/20',
+  },
+  serverless: {
+    bg: 'bg-lime-500/10',
+    text: 'text-lime-600 dark:text-lime-400',
+    border: 'border-lime-500/20',
+  },
+  keda: {
+    bg: 'bg-emerald-500/10',
+    text: 'text-emerald-600 dark:text-emerald-400',
+    border: 'border-emerald-500/20',
+  },
+  architecture: {
+    bg: 'bg-amber-500/10',
+    text: 'text-amber-600 dark:text-amber-400',
+    border: 'border-amber-500/20',
+  },
 };
 
 // Fallback colors based on string hash
