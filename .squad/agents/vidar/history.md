@@ -36,3 +36,15 @@ See `.squad/decisions.md` for full rationale and affected agents.
 **Problem:** Having the same EmailOctopus embed script twice on one page (footer + modal) breaks the AJAX handler, causing a native GET fallback → 405 error.
 
 **Fix:** Created a second EmailOctopus form (`modalFormId: 775b1b8c-166d-11f1-8ddb-47be6204b8d8`) dedicated to the subscribe modal. Added `modalFormId` to the `SiteConfig` type and config. Updated `Footer.astro` modal to use `SITE.newsletter.modalFormId` while the footer form keeps using `SITE.newsletter.formId`. Each form embed script now has a unique ID, so there's no AJAX handler collision.
+
+## Cross-Agent Heads-Up: About Page Rewrite Proposal (2026-05-12)
+
+**From Scribe:** Heads up — Bragi delivered a comprehensive about-page rewrite proposal that shifts from CV chronology to value-first structure. The proposal includes a tagline change for `BioCard.astro` (lines 36-37).
+
+**Current tagline:** "Icelandic Technical Fellow & Senior Cloud Solution Architect at Microsoft. Former Microsoft MVP in Azure & Security."
+
+**Proposed tagline:** "I help organizations build secure cloud platforms. Senior Cloud Solution Architect at Microsoft, Former Microsoft MVP in Azure & Security."
+
+**What you may need to do:** If Haflidi approves the proposal, you'll update the BioCard component with the new tagline. Currently awaiting Haflidi's answers to 3 open questions (hook framing, community details, personal flavor) before Bragi proceeds with implementation.
+
+**Where to find full proposal:** `.squad/decisions.md` (search for "About Page Structure Shift")

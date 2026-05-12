@@ -55,6 +55,10 @@
 - **Segoe UI font family:** `segoeuib.ttf` (bold), `segoeui.ttf` (regular), `segoeuil.ttf` (light) all available on Windows — excellent for technical diagrams.
 - **Color palette for Azure/GitHub diagrams:** GitHub purple (#6e5494), Azure blue (#0078D4), output green (#28a745), with orange (#FF9800) and purple (#9C27B0) for token differentiation.
 - **Architecture diagram layout:** 1200×700 (slightly taller than standard) works better for flow diagrams with feedback loops — gives room for the return path without cramping.
+- **Unicode glyph rendering:** Segoe UI on Windows does NOT reliably render checkmarks (✓ U+2713) or cross marks (✗) via Pillow — they appear as empty squares. Draw checkmarks manually using `ImageDraw.line()` (two strokes: short down-right + long up-right). Use `ellipse()` for bullet points instead of bullet Unicode chars.
+- **Arrow fan-out in diagrams:** When multiple arrows connect to the same shape, spread entry/exit points along the edge (different Y positions) instead of converging to a single point. This avoids visual clutter.
+- **Logo integration on covers:** Download external logos (e.g., Squad logo as .webp), place inside a dark rounded rectangle with a glow effect (concentric semi-transparent circles behind it). Use RGBA compositing layers: gradient base → grid → glow → dark square → logo → text.
+- **Rework iteration:** First pass often reveals rendering issues (RGBA vs RGB, missing glyphs, arrow convergence). Budget for a verification + fix pass after initial generation.
 - **Conceptual diagrams:** Side-by-side panel layout (idle/active, before/after) is highly effective for showing state transitions and simplification journeys.
 
 ## Session: Squad ACA Blog Post (2026-04-17T08:11:44.9637043Z)

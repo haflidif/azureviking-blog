@@ -44,3 +44,17 @@
 - Delivered on all assigned tasks
 - Coordinated with Tyr (planning), Bragi (content), Idunn (visuals)
 - Post ready for review at site/content/posts/squad-on-aca-serverless-ai-agents.md
+
+## Cross-Agent Heads-Up: About Page Rewrite Proposal (2026-05-12)
+
+**From Scribe:** FYI — Bragi delivered a comprehensive about-page rewrite proposal that shifts from CV chronology to value-first structure. This is a team-visible proposal awaiting Haflidi's approval before implementation.
+
+**What changed:** From chronological autobiography (age 4 computers, 2018 Norway move, career progression) to reader-centric framing (value hook → expertise intersection → credentials → community → personal).
+
+**Status:** Proposed, awaiting Haflidi's answers to 3 open questions:
+
+1. Hook framing: "secure by design" vs broader angle?
+2. Community details: Any podcasts/conferences/presence not yet mentioned?
+3. Personal flavor: Caffeinated joke vs family/cultural note?
+
+**Where to find:** `.squad/decisions.md` (search for "About Page Structure Shift"). Full context also in `.squad/orchestration-log/2026-05-12T10-52-57Z-bragi.md` and session log at `.squad/log/2026-05-12T10-52-57Z-about-page-rewrite-proposal.md`.

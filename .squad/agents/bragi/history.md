@@ -81,3 +81,38 @@
 - Delivered on all assigned tasks
 - Coordinated with Tyr (planning), Bragi (content), Idunn (visuals)
 - Post ready for review at site/content/posts/squad-on-aca-serverless-ai-agents.md
+
+## About Page Restructure Proposal (2026-04-21)
+
+**Request:** Haflidi asked to shift the about page from chronological autobiography (CV timeline) to a value-first structure inspired by Alexander Arvidsson's about page pattern.
+
+**Pattern extracted from reference:**
+
+1. Value-first hook (what the blog offers the reader)
+2. Expertise focus (intersection framing + topics to expect)
+3. Voice/credibility (credentials as "why listen to me")
+4. Where to find me (community presence)
+5. Tiny personal note (humanizing tail)
+
+**Structural decisions:**
+
+- **Dropped chronological timeline entirely.** No more "I was born in Iceland, started with computers at age 4, moved to Norway in 2018." The about page is now reader-focused first, biography second.
+- **"Intersection of infrastructure and security" framing.** Positions Haflidi's expertise clearly without listing job titles chronologically.
+- **Credentials serve credibility, not career history.** Microsoft role, MVP status, and Security User Group co-founding now answer "why should I listen to you?" Certification list was cut (important for LinkedIn, less so for blog readers).
+- **Personal humanizing tail in Haflidi's voice.** "Icelandic by birth, Norwegian by residence, permanently caffeinated by necessity" uses his natural humor without oversharing.
+- **Disclaimer kept at the end.** Legally important but repositioned after the bio so it's not the first thing readers see.
+
+**Voice compliance verified:** No dashes, no AI filler, conversational tone, short sentences where appropriate. The opening "Cloud infrastructure only works when it's secure by design" is 10 words (slightly above Haflidi's 8-word median but works as a hook). Most other sentences are 8-12 words with natural rhythm.
+
+**Open questions for Haflidi:**
+
+1. Is "secure by design" the primary message, or would he prefer broader framing?
+2. Does he have podcast/community presence not mentioned in current bio?
+3. Personal flavor preference at the end (current: caffeinated joke)
+
+**Files affected (proposal only, not modified):**
+
+- `site/content/about/index.md` - full rewrite proposed
+- `src/components/BioCard.astro` - new tagline proposed
+
+**Learning:** About pages should be value-first for readers, not CV timelines. This pattern shift (reader benefit → expertise → credentials → community → personal) is reusable for any professional blog's about page.

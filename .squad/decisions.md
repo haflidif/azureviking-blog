@@ -190,3 +190,100 @@ The meta-moment (Squad agents building Squad platform) needs full context. Split
 1. Bragi writes post following plan + `.github/copilot/agents/blog-writer.md` voice guide
 2. Idunn creates two images (cover + architecture diagram, 1200×630 each)
 3. Tyr reviews for technical accuracy before publish
+
+# Decision: About Page Structure Shift (CV Timeline → Value-First)
+
+**Author:** Bragi (Content Dev)  
+**Date:** 2026-04-21  
+**Status:** Proposed (awaiting Haflidi approval)
+
+## What
+
+Restructure `site/content/about/index.md` from chronological autobiography (birth → education → career progression) to value-first pattern (reader benefit → expertise → credentials → community → personal).
+
+## Why
+
+The current about page starts with "My name is Haflidi Fridthjofsson, an Icelandic Technical Fellow..." and proceeds chronologically through his life story. This is CV-style framing. Blog readers don't arrive asking "where was Haflidi employed in 2018?" They arrive asking "what can I learn here?" or "why should I trust this person's advice?"
+
+Alexander Arvidsson's about page (reference provided by Haflidi) demonstrates the pattern:
+
+- Opens with value prop: "Data only inspires change when it matters to your audience"
+- Frames expertise: "The intersection of people and information"
+- Presents credentials in service of credibility, not timeline
+- Shows community presence (conferences, user groups, podcasts)
+- Ends with personal humanizing note (location, family, hobbies)
+
+Haflidi's expertise sits at the **intersection of infrastructure and security** — this framing immediately positions what the blog covers and why his perspective is unique.
+
+## How (Proposed Changes)
+
+### Structure
+
+**OLD (chronological):**
+
+1. Name + current role + credentials
+2. Started with computers at age 4
+3. Career progression (2018 Norway move → Avanade → Sopra Steria → Microsoft)
+4. Certifications list
+5. Community contributions
+6. Disclaimer
+
+**NEW (value-first):**
+
+1. Hook: "Cloud infrastructure only works when it's secure by design. That's what this blog is about."
+2. Expertise framing: "The intersection of infrastructure and security" + topics to expect
+3. Credentials: Microsoft role, MVP status, Security User Group, OSS contributions
+4. Community presence: blog, speaking, open-source
+5. Personal humanizing note: "Icelandic by birth, Norwegian by residence, permanently caffeinated by necessity"
+6. Disclaimer (repositioned to end)
+
+### Content Cuts
+
+- Full chronological timeline (age 4 computers story, 2018 Norway move arc, Avanade → Sopra Steria progression)
+- Certification list (Cybersecurity Architect Expert, Solutions Architect Expert, etc. — these are LinkedIn material, not blog bio material)
+- Detailed job role descriptions
+
+### Content Additions
+
+- Opening value statement for readers
+- "Intersection of infrastructure and security" positioning
+- Lighter, warmer personal note at the end
+
+### BioCard Tagline Change
+
+**OLD:**  
+"Icelandic Technical Fellow & Senior Cloud Solution Architect at Microsoft. Former Microsoft MVP in Azure & Security."
+
+**NEW (proposed):**  
+"I help organizations build secure cloud platforms. Senior Cloud Solution Architect at Microsoft, Former Microsoft MVP in Azure & Security."
+
+**Why:** The old tagline is credentials-first. The new tagline is value-first ("I help...") then credentials. Matches the about page shift.
+
+## Voice Compliance
+
+- No dashes, no AI filler, conversational tone verified
+- Short sentences where appropriate (hook is 10 words, most others 8-12)
+- Natural Haflidi rhythm and humor ("permanently caffeinated by necessity")
+- No formulaic patterns, no passive voice
+
+## Open Questions
+
+1. **Hook framing:** Does "Cloud infrastructure only works when it's secure by design" position the blog correctly, or would Haflidi prefer broader framing (e.g., "simple, secure, and reliable")?
+2. **Community details:** Is there a podcast, conference series, or other community presence not in the current bio that should be highlighted?
+3. **Personal flavor:** Current proposal ends with caffeinated joke. Would Haflidi prefer family mention, hobby detail, or Iceland/Norway cultural note instead?
+
+## Affected Files
+
+- `site/content/about/index.md` — full markdown body rewrite
+- `src/components/BioCard.astro` — tagline update (lines 36-37)
+
+## Next Steps
+
+1. Haflidi reviews proposal
+2. Answer open questions (hook framing, community details, personal note preference)
+3. Bragi implements approved version
+4. Vidar updates BioCard component if tagline is approved
+
+## Learning for Future About Pages
+
+This pattern (value-first → expertise intersection → credentials → community → personal) is reusable for any professional blog. The shift from "here's my career timeline" to "here's what you'll learn and why I'm qualified to teach it" makes the about page serve readers instead of serving as a resume.
