@@ -116,3 +116,16 @@
 - `src/components/BioCard.astro` - new tagline proposed
 
 **Learning:** About pages should be value-first for readers, not CV timelines. This pattern shift (reader benefit → expertise → credentials → community → personal) is reusable for any professional blog's about page.
+
+## About Page Rewrite Shipped (2026-04-21)
+
+**Final framing decisions:**
+
+- **AI added as primary topic** — positioned within infrastructure and security context. Not generic AI content. Reflects Squad agents, Copilot CLI, AI-powered DevOps tooling focus. Topic list: AI (in context of infra/security), Azure Infrastructure, Cloud Security, Infrastructure as Code.
+- **Microsoft 365 removed entirely** — no longer a blog focus area. Stripped from about page.
+- **Hook style:** "Cloud infrastructure only works when it's secure by design. That's what this blog is about." — approved, unchanged from v2.
+- **Personal line (final):** "Life outside of Azure happens in Norway. I'm Icelandic by birth, Norwegian by residence, and I plan infrastructure like my ancestors planned voyages: carefully, strategically, and with far too much coffee." — Combined caffeinated joke + Viking/saga nod in one sentence. Dry, funny, lands both beats naturally.
+- **Heading structure:** Used Option X (Alexander's pattern) — page title IS the welcome line ("Hey there! I'm Haflidi."). No separate H2. Cleaner than generic "About" H1 + redundant H2.
+- **Intersection framing:** Kept "infrastructure and security" as core. AI is a topic within that intersection, not a third pillar. Matches how his posts frame AI (infrastructure capability, DevOps tooling).
+
+**Learning:** When combining two personality beats (caffeine + cultural nod), find ONE sentence that carries both naturally. "Like my ancestors planned voyages... with far too much coffee" is tighter than stacking two metaphors or sentences. Dryness preserved.

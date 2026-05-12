@@ -287,3 +287,49 @@ Haflidi's expertise sits at the **intersection of infrastructure and security** 
 ## Learning for Future About Pages
 
 This pattern (value-first → expertise intersection → credentials → community → personal) is reusable for any professional blog. The shift from "here's my career timeline" to "here's what you'll learn and why I'm qualified to teach it" makes the about page serve readers instead of serving as a resume.
+
+## 2026-05-12 — About page rewrite shipped (v3)
+
+**Author:** Bragi (Content Dev)  
+**Status:** Shipped to `site/content/about/index.md`  
+**Reference:** [Proposal above](#decision-about-page-structure-shift-cv-timeline--value-first)
+
+### What Shipped
+
+The about page rewrite moved from proposal (v1, accepted 2026-04-21) through three iterations of feedback from Haflidi, resulting in the final v3 shipped to disk.
+
+### Final Personal Line
+
+"Life outside of Azure happens in Norway. I'm Icelandic by birth, Norwegian by residence, and I plan infrastructure like my ancestors planned voyages: carefully, strategically, and with far too much coffee."
+
+**Rationale:** Combined caffeinated joke + Viking/saga cultural nod in a single sentence. Carries both personality beats naturally without stacking metaphors or sacrificing dryness.
+
+### Heading Structure Decision
+
+Used **Option X** (Alexander Arvidsson pattern):
+
+- Page title (`title: "Hey there! I'm Haflidi."`) IS the visible H1
+- No separate H2 in markdown body
+- Cleaner, avoids redundant H1 → H2 structure
+- Matches value-first framing with immediate welcome
+
+### Iterations with Feedback
+
+**Round 1 (2026-04-28):** Haflidi requested tighter personal line and confirmation that BioCard tagline should NOT change.  
+**Round 2 (2026-05-03):** Approved combined caffeine + Viking metaphor; clarified AI should stay in infra/security context only.  
+**Round 3 (2026-05-12):** Final pass — all feedback integrated.
+
+### Files Affected
+
+- `site/content/about/index.md` — full rewrite shipped
+- `src/components/BioCard.astro` — NOT touched (tagline confirmed as-is)
+
+### Verification
+
+- Build: ✅ `pnpm build` passed
+- Lint: ✅ `pnpm lint` passed
+- Type-check: ✅ `pnpm check` passed
+
+### Next Steps
+
+Haflidi reviews live page post-deploy. Scribe commits this change.
