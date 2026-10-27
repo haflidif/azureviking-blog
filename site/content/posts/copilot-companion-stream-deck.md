@@ -5,7 +5,7 @@ description: 'Logitech’s Copilot integration gave me an idea. My Stream Deck c
 pubDate: 2026-10-27
 tags: [github-copilot, stream-deck, squad, open-source, developer-tools]
 category: blog
-featured: false
+featured: true
 draft: false
 coverImage: '/images/posts/copilot-companion-stream-deck/cover.png'
 ---
